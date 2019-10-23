@@ -1,16 +1,27 @@
+#info {
+  background: #990000;
+  color: #fff;
+  padding: 10px;
+}
 #header { /* Верхний блок */
- background: #0080c0; /* Цвет фона */
- padding: 10px; /* Поля вокруг текста */
+  color:#994C00;
+  background: #99FFFF; /* Цвет фона */
+  padding: 10px; /* Поля вокруг текста */
 }
 #sidebar { /* Левая колонка */
- float: left; /* Обтекание справа */
- border: 1px solid #333; /* Параметры рамки вокруг */
- width: 20%; /* Ширина колонки */
- padding: 5px; /* Поля вокруг текста */
- margin: 10px 10px 20px 5px; /* Значения отступов */
+  float: left; /* Обтекание справа */
+  width: 20%; /* Ширина колонки */
+  padding: 5px; /* Поля вокруг текста */
+  margin: 10px 10px 20px 5px; /* Значения отступов */
+
 }
 #content { /* Правая колонка */
- margin: 10px 5px 20px 25%; /* Значения отступов */
- padding: 5px; /* Поля вокруг текста */
- border: 1px solid #333; /* Параметры рамки */
+  margin: 10px 5px 20px 25%; /* Значения отступов */
+  padding: 5px; /* Поля вокруг текста */
+}
+
+.sidebar_botton {
+  padding: 10px;
+  background-color: #FFCC99;
+  width: 100%;
 }
