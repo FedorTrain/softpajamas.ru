@@ -7,6 +7,11 @@
   color:#994C00;
   background: #99FFFF; /* Цвет фона */
   padding: 10px; /* Поля вокруг текста */
+  font-size: 40px;
+}
+#header a {
+  color: #994C00;
+  text-decoration: none;
 }
 #sidebar { /* Левая колонка */
   float: left; /* Обтекание справа */
