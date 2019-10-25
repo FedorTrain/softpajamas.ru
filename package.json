@@ -4,9 +4,13 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "express": "4.17.0"
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.3.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^6.6.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,8 +23,5 @@
   "bugs": {
     "url": "https://github.com/FedorTrain/softpajamas.ru/issues"
   },
-  "homepage": "https://github.com/FedorTrain/softpajamas.ru#readme",
-  "dependencies": {
-    "express": "^4.17.1"
-  }
+  "homepage": "https://github.com/FedorTrain/softpajamas.ru#readme"
 }
