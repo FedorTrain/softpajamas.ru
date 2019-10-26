@@ -1,44 +1,17 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-
-mongoose.connect('mongodb://localhost:27017/online-store');
-const Product = mongoose.model('Product', {
-  id: Number,
-  name: String,
-  prise: mongoose.Schema.Types.Decimal128,
-});
+require('./app/models/product');
+const config = require('./config');
 
 const app = express();
-app.use(bodyParser.json());
+config.express(app);
+config.routes(app);
 
-app.get('/', (req, res) => res.send('work'));
+const { appPort, mongoUri } = config.app;
 
-app.get(
-  '/products',
-  (req, res) => Product.find()
-    .exec()
-    .then(products => res.json(products)),
-);
-
-app.post(
-  '/products',
-  (req, res) => Product.create(req.body)
-    .then(createProduct => res.json(createProduct)),
-);
-
-app.put(
-  '/products/:id',
-  (req, res) => Product.findOneAndUpdate({ id: req.params.id }, req.body)
-    .exec()
-    .then(product => res.json(product)),
- );
-
-app.delete(
-  '/products/:id',
-  (req, res) => Product.deleteOne({id: req.params.id})
-    .exec()
-    .then(() => res.json({ success: true })),
-);
-
-app.listen(3000, () => console.log('Listening on port 3000...'));
+mongoose.connect(mongoUri)
+  .then(() => app.listen(
+    appPort,
+    () => console.log(`Listening on port ${appPort}...`),
+  ))
+  .catch(err => console.error(`Error connecting to mongo: ${mongoUri}`, err));
