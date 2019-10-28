@@ -2,6 +2,13 @@ const mongoose = require('mongoose');
 
 const Product = mongoose.model('Product');
 
+const getOne = (req, res) => {
+  Product.findOne({ id: req.params.id }, req.body)
+    .exec()
+    .then(product => res.json(product))
+    .catch(err => res.status(500).json(err));
+}
+
 const getAll = (req, res) => {
   Product.find()
     .exec()
@@ -31,6 +38,7 @@ const remove = (req, res) => {
 
 module.exports = {
   getAll,
+  getOne,
   create,
   update,
   remove,

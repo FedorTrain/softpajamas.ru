@@ -1,4 +1,9 @@
+var f = "TEST";
+
 $('document').ready(function() {
+  $('#content').append(`<div class="product"> ${f} </div>`);
+
+
   $('#new').click(function() {
     $('#content').append('<p>We dont have news!</p>');
   });
@@ -11,5 +16,7 @@ $('document').ready(function() {
   $('#popular').click(function() {
     $('#content').append('<p>We are not popular!</p>');
   });
+
+
 
 });

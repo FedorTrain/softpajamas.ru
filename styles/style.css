@@ -33,3 +33,12 @@ body {
 #content {
   padding: 5px; /* Поля вокруг текста */
 }
+
+.product {
+  margin: 10px;
+  padding: 10px;
+  height: 250px;
+  width: 200px;
+  outline: #848484 solid 2px;
+
+}
