@@ -1,3 +1,7 @@
-require('./product');
-require('./user');
-require('./token');
+const product = require('./product');
+const user = require('./user');
+
+module.exports = {
+  product,
+  user,
+};
