@@ -13,7 +13,6 @@ const signIn = (req, res) => {
       if (!user) {
         res.status(401).json({ message: 'User does not exist'});
       }
-
       const isValid = bCrypt.compareSync(password, user.password);
       if (isValid) {
         const token = jwt.sign(user._id.toString(), jwtSecret);
@@ -23,4 +22,8 @@ const signIn = (req, res) => {
       }
     })
     .catch(err => res.status(500).json({ massage: err.massage }));
-}
+};
+
+module.exports = {
+  signIn,
+};
