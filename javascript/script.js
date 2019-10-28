@@ -1,7 +1,5 @@
-var f = "TEST";
-
 $('document').ready(function() {
-  $('#content').append(`<div class="product"> ${f} </div>`);
+  $('#content').append(`<div class="product"> dd </div>`);
 
 
   $('#new').click(function() {
