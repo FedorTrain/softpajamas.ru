@@ -11,4 +11,5 @@ module.exports = (app) => {
 
   //auth
   app.post('/signin', auth.signIn);
+  app.post('/refresh-tokens', auth.refreshTokens);
 };
