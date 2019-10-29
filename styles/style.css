@@ -1,5 +1,5 @@
 body {
-  background: #cdddec;
+  background: #fff;
   margin: 0;
   padding: 0;
 }
@@ -31,14 +31,19 @@ body {
 
 }
 #content {
-  padding: 5px; 
+  padding: 5px;
 }
 
 .product {
   margin: 10px;
-  padding: 10px;
-  height: 250px;
-  width: 200px;
-  outline: #848484 solid 2px;
+  padding: 0px;
+  height: 350px;
+  width: 250px;
+  outline: #848484 solid 0px;
+  background-color: #cdddec;
+}
 
+.product img {
+  height: 250px;
+  width: 250px;
 }

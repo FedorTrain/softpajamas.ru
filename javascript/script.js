@@ -1,5 +1,10 @@
 $('document').ready(function() {
-  $('#content').append(`<div class="product"> dd </div>`);
+  $('#content').append(`
+  <div class="product">
+    <img src="./images/rrr.png" alt="Error" />
+    <p align="center">Name</p>
+    <p align="center">400p</p>
+  </div>`);
 
 
   $('#new').click(function() {

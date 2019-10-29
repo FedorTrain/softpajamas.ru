@@ -9,7 +9,7 @@
 
     <div id="content">
       <?php
-      $path = 'images/';
+      $path = './images/';
         if (move_uploaded_file($_FILES['image']['tmp_name'],$path . $_FILES['image']['name'])) {
           $name = filter_var(trim($_POST['name']), FILTER_SANITIZE_STRING);
           $price = filter_var(trim($_POST['price']), FILTER_SANITIZE_STRING);
