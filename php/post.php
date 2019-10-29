@@ -29,13 +29,13 @@
     </div>
     <div id="content">
       <?php
+
         $name = filter_var(trim($_POST['name']), FILTER_SANITIZE_STRING);
-        $price= filter_var(trim($_POST['price']), FILTER_SANITIZE_STRING);
+        $price = filter_var(trim($_POST['price']), FILTER_SANITIZE_STRING);
         $image = $_FILES['image']['name'];
-        $image = addslashes(file_get_contents($image));
 
         $mysql = new mysqli('localhost', 'u0842107_admin', '2Q0n1R1h', 'u0842107_products');
-        $mysql->query("INSERT INTO `products` (`name`, `price`, `image`)
+        $mysql->query("INSERT INTO `product` (`name`, `price`, `image`)
         VALUES('$name','$price','$image')");
 
         $mysql->close();
