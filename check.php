@@ -41,7 +41,7 @@
         VALUES('$name','$price','$image')");
         echo $name;
 
-        $musql->close();
+        $mysql->close();
         echo $name;
         header('Location: /');
       ?>
