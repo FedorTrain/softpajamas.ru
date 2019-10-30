@@ -3,7 +3,7 @@ function inputProduct(image, name, price) {
     '<div class="product">'+
       '<img src="./images/' + image + '" alt="Error"/>'+
       '<p align="center">' + name + '</p>'+
-      '<p align="center">' + price + '</p>'+
+      '<p align="center">' + price + 'р</p>'+
     '</div>');
 }
 
@@ -40,10 +40,10 @@ function product(id) {
 
 $('document').ready(function() {
 
-
-  product(1);
-  product(2);
-  product(3);
+  var i;
+  for (i = 0; i < 10; i++) {
+    product(i);
+  }
 
 
 
