@@ -1,9 +1,9 @@
 $('document').ready(function() {
-  let dproduct = new Object();
+
   var name = 'pajamas';
   var price = 1000;
-  var image = 'ppp.png';
-  alert('go');
+  var image = 'rrr.png';
+
   $.ajax({
     type: "POST",
     url: './php/get.php',
@@ -16,33 +16,19 @@ $('document').ready(function() {
     },
     error: function (jqXHR, textStatus, errorThrown){
       alert('error');
-      alert(textStatus);
-      alert(errorThrown);
     }
   });
-  // $.post(
-  //   "/var/www/u0842107/data/www/softpajamas.ru/php/get.php",
-  //   {id: 2},
-  //   getData
-  // );
-  //
-  // function getData(data)
-  // {
-  //   alert(data);
-  //   dproduct = data;
-  // };
-  alert('end');
 
 
   $('#content').append(
     '<div class="product">'+
-      '<img src="' + './images/rrr.png"' + ' alt="Error"/>'+
+      '<img src="./images/' + 'rrr.png"' + ' alt="Error"/>'+
       '<p align="center">Name</p>'+
       '<p align="center">400p</p>'+
     '</div>');
   $('#content').append(
     '<div class="product">'+
-      '<img src="./images/' + image + ' alt="Error"/>'+
+      '<img src="./images/' + image + '" alt="Error"/>'+
       '<p align="center">' + name + '</p>'+
       '<p align="center">' + price + '</p>'+
     '</div>');
