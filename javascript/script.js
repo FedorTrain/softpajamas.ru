@@ -1,16 +1,30 @@
 $('document').ready(function() {
-  var product;
-  $.ajax({
-    type: "POST",
-    url: './php/get.php',
-    dataType: 'json',
-    data: {id: 2},
-    success: function (data) {
-                product = data;
-              }
-  });
+  var dproduct;
+  alert('go');
+  // $.ajax({
+  //   type: "POST",
+  //   url: './php/get.php',
+  //   dataType: 'json',
+  //   data: {id: 2},
+  //   success: function (data, textStatus, jqXHR) {
+  //               alert(data);
+  //               alert(textStatus);
+  //               product = data;
+  //             }
+  // });
+  $.post(
+    "./php/get.php",
+    {id: 2},
+    getData
+  );
 
-  console.log(product['image']);
+  function getData(data)
+  {
+    alert(data);
+    dproduct = data;
+  };
+  alert('end');
+  
 
   $('#content').append(
     '<div class="product">'+
@@ -20,9 +34,9 @@ $('document').ready(function() {
     '</div>');
   $('#content').append(
     '<div class="product">'+
-      '<img src="./images/' + product['image'] + ' alt="Error"/>'+
-      '<p align="center">' + product['name'] + '</p>'+
-      '<p align="center">' + product['price'] + '</p>'+
+      '<img src="./images/' + dproduct['image'] + ' alt="Error"/>'+
+      '<p align="center">' + dproduct['name'] + '</p>'+
+      '<p align="center">' + dproduct['price'] + '</p>'+
     '</div>');
 
 
