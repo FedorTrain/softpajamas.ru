@@ -9,7 +9,7 @@
 
     <div id="content">
       <?php
-        $uploaddir = './images/';
+        $uploaddir = '/var/www/u0842107/data/www/softpajamas.ru/images/';
         $uploadfile = $uploaddir . basename($_FILES['image']['name']);
 
         if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
@@ -27,7 +27,7 @@
         }
         echo 'Error: ';
         echo $_FILES['image']['name'] . ' - ';
-        echo $_FILES['image']['tmp_name'] . ' - ';
+        echo $_FILES['image']['name'] . ' - ';
         echo $uploaddir . ' - ';
         echo $uploadfile;
       ?>
