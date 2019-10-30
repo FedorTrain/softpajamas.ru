@@ -12,14 +12,14 @@ $.ajax({
 $('document').ready(function() {
   $('#content').append(`
   <div class="product">
-    <img src="${product[image]}" alt="Error" />
-    <p align="center">${product[name]}</p>
-    <p align="center">${product[price]}p</p>
-  </div>
-  <div class="product">
     <img src="./images/ppp.png" alt="Error" />
     <p align="center">Name</p>
     <p align="center">400p</p>
+  </div>
+  <div class="product">
+    <img src="./images/${product[image]}" alt="Error" />
+    <p align="center">${product[name]}</p>
+    <p align="center">${product[price]}p</p>
   </div>`);
 
 
