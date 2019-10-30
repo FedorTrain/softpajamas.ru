@@ -1,5 +1,8 @@
 $('document').ready(function() {
   let dproduct = new Object();
+  var name = 'pajamas';
+  var price = 1000;
+  var image = 'ppp.png';
   alert('go');
   $.ajax({
     type: "POST",
@@ -7,10 +10,9 @@ $('document').ready(function() {
     dataType: 'json',
     data: {id: 2},
     success: function (data, textStatus, jqXHR) {
-      alert('good');
-      alert(data.name);
-      alert(textStatus);
-      product = data;
+      name = data.name;
+      price = data.price;
+      image = data.image;
     },
     error: function (jqXHR, textStatus, errorThrown){
       alert('error');
@@ -40,9 +42,9 @@ $('document').ready(function() {
     '</div>');
   $('#content').append(
     '<div class="product">'+
-      '<img src="./images/' + dproduct.image + ' alt="Error"/>'+
-      '<p align="center">' + dproduct.name + '</p>'+
-      '<p align="center">' + dproduct.price + '</p>'+
+      '<img src="./images/' + image + ' alt="Error"/>'+
+      '<p align="center">' + name + '</p>'+
+      '<p align="center">' + price + '</p>'+
     '</div>');
 
 
