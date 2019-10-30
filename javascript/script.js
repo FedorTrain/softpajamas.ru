@@ -1,5 +1,5 @@
 $('document').ready(function() {
-
+  var id = 1;
   var name = 'pajamas';
   var price = 1000;
   var image = 'rrr.png';
@@ -10,6 +10,8 @@ $('document').ready(function() {
     dataType: 'json',
     data: {id: 2},
     success: function (data, textStatus, jqXHR) {
+      alert('good');
+      id = data.id;
       name = data.name;
       price = data.price;
       image = data.image;
