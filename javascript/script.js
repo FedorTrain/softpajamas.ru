@@ -7,6 +7,8 @@ $('document').ready(function() {
     data: 2,
     success: function (obj, textstatus) {
                 product= obj.result;
+              } else {
+                console.log('err');
               }
   });
 
