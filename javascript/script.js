@@ -1,5 +1,5 @@
 $('document').ready(function() {
-  var dproduct;
+  let dproduct = new Object();
   alert('go');
   // $.ajax({
   //   type: "POST",
@@ -34,9 +34,9 @@ $('document').ready(function() {
     '</div>');
   $('#content').append(
     '<div class="product">'+
-      '<img src="./images/' + dproduct['image'] + ' alt="Error"/>'+
-      '<p align="center">' + dproduct['name'] + '</p>'+
-      '<p align="center">' + dproduct['price'] + '</p>'+
+      '<img src="./images/' + dproduct.image + ' alt="Error"/>'+
+      '<p align="center">' + dproduct.name + '</p>'+
+      '<p align="center">' + dproduct.price + '</p>'+
     '</div>');
 
 
