@@ -1,19 +1,17 @@
 <?php
+  header('Content-Type: application/json');
+
+  $id = $_POST['id'];
+
   $mysql = new mysqli('localhost', 'u0842107_admin', '2Q0n1R1h', 'u0842107_products');
-  echo "Go";
 
   $result = $mysql->query("SELECT * FROM `product` WHERE `id` = 2");
-  if(!$result) {
-    echo "OPA";
-  } else {
-
-  $product = $result->fetch_assoc();
-
-  print_r($product);
-
-  }
   $mysql->close();
-  exit();
-  header('Location: /');
 
+  if(!$result) {
+    echo json_encode('err');
+  } else {
+    $product = $result->fetch_assoc();
+    echo json_encode($product);
+  }
 ?>
