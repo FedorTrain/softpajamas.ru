@@ -18,12 +18,12 @@ $('document').ready(function() {
     <p align="center">400p</p>
   </div>
   <div class="product">
-
+  <p align="center">${product[name]}</p>
+  <p align="center">${product[price]}p</p>
   </div>`);
 
   // <img src="./images/${product[image]}" alt="Error" />
-  // <p align="center">${product[name]}</p>
-  // <p align="center">${product[price]}p</p>
+  
 
   $('#new').click(function() {
     $('#content').append('<p>We dont have news!</p>');
