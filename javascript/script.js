@@ -35,6 +35,7 @@ function product(id) {
   if (get) {
     inputProduct(image, name, price);
   }
+  return get;
 }
 
 $('document').ready(function() {
