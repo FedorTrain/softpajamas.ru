@@ -8,10 +8,10 @@ function inputProduct(image, name, price) {
 }
 
 $('document').ready(function() {
-  var name = 'pajamas';
-  var price = 1000;
-  var image = 'ppp.png';
-  var id = 2;
+  var name;
+  var price;
+  var image;
+  var id;
 
   $.ajax({
     type: "POST",
@@ -32,7 +32,7 @@ $('document').ready(function() {
   });
 
 
-  //alert('end');
+  alert('end');
 
 
   $('#content').append(
