@@ -19,9 +19,9 @@ $('document').ready(function() {
     '</div>');
   $('#content').append(
     '<div class="product">'+
-      '<img src="./images/' + product[image] + ' alt="Error"/>'+
-      '<p align="center">' + product[name] + '</p>'+
-      '<p align="center">' + product[price] + '</p>'+
+      '<img src="./images/' + product['imag'e] + ' alt="Error"/>'+
+      '<p align="center">' + product['name'] + '</p>'+
+      '<p align="center">' + product['price'] + '</p>'+
     '</div>');
 
 
