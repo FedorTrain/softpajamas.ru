@@ -2,7 +2,7 @@ $('document').ready(function() {
   var name = 'pajamas';
   var price = 1000;
   var image = 'ppp.png';
-  alert('go');
+  
   $.ajax({
     type: "POST",
     url: './php/get.php',
@@ -19,7 +19,7 @@ $('document').ready(function() {
       alert(errorThrown);
     }
   });
-
+  alert('end');
 
 
   $('#content').append(
