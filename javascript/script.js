@@ -12,6 +12,7 @@ function product(id) {
   var price;
   var image;
   var id;
+  var get = false;
   $.ajax({
     type: "POST",
     url: './php/get.php',
@@ -23,6 +24,7 @@ function product(id) {
       name = data.name;
       price = data.price;
       image = data.image;
+      get = true;
     },
     error: function (jqXHR, textStatus, errorThrown){
       alert('error');
@@ -30,8 +32,9 @@ function product(id) {
       alert(errorThrown);
     }
   });
-  inputProduct(image, name, price);
-
+  if (get) {
+    inputProduct(image, name, price);
+  }
 }
 
 $('document').ready(function() {
