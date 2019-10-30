@@ -2,14 +2,13 @@ $('document').ready(function() {
   var name = 'pajamas';
   var price = 1000;
   var image = 'ppp.png';
-  var id = 2;
+  alert('go');
   $.ajax({
     type: "POST",
     url: './php/get.php',
     dataType: 'json',
     data: {id: 2},
     success: function (data, textStatus, jqXHR) {
-      
       name = data.name;
       price = data.price;
       image = data.image;
@@ -20,6 +19,7 @@ $('document').ready(function() {
       alert(errorThrown);
     }
   });
+  alert('end');
 
 
   $('#content').append(
