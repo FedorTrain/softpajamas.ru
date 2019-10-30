@@ -46,7 +46,7 @@ $('document').ready(function() {
       '<p align="center">Name</p>'+
       '<p align="center">400p</p>'+
     '</div>');
-    alert(image, name, price);
+    //alert(image, name, price);
 
   sleep(500);
   inputProduct(image, name, price);
