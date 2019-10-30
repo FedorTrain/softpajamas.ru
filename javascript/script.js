@@ -4,12 +4,10 @@ $('document').ready(function() {
     type: "POST",
     url: './php/get.php',
     dataType: 'json',
-    data: 2,
+    data: 'id=2',
     success: function (obj, textstatus) {
                 product= obj.result;
-              } else {
-                console.log('err');
-              }
+              } 
   });
 
 
