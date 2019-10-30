@@ -23,6 +23,7 @@ $('document').ready(function() {
     url: './php/get.php',
     dataType: 'json',
     data: {id: 2},
+    async: false;
     success: function (data, textStatus, jqXHR) {
       id = data.id;
       name = data.name;
@@ -48,7 +49,7 @@ $('document').ready(function() {
     '</div>');
     //alert(image, name, price);
 
-  sleep(1000);
+  //sleep(1000);
   inputProduct(image, name, price);
 
 
