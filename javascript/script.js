@@ -23,7 +23,7 @@ $('document').ready(function() {
     url: './php/get.php',
     dataType: 'json',
     data: {id: 2},
-    async: false;
+    async: false,
     success: function (data, textStatus, jqXHR) {
       alert('good');
       id = data.id;
