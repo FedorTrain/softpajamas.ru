@@ -8,7 +8,7 @@ $('document').ready(function() {
     data: {id: 2},
     success: function (data, textStatus, jqXHR) {
       alert('good');
-      alert(data);
+      alert(data.name);
       alert(textStatus);
       product = data;
     },
