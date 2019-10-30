@@ -1,14 +1,13 @@
 $('document').ready(function() {
-  var product = [];
+  var product;
   $.ajax({
     type: "POST",
     url: './php/get.php',
     dataType: 'json',
     data: {id: 2},
     success: function (data) {
-                if (data === 'err')
-                  console.log('err');
-                product = data;
+                console.log(data);
+                product = data['name'];
               }
   });
 
@@ -20,7 +19,7 @@ $('document').ready(function() {
     <p align="center">400p</p>
   </div>
   <div class="product">
-  <p align="center">${product[name]}</p>
+  <p align="center">${product}</p>
   </div>`);
 
   //<p align="center">${product[price]}p</p>
