@@ -48,7 +48,7 @@ $('document').ready(function() {
     '</div>');
     //alert(image, name, price);
 
-  sleep(500);
+  sleep(1000);
   inputProduct(image, name, price);
 
 
