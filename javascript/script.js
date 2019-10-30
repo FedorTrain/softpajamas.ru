@@ -9,7 +9,7 @@ $('document').ready(function() {
     dataType: 'json',
     data: {id: 2},
     success: function (data, textStatus, jqXHR) {
-      id = data.id;
+      
       name = data.name;
       price = data.price;
       image = data.image;
