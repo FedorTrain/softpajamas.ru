@@ -19,9 +19,9 @@ $('document').ready(function() {
   </div>
   <div class="product">
   <p align="center">${product[name]}</p>
-  <p align="center">${product[price]}p</p>
   </div>`);
 
+  //<p align="center">${product[price]}p</p>
   // <img src="./images/${product[image]}" alt="Error" />
 
 
