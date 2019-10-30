@@ -12,6 +12,6 @@
   //   echo json_encode('err');
   // } else {
     $product = $result->fetch_assoc();
-    echo $product;
+    echo json_encode($product);
   //}
 ?>
