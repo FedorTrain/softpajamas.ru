@@ -1,8 +1,6 @@
 <?php
   header('Content-Type: application/json');
 
-  $product = array();
-
   $id = $_POST['id'];
 
   $mysql = new mysqli('localhost', 'u0842107_admin', '2Q0n1R1h', 'u0842107_products');
@@ -13,7 +11,7 @@
   if(!$result) {
     echo json_encode('err');
   } else {
-    $product['result'] = $result->fetch_assoc();
+    $product = $result->fetch_assoc();
     echo json_encode($product);
   }
 ?>
