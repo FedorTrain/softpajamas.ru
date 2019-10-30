@@ -5,9 +5,7 @@ $('document').ready(function() {
     url: './php/get.php',
     dataType: 'json',
     data: 'id=2',
-    success: function (obj, textstatus) {
-                product = obj.result;
-              }
+    success: function (product);
   });
 
 
