@@ -9,8 +9,11 @@
 
     <div id="content">
       <?php
-      $path = './images/';
-        if (move_uploaded_file($_FILES['image']['tmp_name'],$path . $_FILES['image']['name'])) {
+        $uploaddir = '/www/images/';
+        $uploadfile = $uploaddir . basename($_FILES['image']['name']);
+
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
+
           $name = filter_var(trim($_POST['name']), FILTER_SANITIZE_STRING);
           $price = filter_var(trim($_POST['price']), FILTER_SANITIZE_STRING);
           $image = $_FILES['image']['name'];
@@ -23,7 +26,10 @@
           header('Location: /');
         }
         echo 'Error: ';
-        echo $_FILES['image']['error'];
+        echo $_FILES['image']['name'] . ' - ';
+        echo $_FILES['image']['tmp_name'] . ' - ';
+        echo $uploaddir . ' - ';
+        echo $uploadfile;
       ?>
 
     </div>
