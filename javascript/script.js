@@ -13,7 +13,7 @@ $('document').ready(function() {
   //             }
   // });
   $.post(
-    "./php/get.php",
+    "/var/www/u0842107/data/www/softpajamas.ru/php/get.php",
     {id: 2},
     getData
   );
@@ -24,7 +24,7 @@ $('document').ready(function() {
     dproduct = data;
   };
   alert('end');
-  
+
 
   $('#content').append(
     '<div class="product">'+
