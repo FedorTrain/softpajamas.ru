@@ -1,3 +1,12 @@
+function inputProduct(image, name, price) {
+  $('#content').append(
+    '<div class="product">'+
+      '<img src="./images/' + image + '" alt="Error"/>'+
+      '<p align="center">' + name + '</p>'+
+      '<p align="center">' + price + '</p>'+
+    '</div>');
+}
+
 $('document').ready(function() {
   var name = 'pajamas';
   var price = 1000;
@@ -23,7 +32,7 @@ $('document').ready(function() {
   });
 
 
-  alert('end');
+  //alert('end');
 
 
   $('#content').append(
@@ -32,29 +41,24 @@ $('document').ready(function() {
       '<p align="center">Name</p>'+
       '<p align="center">400p</p>'+
     '</div>');
-  $('#content').append(
-    '<div class="product">'+
-      '<img src="./images/' + image + '" alt="Error"/>'+
-      '<p align="center">' + name + '</p>'+
-      '<p align="center">' + price + '</p>'+
-    '</div>');
+
+  setTimeout(inputProduct(image, name, price), 1000);
 
 
 
 
-
-  $('#new').click(function() {
-    $('#content').append('<p>We dont have news!</p>');
-  });
-  $('#stock').click(function() {
-    $('#content').append('<p>We dont have stock!</p>');
-  });
-  $('#designer').click(function() {
-    $('#content').append('<p>We dont have designer!</p>');
-  });
-  $('#popular').click(function() {
-    $('#content').append('<p>We are not popular!</p>');
-  });
+  // $('#new').click(function() {
+  //   $('#content').append('<p>We dont have news!</p>');
+  // });
+  // $('#stock').click(function() {
+  //   $('#content').append('<p>We dont have stock!</p>');
+  // });
+  // $('#designer').click(function() {
+  //   $('#content').append('<p>We dont have designer!</p>');
+  // });
+  // $('#popular').click(function() {
+  //   $('#content').append('<p>We are not popular!</p>');
+  // });
 
 
 
