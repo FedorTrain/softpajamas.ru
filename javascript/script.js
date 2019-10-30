@@ -7,11 +7,13 @@ $('document').ready(function() {
     dataType: 'json',
     data: {id: 2},
     success: function (data, textStatus, jqXHR) {
+      alert('good');
       alert(data);
       alert(textStatus);
       product = data;
     },
     error: function (jqXHR, textStatus, errorThrown){
+      alert('error');
       alert(textStatus);
       alert(errorThrown);
     }
