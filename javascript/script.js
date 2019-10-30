@@ -7,6 +7,11 @@ function inputProduct(image, name, price) {
     '</div>');
 }
 
+function sleep(ms) {
+ms += new Date().getTime();
+while (new Date() < ms){}
+}
+
 $('document').ready(function() {
   var name;
   var price;
@@ -43,7 +48,8 @@ $('document').ready(function() {
     '</div>');
     alert(image, name, price);
 
-  setTimeout(inputProduct(image, name, price), 5000);
+  sleep(500);
+  inputProduct(image, name, price);
 
 
 
