@@ -7,24 +7,16 @@ function inputProduct(image, name, price) {
     '</div>');
 }
 
-function sleep(ms) {
-ms += new Date().getTime();
-while (new Date() < ms){}
-}
-
-
-
-$('document').ready(function() {
+function product(id) {
   var name;
   var price;
   var image;
   var id;
-
   $.ajax({
     type: "POST",
     url: './php/get.php',
     dataType: 'json',
-    data: {id: 3},
+    data: {id: id},
     async: false,
     success: function (data, textStatus, jqXHR) {
       id = data.id;
@@ -38,8 +30,16 @@ $('document').ready(function() {
       alert(errorThrown);
     }
   });
-
   inputProduct(image, name, price);
+
+}
+
+$('document').ready(function() {
+
+
+  product(1);
+  product(2);
+  product(3);
 
 
 
