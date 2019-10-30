@@ -35,14 +35,16 @@ function product(id) {
   if (get) {
     inputProduct(image, name, price);
   }
+  return get;
 }
 
 $('document').ready(function() {
+  var i = 1;
+  while (product(i)){
+    i++;
 
+  }
 
-  product(1);
-  product(2);
-  product(3);
 
 
 
