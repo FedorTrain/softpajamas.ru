@@ -9,7 +9,7 @@
 
   $product = $result->fetch_assoc();
 
-  print_r($user);
+  print_r($product);
 
   }
   $mysql->close();
