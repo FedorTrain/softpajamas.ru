@@ -1,15 +1,15 @@
 $('document').ready(function() {
-  let dproduct = new Object();
   var name = 'pajamas';
   var price = 1000;
   var image = 'ppp.png';
-  alert('go');
+  var id = 2;
   $.ajax({
     type: "POST",
     url: './php/get.php',
     dataType: 'json',
     data: {id: 2},
     success: function (data, textStatus, jqXHR) {
+      id = data.id;
       name = data.name;
       price = data.price;
       image = data.image;
@@ -20,7 +20,6 @@ $('document').ready(function() {
       alert(errorThrown);
     }
   });
-  alert('end');
 
 
   $('#content').append(
