@@ -1,12 +1,12 @@
 $('document').ready(function() {
   $('#content').append(`
   <div class="product">
-    <img src="../images/rrr.png" alt="Error" />
+    <img src="./images/rrr.png" alt="Error" />
     <p align="center">Name</p>
     <p align="center">400p</p>
   </div>
   <div class="product">
-    <img src="././images/ppp.png" alt="Error" />
+    <img src="./images/ppp.png" alt="Error" />
     <p align="center">Name</p>
     <p align="center">400p</p>
   </div>`);
