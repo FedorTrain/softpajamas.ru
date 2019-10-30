@@ -1,8 +1,8 @@
 $('document').ready(function() {
-  var id = 1;
-  var name = 'pajamas';
-  var price = 1000;
-  var image = 'rrr.png';
+  var id;
+  var name;
+  var price;
+  var image;
 
   $.ajax({
     type: "POST",
