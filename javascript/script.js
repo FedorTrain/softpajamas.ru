@@ -8,6 +8,8 @@ $('document').ready(function() {
     success: function (data) {
                 console.log(data);
                 product = data['name'];
+                console.log(product);
+
               }
   });
 
