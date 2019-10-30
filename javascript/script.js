@@ -1,5 +1,5 @@
 $('document').ready(function() {
-  var product;
+  var product = [];
   $.ajax({
     type: "POST",
     url: './php/get.php',
