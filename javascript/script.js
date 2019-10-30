@@ -41,9 +41,9 @@ $('document').ready(function() {
       '<p align="center">Name</p>'+
       '<p align="center">400p</p>'+
     '</div>');
+    alert(image, name, price);
 
   setTimeout(inputProduct(image, name, price), 5000);
-  alert(image, name, price);
 
 
 
