@@ -20,17 +20,6 @@ $('document').ready(function() {
       alert(errorThrown);
     }
   });
-  // $.post(
-  //   "/var/www/u0842107/data/www/softpajamas.ru/php/get.php",
-  //   {id: 2},
-  //   getData
-  // );
-  //
-  // function getData(data)
-  // {
-  //   alert(data);
-  //   dproduct = data;
-  // };
   alert('end');
 
 
@@ -42,7 +31,7 @@ $('document').ready(function() {
     '</div>');
   $('#content').append(
     '<div class="product">'+
-      '<img src="./images/' + image + ' alt="Error"/>'+
+      '<img src="./images/' + image + '" alt="Error"/>'+
       '<p align="center">' + name + '</p>'+
       '<p align="center">' + price + '</p>'+
     '</div>');
