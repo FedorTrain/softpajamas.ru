@@ -10,6 +10,7 @@ $('document').ready(function() {
               }
   });
 
+  console.log(product['image']);
 
   $('#content').append(
     '<div class="product">'+
