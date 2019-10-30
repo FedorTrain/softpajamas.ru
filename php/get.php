@@ -8,10 +8,10 @@
   $result = $mysql->query("SELECT * FROM `product` WHERE `id` = 2");
   $mysql->close();
 
-  if(!$result) {
-    echo json_encode('err');
-  } else {
+  // if(!$result) {
+  //   echo json_encode('err');
+  // } else {
     $product = $result->fetch_assoc();
     echo json_encode($product);
-  }
+  //}
 ?>
