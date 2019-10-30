@@ -43,7 +43,7 @@ $('document').ready(function() {
     '</div>');
 
   setTimeout(inputProduct(image, name, price), 5000);
-
+  alert(image, name, price);
 
 
 
