@@ -6,8 +6,8 @@ $('document').ready(function() {
     dataType: 'json',
     data: 'id=2',
     success: function (obj, textstatus) {
-                product= obj.result;
-              } 
+                product = obj.result;
+              }
   });
 
 
