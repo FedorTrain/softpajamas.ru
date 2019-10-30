@@ -1,15 +1,16 @@
-var product;
-$.ajax({
-  type: "POST",
-  url: './php/get.php',
-  dataType: 'json',
-  data: 2,
-  success: function (obj, textstatus) {
-              dataProd= obj.result;
-            }
-});
-
 $('document').ready(function() {
+  var product;
+  $.ajax({
+    type: "POST",
+    url: './php/get.php',
+    dataType: 'json',
+    data: 2,
+    success: function (obj, textstatus) {
+                dataProd= obj.result;
+              }
+  });
+
+
   $('#content').append(`
   <div class="product">
     <img src="./images/ppp.png" alt="Error" />
