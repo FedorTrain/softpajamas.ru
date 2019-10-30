@@ -25,6 +25,7 @@ $('document').ready(function() {
     data: {id: 2},
     async: false;
     success: function (data, textStatus, jqXHR) {
+      alert('good');
       id = data.id;
       name = data.name;
       price = data.price;
