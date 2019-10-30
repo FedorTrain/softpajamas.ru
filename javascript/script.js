@@ -1,3 +1,5 @@
+
+
 $('document').ready(function() {
   $('#content').append(`
   <div class="product">
