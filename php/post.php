@@ -21,7 +21,9 @@
 
           $mysql->close();
           header('Location: /');
-        } else echo 'Error';
+        }
+        echo 'Error: ';
+        echo $_FILES['image']['error'];
       ?>
 
     </div>
