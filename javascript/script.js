@@ -1,28 +1,32 @@
 $('document').ready(function() {
   let dproduct = new Object();
   alert('go');
-  // $.ajax({
-  //   type: "POST",
-  //   url: './php/get.php',
-  //   dataType: 'json',
-  //   data: {id: 2},
-  //   success: function (data, textStatus, jqXHR) {
-  //               alert(data);
-  //               alert(textStatus);
-  //               product = data;
-  //             }
-  // });
-  $.post(
-    "/var/www/u0842107/data/www/softpajamas.ru/php/get.php",
-    {id: 2},
-    getData
-  );
-
-  function getData(data)
-  {
-    alert(data);
-    dproduct = data;
-  };
+  $.ajax({
+    type: "POST",
+    url: './php/get.php',
+    dataType: 'json',
+    data: {id: 2},
+    success: function (data, textStatus, jqXHR) {
+      alert(data);
+      alert(textStatus);
+      product = data;
+    },
+    error: function (jqXHR, textStatus, errorThrown){
+      alert(textStatus);
+      alert(errorThrown);
+    }
+  });
+  // $.post(
+  //   "/var/www/u0842107/data/www/softpajamas.ru/php/get.php",
+  //   {id: 2},
+  //   getData
+  // );
+  //
+  // function getData(data)
+  // {
+  //   alert(data);
+  //   dproduct = data;
+  // };
   alert('end');
 
 
