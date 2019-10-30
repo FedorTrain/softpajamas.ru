@@ -39,7 +39,7 @@ function product(id) {
 }
 
 $('document').ready(function() {
-  var i = 1;
+  Number i = 1;
   while (product(i)){
     i++;
 
