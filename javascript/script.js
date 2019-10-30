@@ -6,7 +6,7 @@ $('document').ready(function() {
     dataType: 'json',
     data: 2,
     success: function (obj, textstatus) {
-                dataProd= obj.result;
+                product= obj.result;
               }
   });
 
@@ -23,7 +23,7 @@ $('document').ready(function() {
   </div>`);
 
   // <img src="./images/${product[image]}" alt="Error" />
-  
+
 
   $('#new').click(function() {
     $('#content').append('<p>We dont have news!</p>');
