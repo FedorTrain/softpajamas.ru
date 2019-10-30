@@ -12,6 +12,8 @@ ms += new Date().getTime();
 while (new Date() < ms){}
 }
 
+
+
 $('document').ready(function() {
   var name;
   var price;
@@ -22,10 +24,9 @@ $('document').ready(function() {
     type: "POST",
     url: './php/get.php',
     dataType: 'json',
-    data: {id: 2},
+    data: {id: 3},
     async: false,
     success: function (data, textStatus, jqXHR) {
-    //  alert('good');
       id = data.id;
       name = data.name;
       price = data.price;
@@ -38,19 +39,6 @@ $('document').ready(function() {
     }
   });
 
-
-  //alert('end');
-
-
-  $('#content').append(
-    '<div class="product">'+
-      '<img src="' + './images/rrr.png"' + ' alt="Error"/>'+
-      '<p align="center">Name</p>'+
-      '<p align="center">400p</p>'+
-    '</div>');
-    //alert(image, name, price);
-
-  //sleep(1000);
   inputProduct(image, name, price);
 
 
