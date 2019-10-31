@@ -6,7 +6,7 @@
     <title>SoftPajamas</title>
     <link href="styles/main.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="javascript/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="javascript/main.js"></script>
+    <script type="text/javascript" src="javascript/product.js"></script>
   </head>
   <body>
     <div id="header">
@@ -28,6 +28,7 @@
 
     </div>
     <div id="content">
+
 
     </div>
 
