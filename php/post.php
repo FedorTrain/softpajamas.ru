@@ -24,7 +24,8 @@
             VALUES('$name','$price','$image')");
 
             $mysql->close();
-            header('Location:admin.html');
+            header('Location:./admin.html');
+
           }
           echo 'Error: ';
           echo $_FILES['image']['name'] . ' - ';
