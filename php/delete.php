@@ -19,13 +19,9 @@
           $mysql->query("DELETE FROM `product` WHERE `name` = $name");
 
           $mysql->close();
-          header('Location:./admin.html');
 
-          echo 'Error: ';
-          echo $_FILES['image']['name'] . ' - ';
-          echo $_FILES['image']['name'] . ' - ';
-          echo $uploaddir . ' - ';
-          echo $uploadfile;
+        }
+        header('Location:./admin.html');
 
       ?>
 
