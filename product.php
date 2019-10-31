@@ -4,7 +4,7 @@
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
     <title>SoftPajamas</title>
-    <link href="styles/main.css" rel="stylesheet" type="text/css"/>
+    <link href="styles/product.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="javascript/jquery-3.4.1.min.js"></script>
   </head>
   <body>
@@ -37,8 +37,8 @@
 
         echo '<div class="product">';
         echo '<img src="./images/' . $product['image'] . '" alt="Error"/>';
-        echo '<p align="center">' . $product['image'] . '</p>';
-        echo '<p align="center">' . $product['image'] . 'р</p>';
+        echo '<p align="center">' . $product['name'] . '</p>';
+        echo '<p align="center">' . $product['price'] . 'р</p>';
         echo '</div>';
 
 
