@@ -39,7 +39,7 @@
         $mysql->close();
         $product = $result->fetch_assoc();
 
-        echo json_encode($product);
+        echo $product;
 
       ?>
 
