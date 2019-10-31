@@ -6,7 +6,6 @@
     <title>SoftPajamas</title>
     <link href="styles/main.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="javascript/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="javascript/product.js"></script>
   </head>
   <body>
     <div id="header">
@@ -28,8 +27,23 @@
 
     </div>
     <div id="content">
+      <?php
+        $id = $_GET['id'];
+
+        $mysql = new mysqli('localhost', 'u0842107_admin', '2Q0n1R1h', 'u0842107_products');
+        $result = $mysql->query("SELECT * FROM `product` WHERE `id` = $id");
+        $mysql->close();
+        $product = $result->fetch_assoc();
+
+        echo '<div class="product">' .
+            '<img src="./images/' . $product['image'] . '" alt="Error"/>' .
+            '<p align="center">' . $product['image'] . '</p>' .
+            '<p align="center">' . $product['image'] . 'р</p>' .
+            '</div>');";
 
 
+
+       ?>
     </div>
 
  </body>
