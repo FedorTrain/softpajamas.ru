@@ -1,6 +1,6 @@
 function inputProduct(id ,image, name, price) {
   $('#content').append(
-    '<a href ="http://softpajamas/product.php?id=' + id + '"><div class="product">'+
+    '<a href ="http://softpajamas.ru/product.php?id=' + id + '"><div class="product">'+
       '<img src="./images/' + image + '" alt="Error"/>'+
       '<p align="center">' + name + '</p>'+
       '<p align="center">' + price + 'р</p>'+
