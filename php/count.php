@@ -8,6 +8,6 @@
 
   $mysql->close();
 
-  echo json_encode($result);
+  echo $result;
 
 ?>

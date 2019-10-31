@@ -57,6 +57,7 @@ $('document').ready(function() {
     }
   });
 
+  alert(numProduct);
 
   var i;
   var end = 40;
