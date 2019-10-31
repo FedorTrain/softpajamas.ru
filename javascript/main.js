@@ -42,22 +42,22 @@ function product(id) {
 
 $('document').ready(function() {
   var numProduct;
-  $.ajax({
-    type: "POST",
-    url: './php/coutn.php',
-    dataType: 'json',
-    async: false,
-    data: {},
-    success: function (data, textStatus, jqXHR) {
-      numProduct = data;
-      alert(data);
-    },
-    error: function (jqXHR, textStatus, errorThrown){
-      alert('error');
-    }
-  });
-
-  alert(numProduct);
+  // $.ajax({
+  //   type: "POST",
+  //   url: './php/coutn.php',
+  //   dataType: 'json',
+  //   async: false,
+  //   data: {},
+  //   success: function (data, textStatus, jqXHR) {
+  //     numProduct = data;
+  //     alert(data);
+  //   },
+  //   error: function (jqXHR, textStatus, errorThrown){
+  //     alert('error');
+  //   }
+  // });
+  // 
+  // alert(numProduct);
 
   var i;
   var end = 40;
