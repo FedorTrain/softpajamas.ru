@@ -37,8 +37,9 @@
         $result = $mysql->query("SELECT COUNT(*) FROM `product`");
 
         $mysql->close();
+        $product = $result->fetch_assoc();
 
-        echo json_encode($result);
+        echo json_encode($product);
 
       ?>
 

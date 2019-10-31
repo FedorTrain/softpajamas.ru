@@ -49,7 +49,7 @@ $('document').ready(function() {
     async: false,
     data: {},
     success: function (data, textStatus, jqXHR) {
-      numProduct = Number(data);
+      numProduct = data;
       alert(data);
     },
     error: function (jqXHR, textStatus, errorThrown){
