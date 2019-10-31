@@ -10,12 +10,13 @@
     <div id="content">
       <?php
         $pass = $_POST['pass'];
+        echo $pass;
         if ($pass == "dickduck") {
 
           $name = filter_var(trim($_POST['name']), FILTER_SANITIZE_STRING);
+          echo $name;
           $mysql = new mysqli('localhost', 'u0842107_admin', '2Q0n1R1h', 'u0842107_products');
-          mysql_query("DELETE * FROM `product` WHERE `name` = '$name'",$mysql) or die(mysql_error());
-
+          $mysql->query("DELETE FROM product WHERE name = 'qwert'");
           $mysql->close();
 
         }
