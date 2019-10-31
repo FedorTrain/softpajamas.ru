@@ -21,7 +21,7 @@
           $mysql->close();
 
         }
-        header('Location:./admin.html');
+        header('Location:/php/admin.html');
 
       ?>
 
