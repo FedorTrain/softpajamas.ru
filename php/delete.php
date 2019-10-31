@@ -9,26 +9,24 @@
 
     <div id="content">
       <?php
-        if ($_POST['pass'] == "dickduck") {
-          $uploaddir = '/var/www/u0842107/data/www/softpajamas.ru/images/';
-          $uploadfile = $uploaddir . basename($_FILES['image']['name']);
+        $pass = filter_var(trim($_POST['pass']), FILTER_SANITIZE_STRING);
 
-          if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
+        if ($pass == "dickduck") {
 
-            $name = filter_var(trim($_POST['name']), FILTER_SANITIZE_STRING);
+          $name = filter_var(trim($_POST['name']), FILTER_SANITIZE_STRING);
 
-            $mysql = new mysqli('localhost', 'u0842107_admin', '2Q0n1R1h', 'u0842107_products');
-            $mysql->query("DELETE FROM `product` WHERE `name` = $name");
+          $mysql = new mysqli('localhost', 'u0842107_admin', '2Q0n1R1h', 'u0842107_products');
+          $mysql->query("DELETE FROM `product` WHERE `name` = $name");
 
-            $mysql->close();
-            header('Location:./admin.html');
-          }
+          $mysql->close();
+          header('Location:./admin.html');
+
           echo 'Error: ';
           echo $_FILES['image']['name'] . ' - ';
           echo $_FILES['image']['name'] . ' - ';
           echo $uploaddir . ' - ';
           echo $uploadfile;
-        }
+
       ?>
 
     </div>
