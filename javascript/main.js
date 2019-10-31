@@ -47,8 +47,9 @@ $('document').ready(function() {
     url: './php/coutn.php',
     dataType: 'json',
     async: false,
+    data: {},
     success: function (data, textStatus, jqXHR) {
-      numProduct = Number(data); 
+      numProduct = Number(data);
       alert(data);
     },
     error: function (jqXHR, textStatus, errorThrown){
