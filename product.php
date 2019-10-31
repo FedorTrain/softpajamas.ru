@@ -39,7 +39,7 @@
             '<img src="./images/' . $product['image'] . '" alt="Error"/>' .
             '<p align="center">' . $product['image'] . '</p>' .
             '<p align="center">' . $product['image'] . 'р</p>' .
-            '</div>');";
+            '</div>');
 
 
 
