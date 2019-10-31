@@ -38,8 +38,8 @@
 
         $mysql->close();
 
-        echo $result;
-        
+        echo json_encode($result);
+
       ?>
 
     </div>
