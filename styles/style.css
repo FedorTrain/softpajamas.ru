@@ -41,6 +41,8 @@ body {
   width: 250px;
   outline: #848484 solid 0px;
   background-color: #cdddec;
+  float: left;
+
 }
 
 .product img {
