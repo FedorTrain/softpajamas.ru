@@ -13,10 +13,10 @@
         echo $pass;
         if ($pass == "dickduck") {
 
-          $name = filter_var(trim($_POST['name']), FILTER_SANITIZE_STRING);
-          echo $name;
+          $id = $_POST['id'];
+          echo $id;
           $mysql = new mysqli('localhost', 'u0842107_admin', '2Q0n1R1h', 'u0842107_products');
-          $mysql->query("DELETE FROM product WHERE name = 'qwert'");
+          $mysql->query("DELETE FROM product WHERE id = $id");
           $mysql->close();
 
         }
