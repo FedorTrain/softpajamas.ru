@@ -41,6 +41,21 @@ function product(id) {
 
 
 $('document').ready(function() {
+  var numProduct;
+  $.ajax({
+    type: "POST",
+    url: './php/coutn.php',
+    dataType: 'json',
+    async: false,
+    success: function (data, textStatus, jqXHR) {
+      numProduct = Number(data); 
+      alert(data);
+    },
+    error: function (jqXHR, textStatus, errorThrown){
+      alert('error');
+    }
+  });
+
 
   var i;
   var end = 40;
