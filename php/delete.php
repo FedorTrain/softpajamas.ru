@@ -10,13 +10,11 @@
     <div id="content">
       <?php
         $pass = $_POST['pass'];
-        echo $pass;
         if ($pass == "dickduck") {
 
           $name = filter_var(trim($_POST['name']), FILTER_SANITIZE_STRING);
-          echo $name;
           $mysql = new mysqli('localhost', 'u0842107_admin', '2Q0n1R1h', 'u0842107_products');
-          if(mysqli_query($mysql,"DELETE * FROM `product` WHERE `name` = '$name'")) {
+          if(mysqli_query("DELETE * FROM `product` WHERE `name` = '$name'",$mysql)) {
             echo "maybe beleted";
           } else {
             echo "don't deleted";
