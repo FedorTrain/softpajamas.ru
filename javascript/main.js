@@ -43,8 +43,9 @@ function product(id) {
 $('document').ready(function() {
 
   var i;
-  for (i = 0; i < 10; i++) {
-    product(i);
+  var end = 10;
+  for (i = 0; i < end; i++) {
+    if (product(i)) end++;
     //inputProduct('rrr.png', 'Name', 1234);
   }
 
