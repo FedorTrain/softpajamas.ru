@@ -33,6 +33,8 @@
           echo $_FILES['image']['name'] . ' - ';
           echo $uploaddir . ' - ';
           echo $uploadfile;
+        } else {
+          echo "password is bad";
         }
       ?>
 
