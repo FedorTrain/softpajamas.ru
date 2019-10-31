@@ -1,10 +1,10 @@
-function inputProduct(image, name, price) {
+function inputProduct(id ,image, name, price) {
   $('#content').append(
-    '<div class="product">'+
+    '<a href ="http://softpajamas/product.php?id=' + id + '"><div class="product">'+
       '<img src="./images/' + image + '" alt="Error"/>'+
       '<p align="center">' + name + '</p>'+
       '<p align="center">' + price + 'р</p>'+
-    '</div>');
+    '</div></a>');
 }
 
 function product(id) {
@@ -33,7 +33,7 @@ function product(id) {
     }
   });
   if (get) {
-    inputProduct(image, name, price);
+    inputProduct(id, image, name, price);
   }
   return get;
 }
