@@ -41,7 +41,7 @@ function load_id() {
     url: './php/load_id.php',
     dataType: 'json',
     data: {},
-    async: false;
+    async: false,
     success: function (data, textStatus, jqXHR) {
 
       product_id = Object.values(data);
