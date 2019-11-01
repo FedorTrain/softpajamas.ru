@@ -51,7 +51,7 @@ function load_id() {
 }
 
 $('document').ready(function() {
-  // alert(load_id());
+  load_id();
   // var product_id = load_id();
 
   for (i = 1; i < product_id.length; i++) {
