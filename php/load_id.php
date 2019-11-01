@@ -12,6 +12,6 @@
   //   $i++;
   // }
 
-  echo json_encode($_id_);
+  echo json_encode($_id_[2]);
 
 ?>
