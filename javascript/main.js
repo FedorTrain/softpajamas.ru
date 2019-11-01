@@ -41,6 +41,7 @@ function load_id() {
     dataType: 'json',
     data: {},
     success: function (data, textStatus, jqXHR) {
+      alert(data);
       _id_ = Object.values(data);
       alert(_id_[0],_id_[1],_id_[2]);
     },
