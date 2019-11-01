@@ -42,43 +42,13 @@ function product(id) {
 
 $('document').ready(function() {
   var numProduct;
-  // $.ajax({
-  //   type: "POST",
-  //   url: './php/coutn.php',
-  //   dataType: 'json',
-  //   async: false,
-  //   data: {},
-  //   success: function (data, textStatus, jqXHR) {
-  //     numProduct = data;
-  //     alert(data);
-  //   },
-  //   error: function (jqXHR, textStatus, errorThrown){
-  //     alert('error');
-  //   }
-  // });
-  // 
-  // alert(numProduct);
+
 
   var i;
   var end = 40;
   for (i = 0; i < end; i++) {
     if (product(i)) end++;
-    //inputProduct('rrr.png', 'Name', 1234);
   }
-
-  // $('#new').click(function() {
-  //   $('#content').append('<p>We dont have news!</p>');
-  // });
-  // $('#stock').click(function() {
-  //   $('#content').append('<p>We dont have stock!</p>');
-  // });
-  // $('#designer').click(function() {
-  //   $('#content').append('<p>We dont have designer!</p>');
-  // });
-  // $('#popular').click(function() {
-  //   $('#content').append('<p>We are not popular!</p>');
-  // });
-
 
 
 });

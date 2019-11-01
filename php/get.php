@@ -7,11 +7,7 @@
 
   $result = $mysql->query("SELECT * FROM `product` WHERE `id` = $id");
   $mysql->close();
+  $product = $result->fetch_assoc();
+  echo json_encode($product);
 
-  // if(!$result) {
-  //   echo json_encode('err');
-  // } else {
-    $product = $result->fetch_assoc();
-    echo json_encode($product);
-  //}
 ?>
