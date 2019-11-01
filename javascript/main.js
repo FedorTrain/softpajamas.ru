@@ -42,8 +42,11 @@ function load_id() {
     dataType: 'json',
     data: {},
     success: function (data, textStatus, jqXHR) {
-      for (var i = 0 in Object.keys(data))
+      for (var i = 0 in Object.keys(data)) {
         product_id[i] = Object.values(data)[i];
+      }
+      alert(product_id);
+
     },
     error: function (jqXHR, textStatus, errorThrown){
       alert('error of id');
