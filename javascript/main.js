@@ -46,7 +46,7 @@ function load_id() {
 
       product_id = Object.values(data);
 
-      alert(product_id);
+      //alert(product_id);
 
     },
     error: function (jqXHR, textStatus, errorThrown){
@@ -58,7 +58,7 @@ function load_id() {
 $('document').ready(function() {
   load_id();
 
-  alert(product_id);
+//  alert(product_id);
   for (i = 1; i < product_id.length; i++) {
     product(product_id[i]);
     //inputProduct(1 ,'rrr.png', 'name', 123);
