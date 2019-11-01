@@ -55,8 +55,9 @@ $('document').ready(function() {
   var product_id = [];
 
 
-  for (i = 1; i < 100; i++) {
+  for (i = 1; i < 10; i++) {
     product(i);
+    //inputProduct(1 ,'rrr.png', 'name', 123);
   }
 
 
