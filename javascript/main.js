@@ -33,8 +33,8 @@ function product(id) {
     }
   });
   if (get) {
-      //inputProduct(id, image, name, price);
-      setTimeout(inputProduct, 500, id, image, name, price);
+      inputProduct(id, image, name, price);
+      //setTimeout(inputProduct, 500, id, image, name, price);
 
   }
   return get;
@@ -43,7 +43,8 @@ function product(id) {
 
 
 $('document').ready(function() {
-  ;
+  setTimeout(inputProduct, 500, 2, '1A3553E2-0EBD-4196-8AB6-895F3E833145.jpeg', 'name', 123);
+
 
 
   var i;
