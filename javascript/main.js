@@ -46,7 +46,7 @@ function load_id() {
 
       product_id = Object.values(data);
 
-      //alert(product_id);
+      alert(product_id);
 
     },
     error: function (jqXHR, textStatus, errorThrown){
