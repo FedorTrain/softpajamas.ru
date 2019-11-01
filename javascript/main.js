@@ -42,9 +42,9 @@ function load_id() {
     dataType: 'json',
     data: {},
     success: function (data, textStatus, jqXHR) {
-      for (var i = 0 in Object.keys(data)) {
-        product_id[i] = Object.values(data)[i];
-      }
+
+      product_id = Object.values(data);
+
       alert(product_id);
 
     },
