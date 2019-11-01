@@ -35,15 +35,15 @@
         $mysql->close();
         $product = $result->fetch_assoc();
 
-        echo '<div class="product">';
-        echo '<img src="./images/' . $product['image'] . '" alt="Error"/>';
-        echo '
-          <form action="php/get.php" method="post" enctype="multipart/form-data">
+        echo '<div class="product">
+         <img src="./images/' . $product['image'] . '" alt="Error"/>
+
+          <form action="" method="post" enctype="multipart/form-data">
             <button class="btn btn-success">Pay</button>
-          </form>';
-        echo '<p>' . $product['name'] . '</p>';
-        echo '<p>' . $product['price'] . 'р</p>';
-        echo '</div>';
+          </form>
+         <p>' . $product['name'] . '</p>
+         <p>' . $product['price'] . 'р</p>
+         </div>';
 
 
 
