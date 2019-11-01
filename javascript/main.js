@@ -42,8 +42,8 @@ function load_id() {
     data: {},
     async: false,
     success: function (data, textStatus, jqXHR) {
-
-      return Object.values(data)
+      alert(Object.values(data));
+      return Object.values(data);
 
     },
     error: function (jqXHR, textStatus, errorThrown){
