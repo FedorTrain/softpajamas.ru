@@ -52,7 +52,7 @@ function load_id() {
 }
 
 $('document').ready(function() {
-
+  alert(product_id);
   for (i = 1; i < product_id.length; i++) {
     product(product_id[i]);
     //inputProduct(1 ,'rrr.png', 'name', 123);
