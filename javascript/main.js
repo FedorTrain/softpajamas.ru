@@ -33,7 +33,7 @@ function product(id) {
     }
   });
   if (get) {
-    inputProduct(id, image, name, price);
+    setTimeout(inputProduct, 500, id, image, name, price);
   }
   return get;
 }
@@ -47,7 +47,7 @@ $('document').ready(function() {
   var i;
   var end = 40;
   for (i = 0; i < end; i++) {
-    if (setTimeout(product, 500, i)) end++;
+    if (product(i)) end++;
   }
 
 
