@@ -42,8 +42,8 @@ function load_id() {
     dataType: 'json',
     data: {},
     success: function (data, textStatus, jqXHR) {
-      alert(Object.entries(data));
-      return Object.entries(data);
+      for (var i = 0 in Object.keys(data))
+        product_id[i] = Object.values(data)[i];
     },
     error: function (jqXHR, textStatus, errorThrown){
       alert('error of id');
@@ -52,9 +52,7 @@ function load_id() {
 }
 
 $('document').ready(function() {
-  alert(load_id());
-  // var product_id = load_id();
-  product_id = load_id();
+
   for (i = 1; i < product_id.length; i++) {
     product(product_id[i]);
     //inputProduct(1 ,'rrr.png', 'name', 123);
