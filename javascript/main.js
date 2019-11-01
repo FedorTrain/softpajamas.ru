@@ -34,18 +34,16 @@ function product(id) {
   return get;
 }
 
-var product_id;
 function load_id() {
   $.ajax({
     type: "POST",
     url: './php/load_id.php',
     dataType: 'json',
     data: {},
+    async: true,
     success: function (data, textStatus, jqXHR) {
 
-      product_id = Object.values(data);
-
-      alert(product_id);
+      return Object.values(data)
 
     },
     error: function (jqXHR, textStatus, errorThrown){
@@ -55,9 +53,8 @@ function load_id() {
 }
 
 $('document').ready(function() {
-  load_id()
+  var product_id = load_id();
 
-  //alert(product_id);
   for (i = 1; i < product_id.length; i++) {
     product(product_id[i]);
     //inputProduct(1 ,'rrr.png', 'name', 123);
