@@ -24,7 +24,8 @@ function product(id) {
       name = data.name;
       price = data.price;
       image = data.image;
-      get = true;
+      inputProduct(id, image, name, price);
+
     },
     error: function (jqXHR, textStatus, errorThrown){
       alert('error');
@@ -32,18 +33,17 @@ function product(id) {
       alert(errorThrown);
     }
   });
-  if (get) {
-      inputProduct(id, image, name, price);
-      setTimeout(inputProduct, 500, id, image, name, price);
-
-  }
+  // if (get) {
+  //     setTimeout(inputProduct, 500, id, image, name, price);
+  //
+  // }
   return get;
 }
 
 
 
 $('document').ready(function() {
-  setTimeout(inputProduct, 500, 2, '1A3553E2-0EBD-4196-8AB6-895F3E833145.jpeg', 'name', 123);
+  //setTimeout(inputProduct, 500, 2, '1A3553E2-0EBD-4196-8AB6-895F3E833145.jpeg', 'name', 123);
 
 
 
