@@ -5,7 +5,7 @@
   $result = $mysql->query("SELECT `id` FROM `product`");
   $mysql->close();
 
-  $_id_ = $result->fetch_assoc();
+  $products = $result->fetch_assoc();
   $i = 0;
   foreach ($products as $product) {
     $_id_[$i] = $product;
