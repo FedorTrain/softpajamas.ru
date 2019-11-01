@@ -34,8 +34,14 @@ function product(id) {
   return get;
 }
 
-var product_id;
 function load_id() {
+
+}
+
+$('document').ready(function() {
+  //load_id();
+  var product_id;
+  
   $.ajax({
     type: "POST",
     url: './php/load_id.php',
@@ -50,10 +56,6 @@ function load_id() {
       alert('error of id');
     }
   });
-}
-
-$('document').ready(function() {
-  load_id();
   // var product_id = load_id();
 
   for (i = 1; i < product_id.length; i++) {
