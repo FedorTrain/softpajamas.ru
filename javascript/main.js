@@ -29,28 +29,18 @@ function product(id) {
     },
     error: function (jqXHR, textStatus, errorThrown){
       alert('error');
-      alert(textStatus);
-      alert(errorThrown);
     }
   });
-  // if (get) {
-  //     setTimeout(inputProduct, 500, id, image, name, price);
-  //
-  // }
   return get;
 }
 
 
 
 $('document').ready(function() {
-  //setTimeout(inputProduct, 500, 2, '1A3553E2-0EBD-4196-8AB6-895F3E833145.jpeg', 'name', 123);
 
 
-
-  var i;
-  var end = 40;
-  for (i = 0; i < end; i++) {
-    if (product(i)) end++;
+  for (i = 0; i < 1000; i++) {
+    product(i);
   }
 
 
