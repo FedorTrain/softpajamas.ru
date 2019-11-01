@@ -8,7 +8,7 @@
   $products = $result->fetch_assoc();
   $i = 0;
   foreach ($products as $product) {
-    $_id_[$i] = $product;
+    $_id_[$i] = $i;
     $i++;
   }
 
