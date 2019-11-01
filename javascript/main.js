@@ -42,7 +42,9 @@ function load_id() {
     dataType: 'json',
     data: {},
     success: function (data, textStatus, jqXHR) {
-      product_id.values(data);
+      alert(Object.values(data));
+      product_id = Object.values(data);
+      alert(product_id);
     },
     error: function (jqXHR, textStatus, errorThrown){
       alert('error of id');
