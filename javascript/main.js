@@ -34,30 +34,27 @@ function product(id) {
   return get;
 }
 
+var product_id;
 function load_id() {
-
-}
-
-$('document').ready(function() {
-  //load_id();
-  var product_id;
-  
   $.ajax({
     type: "POST",
     url: './php/load_id.php',
     dataType: 'json',
     data: {},
     success: function (data, textStatus, jqXHR) {
-      alert(Object.values(data));
-      product_id = Object.values(data);
-      alert(product_id);
+      alert(Object.entries(data));
+      return Object.entries(data);
     },
     error: function (jqXHR, textStatus, errorThrown){
       alert('error of id');
     }
   });
-  // var product_id = load_id();
+}
 
+$('document').ready(function() {
+  alert(load_id());
+  // var product_id = load_id();
+  product_id = load_id();
   for (i = 1; i < product_id.length; i++) {
     product(product_id[i]);
     //inputProduct(1 ,'rrr.png', 'name', 123);
