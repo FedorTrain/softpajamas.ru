@@ -18,7 +18,7 @@ function product(id) {
     url: './php/get.php',
     dataType: 'json',
     data: {id: id},
-    async: false,
+    //async: false,
     success: function (data, textStatus, jqXHR) {
       id = data.id;
       name = data.name;
@@ -34,7 +34,7 @@ function product(id) {
   });
   if (get) {
       inputProduct(id, image, name, price);
-      //setTimeout(inputProduct, 500, id, image, name, price);
+      setTimeout(inputProduct, 500, id, image, name, price);
 
   }
   return get;
