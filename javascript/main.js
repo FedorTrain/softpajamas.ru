@@ -18,7 +18,7 @@ function product(id) {
     url: './php/get.php',
     dataType: 'json',
     data: {id: id},
-    async: false,
+    //async: false,
     success: function (data, textStatus, jqXHR) {
       id = data.id;
       name = data.name;
@@ -41,13 +41,13 @@ function product(id) {
 
 
 $('document').ready(function() {
-  var numProduct;
+  ;
 
 
   var i;
   var end = 40;
   for (i = 0; i < end; i++) {
-    if (product(i)) end++;
+    if (setTimeout(product, 500, i)) end++;
   }
 
 
