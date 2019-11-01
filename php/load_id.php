@@ -5,13 +5,13 @@
   $result = $mysql->query("SELECT `id` FROM `product`");
   $mysql->close();
 
-  $_id_ = $result->fetch_assoc();
-  // $i = 0;
-  // foreach ($products as $product) {
-  //   $_id_[$i] = $product;
-  //   $i++;
-  // }
+  $products = $result->fetch_assoc();
+  $i = 0;
+  foreach ($products as $product) {
+    $_id_[$i] = $product;
+    $i++;
+  }
 
-  echo json_encode($_id_[2]);
+  echo json_encode($_id_);
 
 ?>
