@@ -40,7 +40,7 @@ function load_id() {
     url: './php/load_id.php',
     dataType: 'json',
     data: {},
-    async: true,
+    async: false,
     success: function (data, textStatus, jqXHR) {
 
       return Object.values(data)
