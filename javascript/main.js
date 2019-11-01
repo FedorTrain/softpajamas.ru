@@ -35,14 +35,14 @@ function product(id) {
 }
 
 function load_id() {
-  var _id_ = [];
   $.ajax({
     type: "POST",
     url: './php/load_id.php',
     dataType: 'json',
     data: {},
     success: function (data, textStatus, jqXHR) {
-      alert(data);
+      _id_ = Object.values(data);
+      alert(_id_);
     },
     error: function (jqXHR, textStatus, errorThrown){
       alert('error of id');
