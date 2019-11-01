@@ -33,7 +33,9 @@ function product(id) {
     }
   });
   if (get) {
-    setTimeout(inputProduct, 500, id, image, name, price);
+      inputProduct(id, image, name, price);
+      //setTimeout(inputProduct, 500, id, image, name, price);
+
   }
   return get;
 }
