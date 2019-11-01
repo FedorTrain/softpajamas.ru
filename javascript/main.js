@@ -41,7 +41,7 @@ function load_id() {
     dataType: 'json',
     data: {},
     success: function (data, textStatus, jqXHR) {
-      return = Object.values(data);
+      return Object.values(data);
     },
     error: function (jqXHR, textStatus, errorThrown){
       alert('error of id');
@@ -52,7 +52,6 @@ function load_id() {
 $('document').ready(function() {
 
   var product_id = load_id();
-
 
   for (i = 1; i < product_id.length; i++) {
     product(product_id[i]);
