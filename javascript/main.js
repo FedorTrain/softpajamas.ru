@@ -43,7 +43,7 @@ function load_id() {
     success: function (data, textStatus, jqXHR) {
       alert(data);
       _id_ = Object.values(data);
-      alert(_id_.1);
+      alert(_id_[1]);
     },
     error: function (jqXHR, textStatus, errorThrown){
       alert('error of id');
