@@ -16,8 +16,8 @@
   foreach ($products as $product) {
     $_id_[$i] = $product -> id;
     $i++;
-  }   
+  }
 
-  echo json_encode($_id_);
+  echo json_encode($products);
 
 ?>
