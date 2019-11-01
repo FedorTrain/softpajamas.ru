@@ -34,6 +34,7 @@ function product(id) {
   return get;
 }
 
+var product_id;
 function load_id() {
   $.ajax({
     type: "POST",
@@ -41,10 +42,7 @@ function load_id() {
     dataType: 'json',
     data: {},
     success: function (data, textStatus, jqXHR) {
-      _id_ = Object.values(data);
-
-      return _id_;
-
+      product_id = Object.values(data);
     },
     error: function (jqXHR, textStatus, errorThrown){
       alert('error of id');
@@ -53,8 +51,8 @@ function load_id() {
 }
 
 $('document').ready(function() {
-  alert(load_id());
-  var product_id = load_id();
+  // alert(load_id());
+  // var product_id = load_id();
 
   for (i = 1; i < product_id.length; i++) {
     product(product_id[i]);
