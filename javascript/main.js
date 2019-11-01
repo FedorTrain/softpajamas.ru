@@ -55,6 +55,8 @@ function load_id() {
 }
 
 $('document').ready(function() {
+  load_id()
+
   alert(product_id);
   for (i = 1; i < product_id.length; i++) {
     product(product_id[i]);
