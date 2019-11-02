@@ -20,7 +20,7 @@ function product(id) {
     data: {id: id},
     //async: false,
     success: function (data, textStatus, jqXHR) {
-      alert("good, maybe");
+      //alert("good, maybe");
       id = data.id;
       name = data.name;
       price = data.price;
