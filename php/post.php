@@ -17,11 +17,14 @@
 
             $name = filter_var(trim($_POST['name']), FILTER_SANITIZE_STRING);
             $price = filter_var(trim($_POST['price']), FILTER_SANITIZE_STRING);
+            $type = filter_var(trim($_POST['type']), FILTER_SANITIZE_STRING);
+            $number = filter_var(trim($_POST['number']), FILTER_SANITIZE_STRING);
             $image = $_FILES['image']['name'];
+            $info = filter_var(trim($_POST['info']), FILTER_SANITIZE_STRING);
 
             $mysql = new mysqli('localhost', 'u0842107_admin', '2Q0n1R1h', 'u0842107_products');
-            $mysql->query("INSERT INTO `product` (`name`, `price`, `image`)
-            VALUES('$name','$price','$image')");
+            $mysql->query("INSERT INTO `products` (`name`, `price`, `image`, `info`, `type`, `number`)
+            VALUES('$name','$price','$image','$info','$type','$number')");
 
             $mysql->close();
             header('Location:/admin.html');

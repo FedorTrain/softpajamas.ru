@@ -17,22 +17,31 @@
 
     </div>
     <div id="content">
-      <p>Добавить товар</p>
+      <p>Добавить товар:</p>
       <form action="php/post.php" method="post" enctype="multipart/form-data">
-        <input type="password" class="form-control" name="pass" id="pass" placeholder="Enter password"><br>
-        <input type="text" class="form-control" name="name" id="name" placeholder="Enter name"><br>
-        <input type="number" class="form-control" name="price" id="price" placeholder="Enter price"><br>
+        <input required type="password" class="form-control" name="pass" id="pass" placeholder="Пароль"><br>
+        <input required type="text" class="form-control" name="name" id="name" maxlength=100 placeholder="Имя"><br>
+        <input required type="number" class="form-control" name="price" id="price" step=0.01 placeholder="Цена"><br>
+        <!-- <input type="text" class="form-control" name="type" id="type" list="typeProduct" maxlength=100 placeholder="Тип товара(новинка, популярное, в наличии)"> -->
+        <select id="type" class="form-control" name="type">
+          <option value="new">Новинка</option>
+          <option value="popular">Популярное</option>
+          <option value="stock">В наличии</option>
+        </select>
+        <br>
+        <input required type="number" class="form-control" name="number" id="number" placeholder="Количество товара"><br>
         Загрузите изображение:<br>
-        <input type="file" class="form-control" name="image" id="image" placeholder="Enter path to image"><br>
-        <button class="btn btn-success">Go</button>
+        <input required type="file" class="form-control" name="image" id="image" placeholder="Enter path to image"><br>
+        <textarea required type="text"  class="form-control" name="info" id="info" maxlength=1000 placeholder="Информация о товаре" cols=100 rows=5></textarea><br>
+        <button class="btn btn-success">Загрузить</button>
       </form>
       <br>
       <br>
-      <p>Удалить товар</p>
+      <p>Удалить товар:</p>
       <form action="php/delete.php" method="post" enctype="multipart/form-data">
-        <input type="password" class="form-control" name="pass" id="pass" placeholder="Enter password"><br>
-        <input type="number" class="form-control" name="id" id="id" placeholder="Enter id"><br>
-        <button class="btn btn-success">Go</button>
+        <input required type="password" class="form-control" name="pass" id="pass" placeholder="Пароль"><br>
+        <input required type="number" class="form-control" name="id" id="id" placeholder="ID товара"><br>
+        <button class="btn btn-success">Удалить</button>
       </form>
 
 
