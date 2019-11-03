@@ -2,8 +2,9 @@ function inputProduct(id, image, name, price, info, type, number) {
   $('#content').append(
     '<a href ="http://softpajamas.ru/product.php?id=' + id + '" class="a_product"><div class="product">'+
       '<img src="./images/' + image + '" alt="Loading..."/>'+
-      '<p align="center">' + name + ': ' + number + '</p>'+
+      '<p align="center">' + name + '</p>'+
       '<p align="center">' + price + 'р</p>'+
+      '<p align="center">' + number + 'р</p>'+
     '</div></a>');
 }
 
@@ -27,7 +28,11 @@ function product(id) {
       image = data.image;
       info = data.info;
       type = data.type;
-      number = data.number;
+      if (data.number > 0) {
+        number = "Есть в наличии";
+      } else {
+        number = "Нет в наличии";
+      }
       get = true;
       inputProduct(id, image, name, price, info, type, number);
     },

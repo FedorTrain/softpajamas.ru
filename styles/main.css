@@ -36,13 +36,13 @@ body {
 
 .a_product {
   color: #000;
-  
+
 }
 
 .product {
   margin: 10px;
   padding: 0px;
-  height: 340px;
+  height: 360px;
   width: 250px;
   outline: #848484 solid 0px;
   background-color: #cdddec;
