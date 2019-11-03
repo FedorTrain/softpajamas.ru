@@ -20,7 +20,7 @@ function product(id) {
     data: {id: id},
     //async: false,
     success: function (data, textStatus, jqXHR) {
-      //alert("good, maybe");
+      alert("good, maybe");
       id = data.id;
       name = data.name;
       price = data.price;
@@ -59,10 +59,10 @@ function load_id() {
 $('document').ready(function() {
   load_id();
 
-//  alert(product_id);
+  alert(product_id);
   for (i = 1; i < product_id.length; i++) {
     product(product_id[i]);
-    //inputProduct(1 ,'rrr.png', 'name', 123);
+    inputProduct(1 ,'rrr.png', 'name', 123);
   }
 
 
