@@ -35,9 +35,9 @@
         $mysql->close();
         $product = $result->fetch_assoc();
         echo '<div class="product">
-         <img src="./images/' . $product['image'] . '" alt="Error"/>
+         <img src="./images/' . $product['image'] . '" alt="Error" align="left"/>
 
-         <form action="" method="post" enctype="multipart/form-data" align="right>
+         <form action="" method="post" enctype="multipart/form-data"  align="right">
            <button class="btn btn-success"">Купить</button>
          </form>
          <p>' . $product['name'] . '</p>
