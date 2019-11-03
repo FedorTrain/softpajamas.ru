@@ -1,8 +1,8 @@
-function inputProduct(id ,image, name, price) {
+function inputProduct(id, image, name, price, info, type, number) {
   $('#content').append(
     '<a href ="http://softpajamas.ru/product.php?id=' + id + '"><div class="product">'+
       '<img src="./images/' + image + '" alt="Loading..."/>'+
-      '<p align="center">' + name + '</p>'+
+      '<p align="center">' + name + ': ' + number + '</p>'+
       '<p align="center">' + price + 'р</p>'+
     '</div></a>');
 }
@@ -25,8 +25,11 @@ function product(id) {
       name = data.name;
       price = data.price;
       image = data.image;
+      info = data.info;
+      type = data.type;
+      number = data.number;
       get = true;
-      inputProduct(id, image, name, price);
+      inputProduct(id, image, name, price, info, type, number);
     },
     error: function (jqXHR, textStatus, errorThrown){
       alert('error');

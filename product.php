@@ -38,11 +38,13 @@
         echo '<div class="product">
          <img src="./images/' . $product['image'] . '" alt="Error"/>
 
-          <form action="" method="post" enctype="multipart/form-data">
-            <button class="btn btn-success">Pay</button>
-          </form>
+         <form action="" method="post" enctype="multipart/form-data">
+           <button class="btn btn-success" align="right">Купить</button>
+         </form>
          <p>' . $product['name'] . '</p>
+         <p>В наличии: ' . $product['number'] . '</p>
          <p>' . $product['price'] . 'р</p>
+         <p>' . $product['info'] . '</p>
          </div>';
 
        ?>
