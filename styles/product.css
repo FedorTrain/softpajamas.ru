@@ -41,14 +41,14 @@ body {
   outline: #848484 solid 0px;
   background-color: #fff;
   float: left;
-
 }
-
+.product p {
+  width: 300px;
+}
 .product img {
   height: 400px;
   width: 400px;
   margin: 10px;
   margin-bottom: 8px;
   float: left;
-  
 }
