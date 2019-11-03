@@ -36,7 +36,6 @@ body {
 
 .a_product {
   color: #000;
-
 }
 
 .product {
@@ -48,6 +47,9 @@ body {
   background-color: #cdddec;
   float: left;
   border-radius: 8px;
+}
+.product p {
+  width: 300px;
 }
 
 .product img {

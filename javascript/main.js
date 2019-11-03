@@ -4,7 +4,7 @@ function inputProduct(id, image, name, price, info, type, number) {
       '<img src="./images/' + image + '" alt="Loading..."/>'+
       '<p align="center">' + name + '</p>'+
       '<p align="center">' + price + 'р</p>'+
-      '<p align="center">' + number + 'р</p>'+
+      '<p align="center">' + number + '</p>'+
     '</div></a>');
 }
 
@@ -29,7 +29,7 @@ function product(id) {
       info = data.info;
       type = data.type;
       if (data.number > 0) {
-        number = "Есть в наличии";
+        number = "В наличии";
       } else {
         number = "Нет в наличии";
       }
