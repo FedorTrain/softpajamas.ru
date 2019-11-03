@@ -34,7 +34,7 @@
         $result = $mysql->query("SELECT * FROM `products` WHERE `id` = $id");
         $mysql->close();
         $product = $result->fetch_assoc();
-
+        $product['number'] = +$product['number'];
         echo '<div class="product">
          <img src="./images/' . $product['image'] . '" alt="Error"/>
 
