@@ -45,7 +45,9 @@
            <p>' . $product['name'] . '</p>
            <p>' . $product['price'] . 'р</p>
            <p>В наличии: ' . +$product['number'] . '</p>
+             <div class="info_of_product">
            <p>' . $product['info'] . '</p>
+           </div>
          </div>
          </div>';
 
