@@ -47,7 +47,7 @@ body {
 } */
 .product img {
   height: 400px;
-  width: 400px;
+  width: 25%;
   margin: 10px;
   margin-bottom: 8px;
   float: left;
@@ -57,6 +57,6 @@ body {
 }
 .product .info {
   float: right;
-  width: 300px;
-  
+  width: 74%;
+
 }
