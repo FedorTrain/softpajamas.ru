@@ -42,9 +42,9 @@ body {
   background-color: #fff;
   float: left;
 }
-.product p {
+/* .product p {
   width: 300px;
-}
+} */
 .product img {
   height: 400px;
   width: 400px;
@@ -52,8 +52,11 @@ body {
   margin-bottom: 8px;
   float: left;
 }
-
 .product .image {
   float: left;
+}
+.product .info {
+  float: right;
+  width: 300px;
   
 }
