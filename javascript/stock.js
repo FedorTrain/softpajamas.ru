@@ -1,10 +1,9 @@
-function inputProduct(id, image, name, price, info, type, number) {
+function inputProduct(id, image, name, price, info, type) {
   $('#content').append(
     '<a href ="http://softpajamas.ru/product.php?id=' + id + '" class="a_product"><div class="product">'+
       '<img src="http://softpajamas.ru/images/' + image + '" alt="Loading..."/>'+
       '<p align="center">' + name + '</p>'+
       '<p align="center">' + price + 'р</p>'+
-      '<p align="center">' + number + '</p>'+
     '</div></a>');
 }
 
@@ -29,7 +28,7 @@ function product(id) {
       info = data.info;
       type = data.type;
       if (data.number > 0) {
-        inputProduct(id, image, name, price, info, type, number);
+        inputProduct(id, image, name, price, info, type);
       }
       get = true;
     },
