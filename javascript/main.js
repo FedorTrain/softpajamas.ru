@@ -16,7 +16,7 @@ function product(id) {
   var get = false;
   $.ajax({
     type: "POST",
-    url: '././php/get.php',
+    url: 'http://softpajamas.ru/php/get.php',
     dataType: 'json',
     data: {id: id},
     //async: false,
@@ -47,16 +47,12 @@ var product_id;
 function load_id() {
   $.ajax({
     type: "POST",
-    url: '././php/load_id.php',
+    url: 'http://softpajamas.ru/php/load_id.php',
     dataType: 'json',
     data: {},
     async: false,
     success: function (data, textStatus, jqXHR) {
-
       product_id = Object.values(data);
-
-      //alert(product_id);
-
     },
     error: function (jqXHR, textStatus, errorThrown){
       alert('error of id');
