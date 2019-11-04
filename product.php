@@ -20,10 +20,10 @@
 
     </div>
     <div id="sidebar">
-      <a href="http://sections/stock.html"class="sidebar_botton">В наличии</a>
-      <a href="http://sections/new.html"class="sidebar_botton">Новинки</a>
-      <a href="http://sections/popular.html"class="sidebar_botton">Популярно</a>
-      <a href="http://sections/designer.html"class="sidebar_botton">Заказать</a>
+      <a href="http://softpajamas.ru/sections/stock.html"class="sidebar_botton">В наличии</a>
+      <a href="http://softpajamas.ru/sections/new.html"class="sidebar_botton">Новинки</a>
+      <a href="http://softpajamas.ru/sections/popular.html"class="sidebar_botton">Популярно</a>
+      <a href="http://softpajamas.ru/sections/designer.html"class="sidebar_botton">Заказать</a>
 
     </div>
     <div id="content">
