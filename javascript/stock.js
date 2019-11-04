@@ -29,12 +29,9 @@ function product(id) {
       info = data.info;
       type = data.type;
       if (data.number > 0) {
-        number = "В наличии";
-      } else {
-        number = "Нет в наличии";
+        if (number > 0) inputProduct(id, image, name, price, info, type, number);
       }
       get = true;
-      if (number > 0) inputProduct(id, image, name, price, info, type, number);
     },
     error: function (jqXHR, textStatus, errorThrown){
       alert('error');
