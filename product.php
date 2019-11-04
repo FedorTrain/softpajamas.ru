@@ -35,15 +35,18 @@
         $mysql->close();
         $product = $result->fetch_assoc();
         echo '<div class="product">
-         <img src="./images/' . $product['image'] . '" alt="Error"/>
-
-         <form action="" method="post" enctype="multipart/form-data">
-           <button class="btn btn-success">Купить</button>
-         </form>
-         <p>' . $product['name'] . '</p>
-         <p>В наличии: ' . +$product['number'] . '</p>
-         <p>' . $product['price'] . 'р</p>
-         <p>' . $product['info'] . '</p>
+         <div class="image">
+           <img src="./images/' . $product['image'] . '" alt="Error"/>
+         </div>
+         <div class="info">
+           <form action="" method="post" enctype="multipart/form-data">
+             <button class="btn btn-success">Купить</button>
+           </form>
+           <p>' . $product['name'] . '</p>
+           <p>' . $product['price'] . 'р</p>
+           <p>В наличии: ' . +$product['number'] . '</p>
+           <p>' . $product['info'] . '</p>
+         </div>
          </div>';
 
        ?>
