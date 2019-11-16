@@ -27,7 +27,7 @@
         else {
           echo "password is bad";
         }
-        header('Location:/admin.html');
+        header('Location:/admin');
 
       ?>
 
