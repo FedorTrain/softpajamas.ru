@@ -23,6 +23,7 @@ body {
 #sidebar {
   background: #596067;
   padding: 5px;
+  position: fixed;
 }
 #sidebar a {
   color: #fff;
@@ -68,7 +69,5 @@ select {
   min-height: 34px;
   min-width: 234px;
   margin: 1px;
-
   display: block;
-
 }
