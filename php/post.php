@@ -27,7 +27,7 @@
             VALUES('$name','$price','$image','$info','$type','$number')");
 
             $mysql->close();
-            header('Location:/admin.html');
+            header('Location:/admin');
 
 
           }
