@@ -57,8 +57,10 @@ body {
   margin-bottom: 0px;
 }
 
-textarea, input {
+select, textarea, input {
   min-height: 34px;
-  min-width: 216px; 
+  min-width: 216px;
   display: block;
+  margin: 1px;
+  margin-bottom: 0px;
 }
