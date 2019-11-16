@@ -23,7 +23,6 @@ body {
 #sidebar {
   background: #596067;
   padding: 5px;
-  position: fixed;
 }
 #sidebar a {
   color: #fff;
