@@ -4,8 +4,8 @@
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
     <title>SoftPajamas: admin</title>
-    <link href="./styles/main.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="./javascript/jquery-3.4.1.min.js"></script>
+    <link href="/styles/main.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="/javascript/jquery-3.4.1.min.js"></script>
   </head>
   <body>
     <div id="header">
@@ -18,7 +18,7 @@
     </div>
     <div id="content">
       <p>Добавить товар:</p>
-      <form action="./php/post.php" method="post" enctype="multipart/form-data">
+      <form action="/php/post.php" method="post" enctype="multipart/form-data">
         <input required type="password" class="form-control" name="pass" id="pass" placeholder="Пароль"><br>
         <input required type="text" class="form-control" name="name" id="name" maxlength=100 placeholder="Имя"><br>
         <input required type="number" class="form-control" name="price" id="price" step=0.01 placeholder="Цена"><br>
@@ -38,7 +38,7 @@
       <br>
       <br>
       <p>Удалить товар:</p>
-      <form action="./php/delete.php" method="post" enctype="multipart/form-data">
+      <form action="/php/delete.php" method="post" enctype="multipart/form-data">
         <input required type="password" class="form-control" name="pass" id="pass" placeholder="Пароль"><br>
         <input required type="number" class="form-control" name="id" id="id" placeholder="ID товара"><br>
         <button class="btn btn-success">Удалить</button>
