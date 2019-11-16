@@ -59,5 +59,6 @@ body {
 
 textarea, input {
   min-height: 34px;
+  min-width: 216px; 
   display: block;
 }
