@@ -1,35 +1,23 @@
 body {
-  background: #fff;
-  margin: 0;
-  padding: 0;
+  background-image: url(../images/fone.svg);
+  background-size: cover;
 }
 
-#header {
-  color:#994C00;
-  background: linear-gradient(30deg, #bf3d8b, #7d3894);
+#logo {
+  width: 100%;
 
 }
-#header a {
-  color: #fff;
-  padding-left: 30px;
-  text-decoration: none;
-  font-size: 40px;
-}
-#header p {
-  float: right;
-  padding-right: 10px;
-  color: #bd4b73;
-}
+
 #sidebar {
-  background: #596067;
-  padding: 5px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+
 }
 #sidebar a {
-  color: #fff;
-  text-decoration: none;
-  padding-left: 20px;
-
+  margin: 10px;
 }
+
 #content {
   padding: 5px;
 }
