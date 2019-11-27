@@ -19,23 +19,23 @@ body {
 }
 
 #content {
-  padding: 5px;
+  padding: 20px;
 }
 
 .product {
   margin: auto;
-  padding: 0px;
-  width: 90%;
+  /* padding: 0px; */
+  /* width: 90%; */
   outline: #848484 solid 0px;
   background-color: #fff;
 }
 .info_of_product {
-  width: 70%;
+  /* width: 70%; */
 }
 .product img {
-  padding: 10px;
+  /* padding: 10px; */
 }
 
 button {
-  padding: 10px;
+  /* padding: 10px; */
 }
