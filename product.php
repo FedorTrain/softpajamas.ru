@@ -31,8 +31,7 @@
       </div>
     </div>
     <div id="content">
-      <div class="container">
-        <div class="row">
+
       <?php
         $id = $_GET['id'];
 
@@ -41,6 +40,8 @@
         $mysql->close();
         $product = $result->fetch_assoc();
         echo '<div class="product">
+        <div class="container">
+          <div class="row">
            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
              <img src="/images/' . $product['image'] . '" alt="Error"/>
            </div>
@@ -55,11 +56,12 @@
                 <p>' . $product['info'] . '</p>
              </div>
            </div>
-         </div>';
+         </div>
+
+          </div>
+        </div>';
 
        ?>
-        </div>
-      </div>
     </div>
 
  </body>
