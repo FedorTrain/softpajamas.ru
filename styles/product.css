@@ -24,7 +24,7 @@ body {
 
 .product {
   margin: auto;
-  padding: 0px;
+  padding-top: 10px;
   width: 90%;
   outline: #848484 solid 0px;
   background-color: #fff;
@@ -36,6 +36,7 @@ body {
   width: 100%;
   margin: auto;
   padding: 10px;
+  padding-top: 0px;
 }
 
 form {
