@@ -1,10 +1,16 @@
-function inputProduct(id, image, name, price, info, type) {
-  $('#content').append(
-    '<a href ="http://softpajamas.ru/product.php?id=' + id + '" class="a_product"><div class="product">'+
-      '<img src="http://softpajamas.ru/images/' + image + '" alt="Loading..."/>'+
-      '<p align="center">' + name + '</p>'+
-      '<p align="center">' + price + 'р</p>'+
-    '</div></a>');
+
+
+function inputProduct(id, image, name, price, info, type, number) {
+  $('#content .row').append(
+    '<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">'+
+      '<a href ="/product.php?id=' + id + '" class="product">'+
+        '<div>'+
+          '<img src="/images/' + image + '" alt="Loading..."/>'+
+          '<h3>' + name + '</h3>'+
+          '<samp>' + price + 'р</samp>'+
+        '</div>'+
+      '</a>'+
+    '</div>');
 }
 
 function product(id) {
@@ -15,7 +21,7 @@ function product(id) {
   var get = false;
   $.ajax({
     type: "POST",
-    url: 'http://softpajamas.ru/php/get.php',
+    url: '/php/get.php',
     dataType: 'json',
     data: {id: id},
     //async: false,
@@ -28,9 +34,15 @@ function product(id) {
       info = data.info;
       type = data.type;
       if (data.number > 0) {
-        inputProduct(id, image, name, price, info, type);
+        number = "В наличии";
+      } else {
+        number = "Нет в наличии";
       }
       get = true;
+
+      if (data.number > 0) {
+        inputProduct(id, image, name, price, info, type);
+      }
     },
     error: function (jqXHR, textStatus, errorThrown){
       alert('error');
@@ -43,7 +55,7 @@ var product_id;
 function load_id() {
   $.ajax({
     type: "POST",
-    url: 'http://softpajamas.ru/php/load_id.php',
+    url: '/php/load_id.php',
     dataType: 'json',
     data: {},
     async: false,
@@ -57,8 +69,27 @@ function load_id() {
 }
 
 $('document').ready(function() {
+
+  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
+  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
+  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
+  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
+  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
+  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
+  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
+  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
+  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
+  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
+  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
+  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
+  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
+
   load_id();
   for (i = 0; i < product_id.length ; i++) {
     product(product_id[i]);
   }
+
+
+
+
 });
