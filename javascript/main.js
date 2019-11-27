@@ -3,7 +3,7 @@ function inputProduct(id, image, name, price, info, type, number) {
     '<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">'+
       '<a href ="/product.php?id=' + id + '" class="product">'+
         '<div>'+
-          '<img src="./images/' + image + '" alt="Loading..."/>'+
+          '<img src="/images/' + image + '" alt="Loading..."/>'+
           '<h3>' + name + '</h3>'+
           '<samp>' + price + 'р</samp>'+
         '</div>'+
@@ -19,7 +19,7 @@ function product(id) {
   var get = false;
   $.ajax({
     type: "POST",
-    url: './php/get.php',
+    url: '/php/get.php',
     dataType: 'json',
     data: {id: id},
     //async: false,
@@ -50,7 +50,7 @@ var product_id;
 function load_id() {
   $.ajax({
     type: "POST",
-    url: './php/load_id.php',
+    url: '/php/load_id.php',
     dataType: 'json',
     data: {},
     async: false,
