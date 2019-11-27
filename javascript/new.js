@@ -19,7 +19,7 @@ function product(id) {
   var get = false;
   $.ajax({
     type: "POST",
-    url: './php/get.php',
+    url: '/php/get.php',
     dataType: 'json',
     data: {id: id},
     //async: false,
@@ -50,7 +50,7 @@ var product_id;
 function load_id() {
   $.ajax({
     type: "POST",
-    url: './php/load_id.php',
+    url: '/php/load_id.php',
     dataType: 'json',
     data: {},
     async: false,
