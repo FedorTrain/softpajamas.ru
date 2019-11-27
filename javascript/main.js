@@ -80,7 +80,7 @@ $('document').ready(function() {
   // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
 
   load_id();
-
+  var i = 0;
   for (i = 0; i < product_id.length ; i++) {
     product(product_id[i]);
   }
