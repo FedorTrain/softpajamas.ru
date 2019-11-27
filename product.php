@@ -31,6 +31,8 @@
       </div>
     </div>
     <div id="content">
+      <div class="container">
+        <div class="row">
       <?php
         $id = $_GET['id'];
 
@@ -39,23 +41,25 @@
         $mysql->close();
         $product = $result->fetch_assoc();
         echo '<div class="product">
-         <div class="image">
-           <img src="./images/' . $product['image'] . '" alt="Error"/>
-         </div>
-         <div class="info">
-           <form action="" method="post" enctype="multipart/form-data">
-             <button class="btn btn-success">Купить</button>
-           </form>
-           <p>' . $product['name'] . '</p>
-           <p>' . $product['price'] . 'р</p>
-           <p>В наличии: ' . +$product['number'] . '</p>
-             <div class="info_of_product">
-           <p>' . $product['info'] . '</p>
+           <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+             <img src="/images/' . $product['image'] . '" alt="Error"/>
            </div>
-         </div>
+           <div class="info">
+             <form action="" method="post" enctype="multipart/form-data">
+               <button class="btn btn-success">Купить</button>
+             </form>
+             <p>' . $product['name'] . '</p>
+             <p>Цена: ' . $product['price'] . 'р</p>
+             <p>В наличии: ' . +$product['number'] . '</p>
+             <div class="info_of_product col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                <p>' . $product['info'] . '</p>
+             </div>
+           </div>
          </div>';
 
        ?>
+        </div>
+      </div>
     </div>
 
  </body>
