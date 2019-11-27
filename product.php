@@ -46,15 +46,16 @@
              <img src="/images/' . $product['image'] . '" alt="Error"/>
            </div>
            <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
-             <form action="" method="post" enctype="multipart/form-data">
-               <button class="btn btn-success">Купить</button>
-             </form>
+
              <p>' . $product['name'] . '</p>
              <p>Цена: ' . $product['price'] . 'р</p>
              <p>В наличии: ' . +$product['number'] . '</p>
              <div class="info_of_product ">
                 <p>' . $product['info'] . '</p>
              </div>
+             <form action="" method="post" enctype="multipart/form-data">
+               <button class="btn btn-success">Купить</button>
+             </form>
            </div>
          </div>
 
