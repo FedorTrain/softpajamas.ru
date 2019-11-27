@@ -19,7 +19,7 @@ function product(id) {
   var get = false;
   $.ajax({
     type: "POST",
-    url: '/softpajamas.ru/php/get.php',
+    url: './php/get.php',
     dataType: 'json',
     data: {id: id},
     //async: false,
@@ -32,6 +32,7 @@ function product(id) {
       info = data.info;
       type = data.type;
       if (data.number > 0) {
+        number = "Есть в наличии";
         number = "В наличии";
       } else {
         number = "Нет в наличии";
@@ -45,47 +46,28 @@ function product(id) {
   });
   return get;
 }
-
 var product_id;
 function load_id() {
   $.ajax({
     type: "POST",
-    url: '/softpajamas.ru/php/load_id.php',
+    url: './php/load_id.php',
     dataType: 'json',
     data: {},
     async: false,
     success: function (data, textStatus, jqXHR) {
       product_id = Object.values(data);
+      //alert(product_id);
     },
     error: function (jqXHR, textStatus, errorThrown){
       alert('error of id');
     }
   });
 }
-
 $('document').ready(function() {
-
-  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
-  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
-  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
-  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
-  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
-  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
-  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
-  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
-  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
-  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
-  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
-  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
-  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
-
   load_id();
-  var i = 0;
+//  alert(product_id);
   for (i = 0; i < product_id.length ; i++) {
     product(product_id[i]);
+    //inputProduct(1 ,'rrr.png', 'name', 123);
   }
-
-
-
-
 });
