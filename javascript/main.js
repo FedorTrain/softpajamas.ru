@@ -32,7 +32,6 @@ function product(id) {
       info = data.info;
       type = data.type;
       if (data.number > 0) {
-        number = "Есть в наличии";
         number = "В наличии";
       } else {
         number = "Нет в наличии";
@@ -46,6 +45,7 @@ function product(id) {
   });
   return get;
 }
+
 var product_id;
 function load_id() {
   $.ajax({
@@ -56,18 +56,35 @@ function load_id() {
     async: false,
     success: function (data, textStatus, jqXHR) {
       product_id = Object.values(data);
-      //alert(product_id);
     },
     error: function (jqXHR, textStatus, errorThrown){
       alert('error of id');
     }
   });
 }
+
 $('document').ready(function() {
+
+  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
+  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
+  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
+  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
+  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
+  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
+  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
+  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
+  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
+  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
+  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
+  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
+  // inputProduct(1 ,'p1.jpg', 'name', 123, 'rrrd sdfds f', 'new', 1);
+
   load_id();
-//  alert(product_id);
   for (i = 0; i < product_id.length ; i++) {
     product(product_id[i]);
-    //inputProduct(1 ,'rrr.png', 'name', 123);
   }
+
+
+
+
 });
