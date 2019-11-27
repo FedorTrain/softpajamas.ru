@@ -4,7 +4,7 @@
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
     <title>SoftPajamas</title>
-    <link href="styles/product.css" rel="stylesheet" type="text/css"/>
+    <link href="/styles/product.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -17,14 +17,14 @@
       <div class="container">
         <div class="row">
           <div class="col-4">
-            <a href="http://softpajamas.ru"><img src="images/logo1.svg" id="logo" ></a>
+            <a href="http://softpajamas.ru"><img src="/images/logo1.svg" id="logo" ></a>
           </div>
 
           <div id="sidebar" class="col-8">
-            <a href="http://softpajamas.ru" class="btn btn-info btn-lg">Все</a>
-            <a href="http://softpajamas.ru/sections/stock.html" class="btn btn-success btn-lg">В наличии</a>
-            <a href="http://softpajamas.ru/sections/new.html" class="btn btn-warning btn-lg">Новинки</a>
-            <a href="http://softpajamas.ru/sections/popular.html" class="btn btn-primary btn-lg">Популярно</a>
+            <a href="/" class="btn btn-info btn-lg">Все</a>
+            <a href="/sections/stock.html" class="btn btn-success btn-lg">В наличии</a>
+            <a href="/sections/new.html" class="btn btn-warning btn-lg">Новинки</a>
+            <a href="/sections/popular.html" class="btn btn-primary btn-lg">Популярно</a>
             <!-- <a href="http://softpajamas.ru/sections/designer.html" class="btn btn-success btn-lg">Заказать</a> -->
           </div>
         </div>
