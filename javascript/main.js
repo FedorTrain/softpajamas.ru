@@ -1,13 +1,13 @@
 function inputProduct(id, image, name, price, info, type, number) {
   $('#content .row').append(
     '<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">'+
-    '<a href ="/softpajamas.ru/product.php?id=' + id + '" class="product">'+
-    '<div>'+
-      '<img src="./images/' + image + '" alt="Loading..."/>'+
-      '<h3>' + name + '</h3>'+
-      '<samp>' + price + 'р</samp>'+
-    '</div>'+
-    '</a>'+
+      '<a href ="/product.php?id=' + id + '" class="product">'+
+        '<div>'+
+          '<img src="./images/' + image + '" alt="Loading..."/>'+
+          '<h3>' + name + '</h3>'+
+          '<samp>' + price + 'р</samp>'+
+        '</div>'+
+      '</a>'+
     '</div>');
 }
 
