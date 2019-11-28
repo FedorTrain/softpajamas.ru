@@ -7,9 +7,8 @@
     $headerss.="MIME-Version: 1.0\r\n";
     $headerss.="Date: ".date('D, d M Y h:i:s O')."\r\n";
     $msg = "Имя: ".$_POST["name"]."\n";$msg .= "Сообщение: ".$_POST["msg"]."\n";
-    echo "Go hahuy";
-    if (mail($to, $subject, $msg, $headerss)) {
-      echo "ggggg";
-    }
+    mail($to, $subject, $msg, $headerss);
+    header('Location:/admin');
+    
   }
 ?>
