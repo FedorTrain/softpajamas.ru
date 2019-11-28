@@ -36,19 +36,7 @@
     <div id="content">
       <div class="container">
         <div class="row">
-          <?php
-            $id = $_GET['id'];
-            $mysql = new mysqli('localhost', 'u0842107_admin', '2Q0n1R1h', 'u0842107_products');
-            $result = $mysql->query("SELECT * FROM `products` WHERE `id` = $id");
-            $mysql->close();
-            $product = $result->fetch_assoc();
-            echo '<div class="product">
-               <figure class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
-                 <p><img src="/images/' . $product['image'] . '" alt="Error"/></p>
-                 <figcaption>Деревянная скульптура</figcaption>
-               </figure>
-             </div>';
-           ?>
+
           <form action="<?php"/mail.php".$id?>" method="post" class="frm col-xs-6 col-sm-6 col-md-8 col-lg-8">
             <input type="text" name="name" placeholder="Имя">
             <input type="tel" name="phone" placeholder="Телефон">
