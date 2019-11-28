@@ -42,10 +42,10 @@
             $result = $mysql->query("SELECT * FROM `products` WHERE `id` = $id");
             $mysql->close();
             $product = $result->fetch_assoc();
-            echo '<div class="product">
-               <figure class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+            echo '<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+               <figure>
                  <p><img src="/images/' . $product['image'] . '" alt="Error"/></p>
-                 <figcaption>Деревянная скульптура</figcaption>
+                 <figcaption>' . $product['name'] . '</figcaption>
                </figure>
              </div>';
            ?>
