@@ -49,7 +49,7 @@
                </figure>
              </div>';
            ?>
-          <form action="<?php "/mail.php" . $id ?>" method="post" class="frm col-xs-6 col-sm-6 col-md-8 col-lg-8">
+          <form action="<?php "/mail.php?id=" . $id ?>" method="post" class="frm col-xs-6 col-sm-6 col-md-8 col-lg-8">
             <input type="text" name="name" placeholder="Имя">
             <input type="tel" name="phone" placeholder="Телефон">
             <input type="email" name="email" placeholder="Электронная почта">
