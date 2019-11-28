@@ -39,3 +39,9 @@ body {
 .product img {
   width: 100%;
 }
+
+.frm input,
+.frm textarea {
+  display: block;
+
+}
