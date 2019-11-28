@@ -6,7 +6,7 @@
     <meta name="description" content="Продажа упоротых людей">
 
     <meta name="Keywords" content="">
-    <title>SoftPajamas</title>
+    <title>SoftPajamas - Купить</title>
     <link href="/styles/main.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
@@ -14,7 +14,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/javascript/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="/javascript/main.js"></script>
-    <meta name="mailru-domain" content="vNbAYN7DEvFcizUR" />
   </head>
   <body>
     <div id="header">
@@ -38,7 +37,25 @@
     <div id="content">
       <div class="container">
         <div class="row">
+          <?php
+            ini_set( 'display_errors', 1 );
 
+            error_reporting( E_ALL );
+
+            $from = "testing@yourdomain";
+
+            $to = "recipientemailaddress";
+
+            $subject = "Checking PHP mail";
+
+            $message = "PHP mail works just fine";
+
+            $headers = "From:" . $from;
+
+            mail($to,$subject,$message, $headers);
+
+            echo "The email message was sent.";
+          ?>
         </div>
       </div>
     </div>
