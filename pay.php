@@ -48,7 +48,6 @@
                  <figcaption>Деревянная скульптура</figcaption>
                </figure>
              </div>';
-
            ?>
           <form action="<?php"/mail.php".$id?>" method="post" class="frm col-xs-6 col-sm-6 col-md-8 col-lg-8">
             <input type="text" name="name" placeholder="Имя">
