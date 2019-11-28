@@ -36,7 +36,10 @@
     <div id="content">
       <div class="container">
         <div class="row">
-          
+          <?php
+            $id = $_GET['id'];
+            echo $id;
+          ?>
           <br>
           <form action="php/mail.php" method="post">
             <input type="text" name="name" placeholder="Имя">
