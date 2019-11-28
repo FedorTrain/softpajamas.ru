@@ -40,8 +40,14 @@ body {
   width: 100%;
 }
 
-.frm input,
+.frm input {
+  display: block;
+}
 .frm textarea {
   display: block;
+  width: 100%;
+}
 
+figure img{
+  width: 100%;
 }
