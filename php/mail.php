@@ -9,7 +9,7 @@
     $msg = "Имя: ".$_POST["name"]."\n";$msg .= "Сообщение: ".$_POST["msg"]."\n";
     echo "Go hahuy";
     if (mail($to, $subject, $msg, $headerss)) {
-      echo "Сообщение успешно отправлено!";
+      echo "ggggg";
     }
   }
 ?>
