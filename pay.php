@@ -52,7 +52,7 @@
                 <input type="text" name="name" placeholder="Имя">
                 <input type="tel" name="phone" placeholder="Телефон">
                 <input type="email" name="email" placeholder="Электронная почта">
-                <input type="url" name="url" placeholder="Вконтакте">
+                <input type="url" name="vk" placeholder="Вконтакте">
                 <textarea name="msg" placeholder="Комментарий"></textarea>
                 <input type="submit" name="otprav" value="Отправить">
               </form>';
