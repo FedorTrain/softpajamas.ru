@@ -53,7 +53,7 @@
              <div class="info_of_product ">
                 <p>' . $product['info'] . '</p>
              </div>
-             <form action="" method="post" enctype="multipart/form-data">
+             <form action="/pay.php?id='.$id.'" method="post" enctype="multipart/form-data">
                <button class="btn btn-success">Купить</button>
              </form>
            </div>

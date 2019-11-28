@@ -7,7 +7,8 @@
     $headerss.="MIME-Version: 1.0\r\n";
     $headerss.="Date: ".date('D, d M Y h:i:s O')."\r\n";
     $msg = "Имя: ".$_POST["name"]."\n";$msg .= "Сообщение: ".$_POST["msg"]."\n";
-    mail($to, $subject, $msg, $headerss);
-    print "<script>alert(\"Сообщение успешно отправлено!\");window.location = window.location.href</script>";
+    if (mail($to, $subject, $msg, $headerss)) {
+      echo "Сообщение успешно отправлено!";
+    }
   }
 ?>
