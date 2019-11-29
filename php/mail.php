@@ -20,14 +20,15 @@
     $vk = substr(urldecode($vk), 0, 60);
     $comm = substr(urldecode($comm), 0, 1000);
 
-    $msg = "Имя: " . $name . "\n";
-    $msg .= "Телефон: " . $phone . "\n";
-    $msg .= "Электронная почта: " . $mail . "\n";
-    $msg .= "Вконтакте: " . $vk . "\n";
-    $msg .= "Комментарий: " . $comm . "\n";
+    $msg = "Имя: " . $name . "<br />";
+    $msg .= "Телефон: " . $phone . "<br />";
+    $msg .= "Электронная почта: " . $mail . "<br />";
+    $msg .= "Вконтакте: " . $vk . "<br />";
+    $msg .= "Комментарий: " . $comm . "<br />";
 
     mail($to, $subject, $msg, $headerss);
-    header('Location:/sections/thanks.html');
+    print_r(error_get_last());
+    //header('Location:/sections/thanks.html');
 
   }
 ?>
