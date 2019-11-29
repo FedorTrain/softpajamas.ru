@@ -8,11 +8,11 @@
     $headerss.="MIME-Version: 1.0\r\n";
     $headerss.="Date: ".date('D, d M Y h:i:s O')."\r\n";
 
-    $name = ($_POST["name"]);
-    $phone = ($_POST["phone"]);
-    $mail = ($_POST["mail"]);
-    $vk = ($_POST["vk"]);
-    $comm = ($_POST["msg"]);
+    $name = htmlspecialchars($_POST["name"]);
+    $phone = htmlspecialchars($_POST["phone"]);
+    $mail = htmlspecialchars($_POST["mail"]);
+    $vk = htmlspecialchars($_POST["vk"]);
+    $comm = htmlspecialchars($_POST["msg"]);
 
     $name = urldecode($name);
     $phone = urldecode($phone);
@@ -20,17 +20,14 @@
     $vk = urldecode($vk);
     $comm = urldecode($comm);
 
-    echo $mail . "\n";
-    echo $vk;
-
     $msg = "Имя: " . $name . "\n";
     $msg .= "Телефон: " . $phone . "\n";
-    $msg .= "Электронная почта: " . $mail . "\n";
-    $msg .= "Вконтакте: " . $vk . "\n";
+    $msg .= "Электронная почта: " . $mail . "  ";
+    $msg .= "Вконтакте: " . $vk . "  ";
     $msg .= "Комментарий: " . $comm . "\n";
 
     mail($to, $subject, $msg, $headerss);
-    // header('Location:/sections/thanks.html');
+    header('Location:/sections/thanks.html');
 
   }
 ?>
