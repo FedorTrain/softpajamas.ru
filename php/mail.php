@@ -7,7 +7,7 @@
     $headerss ="Content-type: text/html; charset=$charset\r\n";
     $headerss.="MIME-Version: 1.0\r\n";
     $headerss.="Date: ".date('D, d M Y h:i:s O')."\r\n";
-    
+
     $name = htmlspecialchars($_POST["name"]);
     $phone = htmlspecialchars($_POST["phone"]);
     $mail = htmlspecialchars($_POST["mail"]);
@@ -25,7 +25,7 @@
     $msg .= "Электронная почта: " . $mail . "\n";
     $msg .= "Вконтакте: " . $vk . "\n";
     $msg .= "Комментарий: " . $comm . "\n";
-    mail($to, $subject, $msg, $headerss);
+    echo mail($to, $subject, $msg, $headerss);
     header('Location:/sections/thanks.html');
 
   }
