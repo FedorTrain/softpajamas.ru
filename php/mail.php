@@ -8,11 +8,11 @@
     $headerss.="MIME-Version: 1.0\r\n";
     $headerss.="Date: ".date('D, d M Y h:i:s O')."\r\n";
 
-    $name = htmlspecialchars($_POST["name"]);
-    $phone = htmlspecialchars($_POST["phone"]);
-    $mail = htmlspecialchars($_POST["mail"]);
-    $vk = htmlspecialchars($_POST["vk"]);
-    $comm = htmlspecialchars($_POST["msg"]);
+    $name = ($_POST["name"]);
+    $phone = ($_POST["phone"]);
+    $mail = ($_POST["mail"]);
+    $vk = ($_POST["vk"]);
+    $comm = ($_POST["msg"]);
 
     $name = urldecode($name);
     $phone = urldecode($phone);
