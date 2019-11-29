@@ -10,8 +10,8 @@
     $msg = "Имя: " . $_POST["name"] . "\n";
     $msg .= "Телефон: " . $_POST["phone"] . "\n";
     $msg .= "Электронная почта: " . $_POST["mail"] . "\n";
-    // $msg .= "Вконтакте: " . $_POST["vk"] . "\n";
-    // $msg .= "Комментарий: " . $_POST["msg"] . "\n";
+    $msg .= "Вконтакте: " . $_POST["vk"] . "\n";
+    $msg .= "Комментарий: " . $_POST["msg"] . "\n";
     mail($to, $subject, $msg, $headerss);
     header('Location:/sections/thanks.html');
 
