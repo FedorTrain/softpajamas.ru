@@ -20,11 +20,11 @@
     $vk = urldecode($vk);
     $comm = urldecode($comm);
 
-    $msg = "Имя: " . $name . "\n";
-    $msg .= "Телефон: " . $phone . "\n";
+    $msg = "Имя: " . $name . "  ";
+    $msg .= "Телефон: " . $phone . "  ";
     $msg .= "Электронная почта: " . $mail . "  ";
     $msg .= "Вконтакте: " . $vk . "  ";
-    $msg .= "Комментарий: " . $comm . "\n";
+    $msg .= "Комментарий: " . $comm . "   ";
 
     mail($to, $subject, $msg, $headerss);
     header('Location:/sections/thanks.html');
