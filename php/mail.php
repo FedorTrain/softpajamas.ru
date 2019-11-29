@@ -13,12 +13,12 @@
     $mail = urldecode($_POST["mail"]);
     $vk = urldecode($_POST["vk"]);
     $comm = urldecode($_POST["msg"]);
-    
-    $name = htmlspecialchars($_POST["name"]);
-    $phone = htmlspecialchars($_POST["phone"]);
-    $mail = htmlspecialchars($_POST["mail"]);
-    $vk = htmlspecialchars($_POST["vk"]);
-    $comm = htmlspecialchars($_POST["msg"]);
+
+    $name = htmlspecialchars($name);
+    $phone = htmlspecialchars($phone);
+    $mail = htmlspecialchars($mail);
+    $vk = htmlspecialchars($vk);
+    $comm = htmlspecialchars($comm);
 
 
 
