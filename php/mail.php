@@ -20,7 +20,8 @@
     $vk = urldecode($vk);
     $comm = urldecode($comm);
 
-
+    echo $mail . "\n";
+    echo $vk;
 
     $msg = "Имя: " . $name . "\n";
     $msg .= "Телефон: " . $phone . "\n";
@@ -29,7 +30,7 @@
     $msg .= "Комментарий: " . $comm . "\n";
 
     mail($to, $subject, $msg, $headerss);
-    header('Location:/sections/thanks.html');
+    // header('Location:/sections/thanks.html');
 
   }
 ?>
