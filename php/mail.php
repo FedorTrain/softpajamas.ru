@@ -14,17 +14,17 @@
     $vk = htmlspecialchars($_POST["vk"]);
     $comm = htmlspecialchars($_POST["msg"]);
 
-    $name = urldecode($name);
-    $phone = urldecode($phone);
-    $mail = urldecode($mail);
-    $vk = urldecode($vk);
-    $comm = urldecode($comm);
+    $name = substr(urldecode($name), 0, 20);
+    $phone = substr(urldecode($phone), 0, 15);
+    $mail = substr(urldecode($mail), 0, 60);
+    $vk = substr(urldecode($vk), 0, 60);
+    $comm = substr(urldecode($comm), 0, 1000);
 
-    $msg = "Имя: " . $name . "  ";
-    $msg .= "Телефон: " . $phone . "  ";
-    $msg .= "Электронная почта: " . $mail . "  ";
-    $msg .= "Вконтакте: " . $vk . "  ";
-    $msg .= "Комментарий: " . $comm . "   ";
+    $msg = "Имя: " . $name . "\n";
+    $msg .= "Телефон: " . $phone . "\n";
+    $msg .= "Электронная почта: " . $mail . "\n";
+    $msg .= "Вконтакте: " . $vk . "\n";
+    $msg .= "Комментарий: " . $comm . "\n";
 
     mail($to, $subject, $msg, $headerss);
     header('Location:/sections/thanks.html');
