@@ -26,7 +26,7 @@
     $msg .= "Вконтакте: " . $vk . "\n";
     $msg .= "Комментарий: " . $comm . "\n";
     echo mail($to, $subject, $msg, $headerss);
-    header('Location:/sections/thanks.html');
+    // header('Location:/sections/thanks.html');
 
   }
 ?>
