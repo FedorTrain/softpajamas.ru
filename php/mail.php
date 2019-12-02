@@ -17,15 +17,14 @@
     $name = substr(urldecode($name), 0, 20);
     $phone = substr(urldecode($phone), 0, 15);
     $mail_1 = substr(urldecode($mail), 0, 11);
-    $vk_1 = substr(urldecode($vk), 0, 11);
+    $vk = substr(urldecode($vk), 0, 60);
     $mail_2 = substr(urldecode($mail), 11, 60);
-    $vk_2 = substr(urldecode($vk), 11, 60);
     $comm = substr(urldecode($comm), 0, 1000);
 
     $msg = "Имя: " . $name . "<br />";
     $msg .= "Телефон: " . $phone . "<br />";
     $msg .= "Электронная почта: " . $mail_1 . $mail_2 . "<br />";
-    $msg .= "Вконтакте: \"$vk_1 . $vk_2\"<br />";
+    $msg .= "Вконтакте: \"$vk\"<br />";
     $msg .= "Комментарий: " . $comm . "<br />";
     $msg .= "id товара: " . $id . "<br />";
 
