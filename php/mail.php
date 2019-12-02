@@ -1,7 +1,7 @@
 <?php
   if (isset($_POST["otprav"])) {
     $id = $_GET['id'];
-    $to = "fedya_dryagin@mail.ru";
+    $to = "fedor.dryagin@gmail.com";
     $subject = "Письмо с сайта";
     $charset = "utf-8";
     $headerss ="Content-type: text/html; charset=$charset\r\n";
@@ -24,7 +24,7 @@
     $msg = "Имя: " . $name . "<br />";
     $msg .= "Телефон: " . $phone . "<br />";
     $msg .= "Электронная почта: " . $mail_1 . $mail_2 . "<br />";
-    $msg .= "Вконтакте: \"$vk\"<br />";
+    $msg .= "Вконтакте: ". $vk ." <br />";
     $msg .= "Комментарий: " . $comm . "<br />";
     $msg .= "id товара: " . $id . "<br />";
 
