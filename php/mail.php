@@ -25,7 +25,7 @@
     $msg = "Имя: " . $name . "<br />";
     $msg .= "Телефон: " . $phone . "<br />";
     $msg .= "Электронная почта: " . $mail_1 . $mail_2 . "<br />";
-    $msg .= "Вконтакте: " . $vk_1 . $vk_2 . "<br />";
+    $msg .= "Вконтакте: " . $vk_1 . " " .  $vk_2 . "<br />";
     $msg .= "Комментарий: " . $comm . "<br />";
 
     mail($to, $subject, $msg, $headerss);
