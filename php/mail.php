@@ -8,8 +8,6 @@
     $headerss.="MIME-Version: 1.0\r\n";
     $headerss.="Date: ".date('D, d M Y h:i:s O')."\r\n";
 
-//
-
     $name = htmlspecialchars($_POST["name"]);
     $phone = htmlspecialchars($_POST["phone"]);
     $mail = htmlspecialchars($_POST["mail"]);
@@ -27,11 +25,12 @@
     $msg = "Имя: " . $name . "<br />";
     $msg .= "Телефон: " . $phone . "<br />";
     $msg .= "Электронная почта: " . $mail_1 . $mail_2 . "<br />";
-    $msg .= "Вконтакте: " . $vk_1 .  $vk_2 . "<br />";
+    $msg .= "Вконтакте: " . $vk_1 . .  $vk_2 . "<br />";
     $msg .= "Комментарий: " . $comm . "<br />";
+    $msg .= "id товара: " . $id . "<br />";
 
     mail($to, $subject, $msg, $headerss);
-    //header('Location:/sections/thanks.html');
+    header('Location:/sections/thanks.html');
 
   }
 ?>
