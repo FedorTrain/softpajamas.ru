@@ -27,8 +27,7 @@
     $msg .= "Комментарий: " . $comm . "<br />";
 
     mail($to, $subject, $msg, $headerss);
-    print_r(error_get_last());
-    //header('Location:/sections/thanks.html');
+    header('Location:/sections/thanks.html');
 
   }
 ?>
