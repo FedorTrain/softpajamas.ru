@@ -1,7 +1,7 @@
 <?php
   if (isset($_POST["otprav"])) {
     $id = $_GET['id'];
-    $to = "fedor.dryagin@gmail.com";
+    $to = "fedya_dryagin@mail.ru";
     $subject = "Письмо с сайта";
     $charset = "utf-8";
     $headerss ="Content-type: text/html; charset=$charset\r\n";
