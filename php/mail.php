@@ -8,7 +8,7 @@
     $headerss.="MIME-Version: 1.0\r\n";
     $headerss.="Date: ".date('D, d M Y h:i:s O')."\r\n";
 
-// Content-type: text/html; 
+// Content-type: text/html;
 
     $name = htmlspecialchars($_POST["name"]);
     $phone = htmlspecialchars($_POST["phone"]);
@@ -30,8 +30,8 @@
     $msg .= "Вконтакте: " . $vk_1 .  $vk_2 . "<br />";
     $msg .= "Комментарий: " . $comm . "<br />";
 
-    mail($to, $subject, $msg);
-    header('Location:/sections/thanks.html');
+    mail($to, $subject, $msg, $headerss);
+    //header('Location:/sections/thanks.html');
 
   }
 ?>
