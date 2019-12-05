@@ -1,5 +1,5 @@
 function submit(){
-  $('#content').html('oc[0]');
+  $('#res').html('oc[0]');
 
   var oc = [];
   var data = $('input[name*="ocs"]').val();
@@ -10,6 +10,6 @@ function submit(){
     if (data[i] == '5') oc.push(5);
   }
 
-  $('#content').html(oc[0]);
+  $('#res').html(oc[0]);
 
 }
