@@ -8,6 +8,6 @@ function submit(){
       if (data[i] == '5') ocs.push(5);
     }
 
-    $('#content').append(ocs);
+    $('#content').append(ocs[0]);
 
 }
