@@ -9,9 +9,3 @@ $(function(){
     );
   });
 });
-
-$('document').ready(function() {
-  $('#ocs').onsubmit(function(e) {
-
-  );
-});
