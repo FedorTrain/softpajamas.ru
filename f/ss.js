@@ -14,6 +14,6 @@ function submit(){
     if (data[i] == '5') oc.push(5);
   }
 
-  $('#res').html(oc[);
+  $('#res').html(oc);
 
 }
