@@ -1,9 +1,11 @@
 $('document').ready(function() {
-  $('#ocs').submit(function(e) {
+  $('#ocs').onsubmit(function(e) {
+    var form_data = $("#ocs").serializeArray;
+    alert("fff");
+    alert(form_data);
     $('#content').append(
-      alert("fff");
 
-      
+
     );
   );
 });
