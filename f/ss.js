@@ -4,8 +4,13 @@ $(function(){
 
     alert(form_data);
 
-    $('#content').append(
-      'hhhh'
-    );
+
   });
+});
+
+$('document').ready(function() {
+
+  $('#content').append('hhhh');
+
+
 });

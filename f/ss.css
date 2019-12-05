@@ -1,4 +1,9 @@
-form .ocs{
+form{
   width: 90%;
+  margin: auto;
+}
+
+.ocs {
   display: block;
+
 }
