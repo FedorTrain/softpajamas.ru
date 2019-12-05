@@ -7,7 +7,13 @@ form{
   display: block;
   width: 100%;
 }
- .sub {
+
+.sub {
    width: 100px;
    margin: auto;
- }
+}
+
+#res {
+  width: 90%;
+  margin: auto;
+}
