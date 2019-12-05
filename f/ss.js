@@ -5,6 +5,7 @@ function submit(){
 
   var data = $('input[name*="ocs"]').val();
   $('#res').html(data);
+  
 
   for (var i = 0; i < oc.length; i++) {
     if (data[i] == '2') $('#res').html('dddd');
