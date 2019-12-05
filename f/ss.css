@@ -5,5 +5,9 @@ form{
 
 .ocs {
   display: block;
-
+  width: 100%;
 }
+ .sub {
+   width: 100px;
+   margin: auto;
+ }
