@@ -11,9 +11,7 @@
 function submit(){
     var ocs = $('input[name*="ocs"]').val();
     for (var i = 0; i < ocs.length; i++) {
-      if (ocs[i] in "2345") {
-
-      }
+      
     }
     $('#content').append(ocs);
 
