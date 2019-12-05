@@ -1,5 +1,5 @@
 $(function(){
-  $("#form").onsubmit(function(){
+  $("#ocs").onsubmit(function(){
     var form_data = $("#ocs").serializeArray;
 
     alert(form_data);
