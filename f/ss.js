@@ -9,9 +9,13 @@
 // });
 
 function submit(){
-    // var login = $('input[name*="login"]').val();
-    // var pwd = $('input[name*="password"]').val();
-    $('#content').append('hhhh');
+    var ocs = $('input[name*="ocs"]').val();
+    for (var i = 0; i < ocs.length; i++) {
+      if (ocs[i] in "2345") {
+
+      }
+    }
+    $('#content').append(ocs);
 
 }
 
