@@ -7,7 +7,7 @@
     $headers = 'From: u0842107@server252.hosting.reg.ru' . "\r\n" .
     'Reply-To: u0842107@server252.hosting.reg.ru' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
-    $headerss.="Content-type: text/html; charset=$charset\r\n";
+    $headerss="Content-type: text/html; charset=$charset\r\n";
     $headerss.="MIME-Version: 1.0\r\n";
     $headerss.="Date: ".date('D, d M Y h:i:s O')."\r\n";
     echo "1";
