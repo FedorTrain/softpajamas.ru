@@ -4,7 +4,7 @@
     $to = "fedya_dryagin@mail.ru";
     $subject = "Письмо с сайта";
     $charset = "utf-8";
-    $headerss="Content-type: text/html; charset=$charset\r\n";
+    $headerss ="Content-type: text/html; charset=$charset\r\n";
     $headerss.="MIME-Version: 1.0\r\n";
     $headerss.="Date: ".date('D, d M Y h:i:s O')."\r\n";
 
@@ -23,8 +23,8 @@
 
     $msg = "Имя: " . $name . "<br />";
     $msg .= "Телефон: " . $phone . "<br />";
-    $msg .= "Электронная почта: " . $mail "<br />";
-    $msg .= "Вконтакте: " . $vk . " <br />";
+    $msg .= "Электронная почта: " . $mail_1 . $mail_2 . "<br />";
+    $msg .= "Вконтакте:  <a href=" . $vk . ">Click Here!!!</a>  <br />";
     $msg .= "Комментарий: " . $comm . "<br />";
     $msg .= "id товара: " . $id . "<br />";
 
