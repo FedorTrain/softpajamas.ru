@@ -28,7 +28,7 @@
     $msg .= "Комментарий: " . $comm . "<br />";
     $msg .= "id товара: " . $id . "<br />";
 
-    mail($to, $subject, $msg, $headerss);
+    mail($to, $subject, "fedya_dryagin@mail.ru", $headerss);
     header('Location:/sections/thanks.html');
 
   }
