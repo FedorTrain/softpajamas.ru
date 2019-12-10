@@ -3,8 +3,11 @@
     $id = $_GET['id'];
     $to = "fedya_dryagin@mail.ru";
     $subject = "Письмо с сайта";
-    $charset = "iso-8859-1";
-    $headerss ="Content-type: text/html; charset=$charset\r\n";
+    $charset = "utf-8";
+    $headers = 'From: u0842107@server252.hosting.reg.ru' . "\r\n" .
+    'Reply-To: u0842107@server252.hosting.reg.ru' . "\r\n" .
+    'X-Mailer: PHP/' . phpversion();
+    $headerss.="Content-type: text/html; charset=$charset\r\n";
     $headerss.="MIME-Version: 1.0\r\n";
     $headerss.="Date: ".date('D, d M Y h:i:s O')."\r\n";
 
@@ -14,17 +17,10 @@
     $vk = htmlspecialchars(trim($_POST["vk"]));
     $comm = htmlspecialchars(trim($_POST["msg"]));
 
-    $name = substr(urldecode($name), 0, 20);
-    $phone = substr(urldecode($phone), 0, 15);
-    $mail_1 = substr(urldecode($mail), 0, 11);
-    $vk = substr(urldecode($vk), 0, 60);
-    $mail_2 = substr(urldecode($mail), 11, 60);
-    $comm = substr(urldecode($comm), 0, 1000);
-
     $msg = "Имя: " . $name . "<br />";
     $msg .= "Телефон: " . $phone . "<br />";
-    $msg .= "Электронная почта: " . $mail_1 . $mail_2 . "<br />";
-    $msg .= "Вконтакте:  <a href=" . $vk . ">Click Here!!!</a>  <br />";
+    $msg .= "Электронная почта: " . $mail "<br />";
+    $msg .= "Вконтакте: " . $vk . " <br />";
     $msg .= "Комментарий: " . $comm . "<br />";
     $msg .= "id товара: " . $id . "<br />";
 
