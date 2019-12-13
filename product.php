@@ -40,7 +40,7 @@
         $mysql->close();
         $product = $result->fetch_assoc();
         $price = 'p';
-        if ($id == 11) {
+        if ($id == 12) {
           $price = ' лет';
         }
         echo '<div class="product">
