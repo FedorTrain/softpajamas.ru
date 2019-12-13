@@ -41,7 +41,7 @@
         $product = $result->fetch_assoc();
         $price = 'p';
         if ($id == 11) {
-          $price = 'лет';
+          $price = ' лет';
         }
         echo '<div class="product">
         <div class="container">
