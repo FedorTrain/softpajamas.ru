@@ -39,6 +39,10 @@
         $result = $mysql->query("SELECT * FROM `products` WHERE `id` = $id");
         $mysql->close();
         $product = $result->fetch_assoc();
+        $price = 'p';
+        if ($id == 12) {
+          $price = 'лет';
+        }
         echo '<div class="product">
         <div class="container">
           <div class="row">
@@ -48,7 +52,7 @@
            <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
 
              <p>' . $product['name'] . '</p>
-             <p>Цена: ' . $product['price'] . 'р</p>
+             <p>Цена: ' . $product['price'] .  $price . '</p>
              <p>В наличии: ' . +$product['number'] . '</p>
              <div class="info_of_product ">
                 <p>' . $product['info'] . '</p>
