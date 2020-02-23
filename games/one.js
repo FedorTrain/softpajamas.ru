@@ -37,8 +37,9 @@ function moveUp() {
 var pipe = [];
 
 pipe[0] = {
- x : cvs.width,
- y : 0
+
+  x : cvs.width,
+  y : 0
 }
 
 var score = 0;
@@ -46,38 +47,40 @@ var score = 0;
 var xPos = 10;
 var yPos = 150;
 var g = 40;
-var t = 0.1;
+var t = 0.07;
 var v = 0;
 var game = true;
+var speed = 2;
 
 function draw() {
  ctx.drawImage(bg, 0, 0);
 
  for(var i = 0; i < pipe.length; i++) {
- ctx.drawImage(pipeBottom, pipe[i].x, pipe[i].y + pipeUp.height + gap);
+   ctx.drawImage(pipeBottom, pipe[i].x, pipe[i].y + 50);
 
- if (game) {
-   pipe[i].x--;
- }
- if(pipe[i].x == 125) {
- pipe.push({
- x : cvs.width,
- y : 200
- });
- }
+   if (game) {
+     pipe[i].x -= 1;
+   }
+   if(pipe[i].x == 125) {
 
- // Отслеживание прикосновений
- if(xPos + bird.width >= pipe[i].x && xPos <= pipe[i].x + pipeUp.width) {
-  // game = false; // Перезагрузка страницы
- }
+     pipe.push({
+       x : cvs.width,
+       y : 0
+     });
+   }
 
- if(pipe[i].x == 5) {
-   score++;
-   score_audio.play();
+   // Отслеживание прикосновений
+   if(xPos + bird.width >= pipe[i].x && xPos <= pipe[i].x + pipeUp.width) {
+    // game = false; // Перезагрузка страницы
+   }
+
+   if(pipe[i].x == 5) {
+     score++;
+     score_audio.play();
    }
  }
 
- ctx.drawImage(fg, 0, cvs.height - fg.height);
+ ctx.drawImage(fg, 0, cvs.height - fg.height + bird.height);
  ctx.drawImage(bird, xPos, yPos);
 
  v = v - g * t;
