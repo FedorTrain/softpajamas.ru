@@ -43,7 +43,7 @@ function draw() {
 
 function update(){
   tts++;
-  if (tts == 60) {
+  if (tts >= 60 - red.length * 2) {
     tts = 0;
     green.push( {
       x : rand(cvs.width),
