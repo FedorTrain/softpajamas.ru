@@ -9,16 +9,18 @@ var alfbImg = new Image();
 var playerImg = new Image();
 var landImg = new Image();
 var planteaImg = new Image();
+var poopaImg = new Image();
 
 alfbImg.src = "img/alfb.png";
 playerImg.src = "img/player.png";
 landImg.src = "img/land.png";
 planteaImg.src = "img/plantea.png";
+poopaImg.src = "img/poopa.png";
 
 var mstr = [];
 var map = []; var map_x = 0; var map_y = 0;
-for (var i = 0; i < 64; i++) {
-  for (var j = 0; j < 64; j++) {
+for (var i = 0; i < 70; i++) {
+  for (var j = 0; j < 70; j++) {
     map[i] = [];
   }
 }
@@ -49,6 +51,10 @@ for (var i = 0; i < 64; i++) {
   }
 }
 
+function word() {
+
+}
+
 var player = {
   x : 400,
   y : 300,
@@ -56,8 +62,31 @@ var player = {
   dir : 'd',
   move : false,
   im : 0,
-  is : 0
+  is : 0,
+  //speak
+  isSpeak : false,
+  with : 0,
+
 }
+
+var mstrs = [];
+for (var i = 0; i < 32; i++) {
+  mstrs.push({
+    x : rand(2000)+200,
+    y : rand(2000)+200,
+    s : rand(3),
+    r : true,
+    point : [],
+    need : "no",
+    // speak
+    isSpeak : false,
+    with : 0,
+
+  });
+  mstrs[i].point.push(rand(64));
+}
+
+
 
 function update(){
   if (player.x - map_x < 160) {map_x = player.x - 160}
@@ -66,29 +95,36 @@ function update(){
   if (player.y - map_y > 480) {map_y = player.y - 480}
   if (player.im == 0) {player.move = false;}
   if (player.im > 0) {player.im--;}
-  if (player.is == 0) {player.s = !player.s; player.is = 20}
+  if (player.is == 0) {
+    player.s = !player.s;
+    player.is = 15;
+    for (var i = 0; i < mstrs.length; i++) {
+      mstrs[i].s++;
+      if (mstrs[i].s >= 3) mstrs[i].s = 0;
+    }
+  }
   if (player.is > 0) {player.is--;}
 }
 
 function move(e){
   switch (e) {
     case 65:
-      player.x-=3;
+      player.x-=30;
       player.move = true;
       player.dir = 'l';
       break;
     case 68:
-      player.x+=3;
+      player.x+=30;
       player.move = true;
       player.dir = 'r';
       break;
     case 87:
-      player.y-=3;
+      player.y-=30;
       player.move = true;
       player.dir = 'u';
       break;
     case 83:
-      player.y+=3;
+      player.y+=30;
       player.move = true;
       player.dir = 'd';
       break;
@@ -97,7 +133,7 @@ function move(e){
     player.im = 10;
   }
 }
-function s(cor) {
+function s(cor, i) {
   switch (cor) {
     case 'x':
       if (player.move) {
@@ -124,6 +160,16 @@ function s(cor) {
         case 'u':
           return 144;
           break;
+      }
+      break;
+    case "px":
+      return 48 * mstrs[i].s;
+      break;
+    case "py":
+      if (mstrs.r) {
+        return 0;
+      } else {
+        return 48;
       }
       break;
   }
