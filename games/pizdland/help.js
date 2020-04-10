@@ -5,7 +5,7 @@ function div(val, by){
   return (val - val % by) / by;
 }
 
-var ms = 2;
+var ms = 0.25 * 20;
 
 var alfbImg = new Image();
 var playerImg = new Image();
@@ -18,6 +18,8 @@ playerImg.src = "img/player.png";
 landImg.src = "img/land.png";
 planteaImg.src = "img/plantea.png";
 poopaImg.src = "img/poopa.png";
+
+// map begin - - - - - - - - - - - - - - -
 
 var map_biome = [];
 for (var i = 0; i < 10; i++) {
@@ -60,18 +62,32 @@ for (var i = 0; i < 64; i++) {
     }
   }
 }
+// map end - - - - - - - - - - - - - - -
 
 var source = [];
-
 var time = 0;
+for (var i = 1; i < 5; i++) {
+  var xl = rand(60)+2;
+  var yl = rand(60)+2;
+  while (map_biome[div(xl,8)][div(yl,8)] != i) {
+    xl = rand(60)+2;
+    yl = rand(60)+2;
+  }
+  source.push({
+    x : xl * 48+24,
+    y : yl * 48+24,
+    num : 100,
+    biome : map_biome[div(xl,8)][div(yl,8)]
+  });
+}
 function world() {
   time++;
-  if (time % 2000 == 0) {
+  if (time % 1000000 == 0) {
     var xl = rand(60)+2;
     var yl = rand(60)+2;
     source.push({
-      x : xl,
-      y : yl,
+      x : xl * 48+24,
+      y : yl * 48+24,
       num : 100,
       biome : map_biome[div(xl,8)][div(yl,8)]
     });
@@ -95,17 +111,21 @@ var player = {
 var mstrs = [];
 for (var i = 0; i < 32; i++) {
   mstrs.push({
-    x : rand(2000)+200,
-    y : rand(2000)+200,
+    x : rand(2834)+120,
+    y : rand(2834)+120,
     s : rand(3),
     r : true,
-    purpose : {x : rand(2000)+200, y : rand(2000)+200},
-    need : "no",
+    purpose : {
+      x : rand(2834)+120,
+      y : rand(2834)+120
+    },
+    inven : [rand(5),rand(5),rand(5),rand(5)],
+    need : 0,
     // speak
     isSpeak : false,
     with : 0,
-
   });
+
 }
 
 

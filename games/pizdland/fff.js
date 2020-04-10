@@ -14,18 +14,13 @@ function draw(){
       ctx.drawImage(landImg, x, y);
       if (map[div(map_x + x, 48)][div(map_y + y, 48)] == 5) {
         ctx.drawImage(planteaImg,0,48*2,48,48, x, y, 48, 48);
-      } else {
-        if (map[div(map_x + x, 48)][div(map_y + y, 48)] != 0) {
-          var biome = map_biome[div(map_x + x, 384)][div(map_y + y, 384)] - 1;
-          ctx.drawImage(planteaImg,48*biome,48*3,48,48, x, y, 48, 48);
-        }
       }
     }
   }
 
   //draw source
   for (var i = 0; i < source.length; i++) {
-    ctx.drawImage(planteaImg,s("px",i),s("py",i),48,48, mstrs[i].x - map_x - 24, mstrs[i].y - map_y - 24, 48, 48);
+    ctx.drawImage(planteaImg,48 * (source[i].biome - 1),48 * 3,48,48, source[i].x - map_x - 24, source[i].y - map_y - 24, 48, 48);
   }
 
   //draw monstrs
@@ -56,10 +51,39 @@ function update(){
   if (player.is > 0) {player.is--;}
 
   for (var i = 0; i < mstrs.length; i++) {
-    if (mstrs[i].x < mstrs[i].purpose.x) mstrs[i].x += ms;
-    else if (mstrs[i].x > mstrs[i].purpose.x) mstrs[i].x -= ms;
-    else if (mstrs[i].y < mstrs[i].purpose.y) mstrs[i].y += ms;
-    else if (mstrs[i].y > mstrs[i].purpose.y) mstrs[i].y -= ms;
+
+    for (var j = 0; j < 4; j++) {
+      if (mstrs[i].inven[j] < mstrs[i].inven[mstrs[i].need]) {
+        mstrs[i].need = j;
+      }
+    }
+
+    for (var j = 0; j < source.length; j++) {
+      var dx = mstrs[i].x - source[j].x;
+      var dy = mstrs[i].y - source[j].y;
+      if (dx*dx + dy*dy <= 147456 && source[j].biome == mstrs[i].need+1) {
+        mstrs[i].purpose.x = source[j].x;
+        mstrs[i].purpose.y = source[j].y;
+      }
+    }
+    for (var j= 0; j < source.length; j++) {
+      var dx = mstrs[i].x - source[j].x;
+      var dy = mstrs[i].y - source[j].y;
+      if (dx*dx + dy*dy < 100 && source[j].biome == mstrs[i].need+1) {
+        source[j].num -= 5 - mstrs[i].inven[mstrs[i].need];
+        mstrs[i].inven[mstrs[i].need] = 5;
+      }
+    }
+    var dx = Math.abs(mstrs[i].x - mstrs[i].purpose.x);
+    var dy = Math.abs(mstrs[i].y - mstrs[i].purpose.y);
+         if (mstrs[i].x < mstrs[i].purpose.x && dx > 6) mstrs[i].x += ms;
+    else if (mstrs[i].x > mstrs[i].purpose.x && dx > 6) mstrs[i].x -= ms;
+    else if (mstrs[i].y < mstrs[i].purpose.y && dy > 6) mstrs[i].y += ms;
+    else if (mstrs[i].y > mstrs[i].purpose.y && dy > 6) mstrs[i].y -= ms;
+    if (dx < 8 && dy < 8) {
+      mstrs[i].purpose.x = rand(2834)+120;
+      mstrs[i].purpose.y = rand(2834)+120;
+    }
   }
 }
 
