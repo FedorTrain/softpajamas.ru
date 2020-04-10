@@ -82,7 +82,7 @@ for (var i = 1; i < 5; i++) {
 }
 function world() {
   time++;
-  if (time % 1000000 == 0) {
+  if (time % 15000 == 0) {
     var xl = rand(60)+2;
     var yl = rand(60)+2;
     source.push({
@@ -91,6 +91,13 @@ function world() {
       num : 100,
       biome : map_biome[div(xl,8)][div(yl,8)]
     });
+  }
+  if (time % 3600 == 0) {
+    for (var i = 0; i < mstrs.length; i++) {
+      for (var j = 0; j < 4; j++) {
+        mstrs[i].inven[j]--;
+      }
+    }
   }
 }
 
@@ -109,7 +116,7 @@ var player = {
 }
 
 var mstrs = [];
-for (var i = 0; i < 32; i++) {
+for (var i = 0; i < 25; i++) {
   mstrs.push({
     x : rand(2834)+120,
     y : rand(2834)+120,
@@ -121,16 +128,13 @@ for (var i = 0; i < 32; i++) {
     },
     inven : [rand(5),rand(5),rand(5),rand(5)],
     need : 0,
+    memory : [{ x : 0, y : 0, biome : 5 },
+              { x : 0, y : 0, biome : 5 }],
     // speak
     isSpeak : false,
     with : 0,
   });
-
 }
-
-
-
-
 
 function move(e){
   switch (e) {
@@ -192,7 +196,7 @@ function s(cor, i) {
       return 48 * mstrs[i].s;
       break;
     case "py":
-      if (mstrs.r) {
+      if (mstrs[i].r) {
         return 0;
       } else {
         return 48;
