@@ -5,6 +5,8 @@ function div(val, by){
   return (val - val % by) / by;
 }
 
+var ms = 2;
+
 var alfbImg = new Image();
 var playerImg = new Image();
 var landImg = new Image();
@@ -17,27 +19,35 @@ landImg.src = "img/land.png";
 planteaImg.src = "img/plantea.png";
 poopaImg.src = "img/poopa.png";
 
-var mstr = [];
+var map_biome = [];
+for (var i = 0; i < 10; i++) {
+    map_biome[i] = [];
+}
+for (var i = 0; i < 10; i++) {
+  for (var j = 0; j < 10; j++) {
+    map_biome[i][j] = rand(4)+1;
+    if (j > 7 || i > 7) {map_biome[i][j] = 2};
+  }
+}
+
 var map = []; var map_x = 0; var map_y = 0;
 for (var i = 0; i < 70; i++) {
-  for (var j = 0; j < 70; j++) {
     map[i] = [];
-  }
 }
 for (var i = 0; i < 64; i++) {
   for (var j = 0; j < 64; j++) {
     map[i][j] = rand(5);
     if (map[i][j] > 1) {
-      map[i][j] = 0;
+      map[i][j] = rand(3);
     }
   }
 }
 for (var i = 0; i < 64; i++) {
   for (var j = 0; j < 64; j++) {
     if (i <= 1 || i >= 62 || j <= 1 || j >= 62) {
-      map[i][j] = 1;
+      map[i][j] = 5;
     } else {
-      if (map[i][j] == 1) {
+      if (map[i][j] != 1) {
         if (!(i-1 <= 1 || i-1 >= 62 || j-1 <= 1 || j-1 >= 62)) {map[i-1][j-1] = 0;}
         if (!(i-1 <= 1 || i-1 >= 62 || j   <= 1 || j   >= 62)) {map[i-1][j]   = 0;}
         if (!(i-1 <= 1 || i-1 >= 62 || j+1 <= 1 || j+1 >= 62)) {map[i-1][j+1] = 0;}
@@ -51,8 +61,21 @@ for (var i = 0; i < 64; i++) {
   }
 }
 
-function word() {
+var source = [];
 
+var time = 0;
+function world() {
+  time++;
+  if (time % 2000 == 0) {
+    var xl = rand(60)+2;
+    var yl = rand(60)+2;
+    source.push({
+      x : xl,
+      y : yl,
+      num : 100,
+      biome : map_biome[div(xl,8)][div(yl,8)]
+    });
+  }
 }
 
 var player = {
@@ -76,35 +99,18 @@ for (var i = 0; i < 32; i++) {
     y : rand(2000)+200,
     s : rand(3),
     r : true,
-    point : [],
+    purpose : {x : rand(2000)+200, y : rand(2000)+200},
     need : "no",
     // speak
     isSpeak : false,
     with : 0,
 
   });
-  mstrs[i].point.push(rand(64));
 }
 
 
 
-function update(){
-  if (player.x - map_x < 160) {map_x = player.x - 160}
-  if (player.x - map_x > 640) {map_x = player.x - 640}
-  if (player.y - map_y < 120) {map_y = player.y - 120}
-  if (player.y - map_y > 480) {map_y = player.y - 480}
-  if (player.im == 0) {player.move = false;}
-  if (player.im > 0) {player.im--;}
-  if (player.is == 0) {
-    player.s = !player.s;
-    player.is = 15;
-    for (var i = 0; i < mstrs.length; i++) {
-      mstrs[i].s++;
-      if (mstrs[i].s >= 3) mstrs[i].s = 0;
-    }
-  }
-  if (player.is > 0) {player.is--;}
-}
+
 
 function move(e){
   switch (e) {
