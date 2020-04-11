@@ -96,12 +96,27 @@ function update(){
           mstrs[i].memory[2].splice(0);
           mstrs[i].speak = true;
           mstrs[j].speak = true;
+          mstrs[i].first = true;
+          mstrs[j].first = false;
           mstrs[i].with = j;
           mstrs[j].with = i;
-
         }
       }
     }
+    if (mstrs[i].speak && mstrs[i].first) { //Спрашивает
+      if (cpr(mstrs[mstrs[i].with].word, [0, 0])) {
+        mstrs[i].word = Array(5, 3);
+      }
+      if (cpr(mstrs[mstrs[i].with].word, [5, 3])) {
+        mstrs[i].word = Array(6, mstrs[i].need + 8);
+      }
+    }
+    if (mstrs[i].speak && !mstrs[i].first) {// Отвечает
+      if (cpr(mstrs[mstrs[i].with].word, [5, 3])) {
+        mstrs[i].word = Array(5, 3);
+      }
+    }
+
 
     if (!mstrs[i].speak) {
       for (var j= 0; j < source.length; j++) {
@@ -135,11 +150,11 @@ function speak() {
 }
 
 $(document.body).on('keydown', function(e) {move(e.which);});
-
+var z = true;
 function loop() {
   update();
   draw();
   world();
-  requestAnimationFrame(loop);
+  if (z) requestAnimationFrame(loop);
 }
 loop();

@@ -1,8 +1,20 @@
 function rand(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
-function div(val, by){
+function div(val, by) {
   return (val - val % by) / by;
+}
+function cpr(arr1,arr2) {
+  if (arr1.length == arr2.length){
+    for (var i = 0; i < arr1.length; i++) {
+      if (arr1[i] != arr2[i]) {
+        return false;
+      }
+    }
+  } else {
+    return false;
+  }
+  return true;
 }
 
 var alfbImg = new Image();
@@ -116,7 +128,7 @@ var player = {
   is : 0,
   //speak
   isSpeak : false,
-  with : 0,
+  with : -1,
 
 }
 
@@ -140,7 +152,9 @@ for (var i = 0; i < 25; i++) {
               [-1,-1,-1,-1,-1]],
     // speak
     speak : false,
+    first : false,
     with : -1,
+    word : [0, 0]
   });
 }
 
