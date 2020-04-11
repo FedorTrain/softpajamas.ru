@@ -5,8 +5,6 @@ function div(val, by){
   return (val - val % by) / by;
 }
 
-var ms = 0.25 * 20;
-
 var alfbImg = new Image();
 var playerImg = new Image();
 var landImg = new Image();
@@ -18,6 +16,8 @@ playerImg.src = "img/player.png";
 landImg.src = "img/land.png";
 planteaImg.src = "img/plantea.png";
 poopaImg.src = "img/poopa.png";
+
+var MS = 0.25 * 20;
 
 // map begin - - - - - - - - - - - - - - -
 
@@ -82,7 +82,7 @@ for (var i = 1; i < 5; i++) {
 }
 function world() {
   time++;
-  if (time % 15000 == 0) {
+  if (time % 3600 == 0 || source.length == 1) {
     var xl = rand(60)+2;
     var yl = rand(60)+2;
     source.push({
@@ -95,8 +95,13 @@ function world() {
   if (time % 3600 == 0) {
     for (var i = 0; i < mstrs.length; i++) {
       for (var j = 0; j < 4; j++) {
-        mstrs[i].inven[j]--;
+        if (mstrs[i].inven[j] > 0) mstrs[i].inven[j]--;
       }
+    }
+  }
+  for (var i = 0; i < source.length; i++) {
+    if (source[i].num <= 0) {
+      source.splice(i, 1);
     }
   }
 }
@@ -122,17 +127,20 @@ for (var i = 0; i < 25; i++) {
     y : rand(2834)+120,
     s : rand(3),
     r : true,
+    ms : 0.25 * 20,
     purpose : {
       x : rand(2834)+120,
-      y : rand(2834)+120
+      y : rand(2834)+120,
+      know : false
     },
     inven : [rand(5),rand(5),rand(5),rand(5)],
     need : 0,
     memory : [{ x : 0, y : 0, biome : 5 },
-              { x : 0, y : 0, biome : 5 }],
+              { x : 0, y : 0, biome : 5 },
+              [-1,-1,-1,-1,-1]],
     // speak
-    isSpeak : false,
-    with : 0,
+    speak : false,
+    with : -1,
   });
 }
 

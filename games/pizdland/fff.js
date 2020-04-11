@@ -62,14 +62,6 @@ function update(){
       var dx = mstrs[i].x - source[j].x;
       var dy = mstrs[i].y - source[j].y;
       if (dx*dx + dy*dy <= 147456) {
-        if (mstrs[i].need+1 == mstrs[i].memory[0].biome) {
-          mstrs[i].purpose.x = mstrs[i].memory[0].x;
-          mstrs[i].purpose.y = mstrs[i].memory[0].y;
-        }
-        if (mstrs[i].need+1 == mstrs[i].memory[1].biome) {
-          mstrs[i].purpose.x = mstrs[i].memory[1].x;
-          mstrs[i].purpose.y = mstrs[i].memory[1].y;
-        }
         if (source[j].biome != mstrs[i].memory[0].biome && source[j].biome != mstrs[i].memory[1].biome) {
           mstrs[i].memory[1].biome = mstrs[i].memory[0].biome;
           mstrs[i].memory[1].x = mstrs[i].memory[0].x;
@@ -80,29 +72,67 @@ function update(){
         }
       }
     }
-    for (var j= 0; j < source.length; j++) {
-      var dx = mstrs[i].x - source[j].x;
-      var dy = mstrs[i].y - source[j].y;
-      if (dx*dx + dy*dy < 100 && source[j].biome == mstrs[i].need+1) {
-        source[j].num -= 5 - mstrs[i].inven[mstrs[i].need];
-        mstrs[i].inven[mstrs[i].need] = 5;
+    if (mstrs[i].need+1 == mstrs[i].memory[0].biome) {
+      mstrs[i].purpose.x = mstrs[i].memory[0].x;
+      mstrs[i].purpose.y = mstrs[i].memory[0].y;
+      mstrs[i].purpose.know = true;
+    }
+    if (mstrs[i].need+1 == mstrs[i].memory[1].biome) {
+      mstrs[i].purpose.x = mstrs[i].memory[1].x;
+      mstrs[i].purpose.y = mstrs[i].memory[1].y;
+      mstrs[i].purpose.know = true;
+    }
+    if (!mstrs[i].purpose.know) {
+      for (var j = 0; j < mstrs.length && i != j && mstrs[i].memory[2].indexOf(j) == -1 && !mstrs[j].speak; j++) {
+        var dx = mstrs[i].x - mstrs[j].x;
+        var dy = mstrs[i].y - mstrs[j].y;
+        if (dx*dx + dy*dy <= 147456) {
+          mstrs[i].ms += 1;
+          mstrs[i].purpose.x = mstrs[j].x;
+          mstrs[i].purpose.y = mstrs[j].y;
+        }
+        if (dx*dx + dy*dy <= 100) {
+          mstrs[i].memory[2].push(j);
+          mstrs[i].memory[2].splice(0);
+          mstrs[i].speak = true;
+          mstrs[j].speak = true;
+          mstrs[i].with = j;
+          mstrs[j].with = i;
+
+        }
       }
     }
-    var dx = Math.abs(mstrs[i].x - mstrs[i].purpose.x);
-    var dy = Math.abs(mstrs[i].y - mstrs[i].purpose.y);
-         if (mstrs[i].x < mstrs[i].purpose.x && dx > 6) { mstrs[i].x += ms; mstrs[i].r = true;  }
-    else if (mstrs[i].x > mstrs[i].purpose.x && dx > 6) { mstrs[i].x -= ms; mstrs[i].r = false; }
-    else if (mstrs[i].y < mstrs[i].purpose.y && dy > 6) mstrs[i].y += ms;
-    else if (mstrs[i].y > mstrs[i].purpose.y && dy > 6) mstrs[i].y -= ms;
-    if (dx < 8 && dy < 8) {
-      mstrs[i].purpose.x = rand(2834)+120;
-      mstrs[i].purpose.y = rand(2834)+120;
+
+    if (!mstrs[i].speak) {
+      for (var j= 0; j < source.length; j++) {
+        var dx = mstrs[i].x - source[j].x;
+        var dy = mstrs[i].y - source[j].y;
+        if (dx*dx + dy*dy < 100 && source[j].biome == mstrs[i].need+1) {
+          source[j].num -= 5 - mstrs[i].inven[mstrs[i].need];
+          mstrs[i].inven[mstrs[i].need] = 5;
+        }
+      }
+      var dx = Math.abs(mstrs[i].x - mstrs[i].purpose.x);
+      var dy = Math.abs(mstrs[i].y - mstrs[i].purpose.y);
+           if (mstrs[i].x < mstrs[i].purpose.x && dx > 6) { mstrs[i].x += mstrs[i].ms; mstrs[i].r = true;  }
+      else if (mstrs[i].x > mstrs[i].purpose.x && dx > 6) { mstrs[i].x -= mstrs[i].ms; mstrs[i].r = false; }
+      else if (mstrs[i].y < mstrs[i].purpose.y && dy > 6) mstrs[i].y += mstrs[i].ms;
+      else if (mstrs[i].y > mstrs[i].purpose.y && dy > 6) mstrs[i].y -= mstrs[i].ms;
+      mstrs[i].ms = MS;
+      if (dx < 8 && dy < 8) {
+        mstrs[i].purpose.x = rand(2834)+120;
+        mstrs[i].purpose.y = rand(2834)+120;
+        mstrs[i].purpose.know = false;
+      }
     }
   }
 }
 
 function seeMap() {}
-function speak() {}
+function speak() {
+
+
+}
 
 $(document.body).on('keydown', function(e) {move(e.which);});
 
