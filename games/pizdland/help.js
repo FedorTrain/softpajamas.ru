@@ -16,6 +16,28 @@ function cpr(arr1,arr2) {
   }
   return true;
 }
+function m(i) {
+  console.log("s-",mstrs[i].speak,"w-",mstrs[i].with,"f-",mstrs[i].first,"wr-",mstrs[i].word)
+}
+var kkk = [];
+function sp() {
+  kkk = [];
+  for (var i = 0; i < mstrs.length; i++) {
+    if (mstrs[i].speak) {
+      // console.log(i);
+      kkk[kkk.length] = i;
+    }
+  }
+  console.log(kkk);
+}
+function chek() {
+  var num = 0;
+  for (var i = 0; i < mstrs.length; i++) {
+    if (mstrs[i].speak) num++;
+  }
+  return num;
+}
+
 
 var alfbImg = new Image();
 var playerImg = new Image();
@@ -30,7 +52,7 @@ planteaImg.src = "img/plantea.png";
 poopaImg.src = "img/poopa.png";
 
 var MS = 0.25 * 20;
-
+var numWord = 11;
 // map begin - - - - - - - - - - - - - - -
 
 var map_biome = [];
@@ -94,6 +116,11 @@ for (var i = 1; i < 5; i++) {
 }
 function world() {
   time++;
+  if (time % 1200 == 0) {
+    for (var i = 0; i < mstrs.length; i++) {
+      if (mstrs[i].memory[2].length > 0) mstrs[i].memory[2].splice(0);
+    }
+  }
   if (time % 3600 == 0 || source.length == 1) {
     var xl = rand(60)+2;
     var yl = rand(60)+2;

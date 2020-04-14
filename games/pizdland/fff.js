@@ -82,8 +82,11 @@ function update(){
       mstrs[i].purpose.y = mstrs[i].memory[1].y;
       mstrs[i].purpose.know = true;
     }
-    if (!mstrs[i].purpose.know) {
-      for (var j = 0; j < mstrs.length && i != j && mstrs[i].memory[2].indexOf(j) == -1 && !mstrs[j].speak; j++) {
+    if (!mstrs[i].purpose.know && chek() == 0) {
+
+      for (var j = 0; j < mstrs.length && mstrs[i].memory[2].indexOf(j) == -1 && !mstrs[j].speak; j++) {
+        if (i == j) j++;
+        if (j == 25) break;
         var dx = mstrs[i].x - mstrs[j].x;
         var dy = mstrs[i].y - mstrs[j].y;
         if (dx*dx + dy*dy <= 147456) {
@@ -93,7 +96,6 @@ function update(){
         }
         if (dx*dx + dy*dy <= 100) {
           mstrs[i].memory[2].push(j);
-          mstrs[i].memory[2].splice(0);
           mstrs[i].speak = true;
           mstrs[j].speak = true;
           mstrs[i].first = true;
@@ -104,17 +106,75 @@ function update(){
       }
     }
     if (mstrs[i].speak && mstrs[i].first) { //Спрашивает
+      // z = false;
       if (cpr(mstrs[mstrs[i].with].word, [0, 0])) {
         mstrs[i].word = Array(5, 3);
-      }
+      } else
       if (cpr(mstrs[mstrs[i].with].word, [5, 3])) {
         mstrs[i].word = Array(6, mstrs[i].need + 8);
+      } else
+      if (cpr(mstrs[mstrs[i].with].word, [7, 0])) {
+        mstrs[mstrs[i].with].speak = false;
+        mstrs[mstrs[i].with].word = [0, 0];
+        mstrs[mstrs[i].with].with = -1;
+        mstrs[i].speak = false;
+        mstrs[i].with = -1;
+        mstrs[i].word = [0, 0];
+        mstrs[i].first = false;
+        console.log("no know");
+        for (var j = 0; j < mstrs.length; j++) {
+          if (i != j) mstrs[j].memory[2].push(i);
+          if (mstrs[i].with != j) mstrs[j].memory[2].push(mstrs[i].with);
+        }
+      } else
+      if (mstrs[mstrs[i].with].word[0] > numWord) {
+        console.log(i,mstrs[i].with);
+        // z = false;
+
+        var xl = mstrs[mstrs[i].with].word[0] - numWord - 1;
+        var yl = mstrs[mstrs[i].with].word[1] - numWord - 9;
+        xl = (xl * 8 + 4) * 48;
+        yl = (yl * 8 + 4) * 48;
+        mstrs[i].memory[1].x = mstrs[i].memory[0].x;
+        mstrs[i].memory[1].y = mstrs[i].memory[0].y;
+        mstrs[i].memory[1].biome = mstrs[i].memory[0].biome;
+        mstrs[i].memory[0].x = xl;
+        mstrs[i].memory[0].y = yl;
+        mstrs[i].memory[0].biome = mstrs[i].need + 1;
+        mstrs[mstrs[i].with].speak = false;
+        mstrs[mstrs[i].with].word = [0, 0];
+        mstrs[mstrs[i].with].with = -1;
+        mstrs[i].speak = false;
+        mstrs[i].with = -1;
+        mstrs[i].word = [0, 0];
+        mstrs[i].first = false;
+        console.log("know");
       }
+
     }
+
     if (mstrs[i].speak && !mstrs[i].first) {// Отвечает
       if (cpr(mstrs[mstrs[i].with].word, [5, 3])) {
         mstrs[i].word = Array(5, 3);
+      } else
+      for (var j = 8; j < 12; j++) {
+        if (cpr(mstrs[mstrs[i].with].word, [6, j])) {
+          if (mstrs[i].memory[0].biome + 7 == j) {
+            var xl = div(div(mstrs[i].memory[0].x, 48), 8);
+            var yl = div(div(mstrs[i].memory[0].y, 48), 8);
+            mstrs[i].word = Array(numWord + xl + 1, numWord + yl + 9);
+          } else if (mstrs[i].memory[1].biome == j) {
+            var xl = div(div(mstrs[i].memory[1].x, 48), 8);
+            var yl = div(div(mstrs[i].memory[1].y, 48), 8);
+            mstrs[i].word = Array(numWord + xl + 1, numWord + yl + 9);
+          } else {
+            mstrs[i].word = Array(7, 0);
+
+          }
+        }
+
       }
+
     }
 
 
@@ -151,6 +211,32 @@ function speak() {
 
 $(document.body).on('keydown', function(e) {move(e.which);});
 var z = true;
+function u() {
+  z = false;
+}
+function g() {
+  z = true;
+  loop();
+}
+function t() {
+  z = true;
+}
+function deb() {
+  sp();
+  var m1 = kkk[0];
+  var m2 = kkk[1];
+  if (mstrs[m1].first) console.log("ooooo");
+  else console.log("xxxxx");
+  m(m1);
+  m(m2);
+  g();
+  m(m1);
+  m(m2);
+  g();
+  m(m1);
+  m(m2);
+  g();
+}
 function loop() {
   update();
   draw();
