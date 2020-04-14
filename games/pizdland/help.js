@@ -53,6 +53,7 @@ poopaImg.src = "img/poopa.png";
 
 var MS = 0.25 * 20;
 var numWord = 11;
+var PS = 48 /2;
 // map begin - - - - - - - - - - - - - - -
 
 var map_biome = [];
@@ -100,7 +101,7 @@ for (var i = 0; i < 64; i++) {
 
 var source = [];
 var time = 0;
-for (var i = 1; i < 5; i++) {
+for (var i = 1; i < 5; i++) {+ PS
   var xl = rand(60)+2;
   var yl = rand(60)+2;
   while (map_biome[div(xl,8)][div(yl,8)] != i) {
@@ -146,8 +147,8 @@ function world() {
 }
 
 var player = {
-  x : 400,
-  y : 300,
+  x : 48 * 8 - 24,
+  y : 48 * 8 - 24,
   s : true,
   dir : 'd',
   move : false,
@@ -188,22 +189,22 @@ for (var i = 0; i < 25; i++) {
 function move(e){
   switch (e) {
     case 65:
-      player.x-=30;
+      if (player.x > 120 ) player.x-=PS;
       player.move = true;
       player.dir = 'l';
       break;
     case 68:
-      player.x+=30;
+      if (player.x < 2952 ) player.x+=PS;
       player.move = true;
       player.dir = 'r';
       break;
     case 87:
-      player.y-=30;
+      if (player.y > 120 ) player.y-=PS;
       player.move = true;
       player.dir = 'u';
       break;
     case 83:
-      player.y+=30;
+      if (player.y < 2952 ) player.y+=PS;
       player.move = true;
       player.dir = 'd';
       break;
