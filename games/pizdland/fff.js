@@ -31,13 +31,50 @@ function draw(){
   // draw player
   ctx.drawImage(playerImg,s('x',0),s('y',0),48,48, player.x - map_x - 24, player.y - map_y - 24, 48, 48);
 
+  // draw words
+  for (var i = 0; i < mstrs.length; i++) {
+    if (mstrs[i].speak && mstrs[i].wordTime != -1){
+      if (mstrs[i].word[0] <= numWord) {
+        if (mstrs[i].word[1] != 0) {
+          var w = alfb[mstrs[i].word[0]-1];
+          for (var j = 0; j < w.length; j++) {
+            ctx.drawImage(alfbImg,20*(w[j]-1),0,20,20, mstrs[i].x - map_x - 24, mstrs[i].y - map_y - 72, 20, 20);
+          }
+        }
+        if (mstrs[i].word[1] != 0) {
+          var w = alfb[mstrs[i].word[1]-1];
+          for (var j = 0; j < w.length; j++) {
+            ctx.drawImage(alfbImg,20*(w[j]-1),0,20,20, mstrs[i].x - map_x, mstrs[i].y - map_y - 72, 20, 20);
+          }
+        }
+        if (mstrs[i].word[0] == 7) {
+          ctx.drawImage(alfbImg,20,0,20,20, mstrs[i].x - map_x, mstrs[i].y - map_y - 72, 20, 20);
+          ctx.drawImage(alfbImg,20*4,0,20,20, mstrs[i].x - map_x, mstrs[i].y - map_y - 72, 20, 20);
+          ctx.drawImage(alfbImg,20*3,0,20,20, mstrs[i].x - map_x, mstrs[i].y - map_y - 72, 20, 20);
+        }
+      } else {
+        var w = mstrs[i].word[0]-12;
+        ctx.drawImage(alfbImg,20*w,20,20,20, mstrs[i].x - map_x - 24, mstrs[i].y - map_y - 72, 20, 20);
+        var w = mstrs[i].word[1]-19;
+        ctx.drawImage(alfbImg,20*w,40,20,20, mstrs[i].x - map_x - 24, mstrs[i].y - map_y - 72, 20, 20);
+
+      }
+    }
+  }
+
+
 }
 
 function update(){
-  if (player.x - map_x < 160) {map_x = player.x - 160}
-  if (player.x - map_x > 640) {map_x = player.x - 640}
-  if (player.y - map_y < 120) {map_y = player.y - 120}
-  if (player.y - map_y > 480) {map_y = player.y - 480}
+  // 1 PLAYER
+  if (player.x - map_x < 200) {map_x = player.x - 200}
+  if (player.x - map_x > 600) {map_x = player.x - 600}
+  if (player.y - map_y < 160) {map_y = player.y - 160}
+  if (player.y - map_y > 440) {map_y = player.y - 440}
+  if (map_x < 0) map_x = 0;
+  if (map_y < 0) map_y = 0;
+  if (map_x > 2272) map_x = 2272;
+  if (map_y > 2472) map_y = 2472;
   if (player.im == 0) {player.move = false;}
   if (player.im > 0) {player.im--;}
   if (player.is == 0) {
@@ -50,28 +87,47 @@ function update(){
   }
   if (player.is > 0) {player.is--;}
 
+  // 2 MSTRS
   for (var i = 0; i < mstrs.length; i++) {
 
+    // 2.1 NEED
     for (var j = 0; j < 4; j++) {
       if (mstrs[i].inven[j] < mstrs[i].inven[mstrs[i].need]) {
         mstrs[i].need = j;
       }
     }
 
+    // 2.2 SEE
     for (var j = 0; j < source.length; j++) {
       var dx = mstrs[i].x - source[j].x;
       var dy = mstrs[i].y - source[j].y;
       if (dx*dx + dy*dy <= 147456) {
-        if (source[j].biome != mstrs[i].memory[0].biome && source[j].biome != mstrs[i].memory[1].biome) {
+        if ((source[j].biome != mstrs[i].memory[0].biome) && (source[j].biome != mstrs[i].memory[1].biome)) {
           mstrs[i].memory[1].biome = mstrs[i].memory[0].biome;
           mstrs[i].memory[1].x = mstrs[i].memory[0].x;
           mstrs[i].memory[1].y = mstrs[i].memory[0].y;
+          mstrs[i].memory[1].exactly = mstrs[i].memory[0].exactly;
           mstrs[i].memory[0].biome = source[j].biome;
           mstrs[i].memory[0].x = source[j].x;
           mstrs[i].memory[0].y = source[j].y;
+          mstrs[i].memory[0].exactly = true;
+        }
+        if (source[j].biome == mstrs[i].memory[0].biome && !mstrs[i].memory[0].exactly) {
+          mstrs[i].memory[0].biome = source[j].biome;
+          mstrs[i].memory[0].x = source[j].x;
+          mstrs[i].memory[0].y = source[j].y;
+          mstrs[i].memory[0].exactly = true;
+        }
+        if (source[j].biome == mstrs[i].memory[1].biome && !mstrs[i].memory[1].exactly) {
+          mstrs[i].memory[1].biome = source[j].biome;
+          mstrs[i].memory[1].x = source[j].x;
+          mstrs[i].memory[1].y = source[j].y;
+          mstrs[i].memory[1].exactly = true;
         }
       }
     }
+
+    // 2.3 PURPOSE
     if (mstrs[i].need+1 == mstrs[i].memory[0].biome) {
       mstrs[i].purpose.x = mstrs[i].memory[0].x;
       mstrs[i].purpose.y = mstrs[i].memory[0].y;
@@ -82,102 +138,118 @@ function update(){
       mstrs[i].purpose.y = mstrs[i].memory[1].y;
       mstrs[i].purpose.know = true;
     }
-    if (!mstrs[i].purpose.know && chek() == 0) {
 
-      for (var j = 0; j < mstrs.length && mstrs[i].memory[2].indexOf(j) == -1 && !mstrs[j].speak; j++) {
-        if (i == j) j++;
-        if (j == 25) break;
-        var dx = mstrs[i].x - mstrs[j].x;
-        var dy = mstrs[i].y - mstrs[j].y;
-        if (dx*dx + dy*dy <= 147456) {
-          mstrs[i].ms += 1;
-          mstrs[i].purpose.x = mstrs[j].x;
-          mstrs[i].purpose.y = mstrs[j].y;
-        }
-        if (dx*dx + dy*dy <= 100) {
-          mstrs[i].memory[2].push(j);
-          mstrs[i].speak = true;
-          mstrs[j].speak = true;
-          mstrs[i].first = true;
-          mstrs[j].first = false;
-          mstrs[i].with = j;
-          mstrs[j].with = i;
+    // 2.4 SPEAK
+    if (!mstrs[i].purpose.know && !mstrs[i].speak && mstrs[i].readySpeak == 0) {
+      for (var j = 0; j < mstrs.length; j++) {
+        if (!mstrs[j].speak && mstrs[j].readySpeak == 0) {
+          if (i == j) j++;
+          if (j == mstrs.length) break;
+          var dx = mstrs[i].x - mstrs[j].x;
+          var dy = mstrs[i].y - mstrs[j].y;
+          if (dx*dx + dy*dy <= 147456) {
+            mstrs[i].ms = 12;
+            mstrs[i].purpose.x = mstrs[j].x;
+            mstrs[i].purpose.y = mstrs[j].y;
+          }
+          if (dx*dx + dy*dy <= 2304 && !mstrs[j].speak && mstrs[j].readySpeak == 0) {
+            // first
+            mstrs[i].speak = true;
+            mstrs[i].first = true;
+            mstrs[i].with = j;
+            mstrs[i].wordTime = WT;
+            mstrs[i].readySpeak = 1200;
+            // not first
+            mstrs[j].speak = true;
+            mstrs[j].first = false;
+            mstrs[j].with = i;
+            mstrs[j].wordTime = 0;
+            mstrs[j].readySpeak = 1200;
+          }
         }
       }
     }
     if (mstrs[i].speak && mstrs[i].first) { //Спрашивает
       // z = false;
-      if (cpr(mstrs[mstrs[i].with].word, [0, 0])) {
-        mstrs[i].word = Array(5, 3);
-      } else
-      if (cpr(mstrs[mstrs[i].with].word, [5, 3])) {
-        mstrs[i].word = Array(6, mstrs[i].need + 8);
-      } else
-      if (cpr(mstrs[mstrs[i].with].word, [7, 0])) {
-        mstrs[mstrs[i].with].speak = false;
-        mstrs[mstrs[i].with].word = [0, 0];
-        mstrs[mstrs[i].with].with = -1;
-        mstrs[i].speak = false;
-        mstrs[i].with = -1;
-        mstrs[i].word = [0, 0];
-        mstrs[i].first = false;
-        console.log("no know");
-        for (var j = 0; j < mstrs.length; j++) {
-          if (i != j) mstrs[j].memory[2].push(i);
-          if (mstrs[i].with != j) mstrs[j].memory[2].push(mstrs[i].with);
+      if (mstrs[i].wordTime > 0) {
+        mstrs[i].wordTime--;
+        if (cpr(mstrs[mstrs[i].with].word, [0, 0])) {
+          mstrs[i].word = Array(5, 3);
+        } else
+        if (cpr(mstrs[mstrs[i].with].word, [5, 3])) {
+          mstrs[i].word = Array(6, mstrs[i].need + 8);
+        } else
+        if (cpr(mstrs[mstrs[i].with].word, [7, 0])) {
+          mstrs[mstrs[i].with].speak = false;
+          mstrs[mstrs[i].with].word = [0, 0];
+          mstrs[mstrs[i].with].with = -1;
+          mstrs[i].speak = false;
+          mstrs[i].with = -1;
+          mstrs[i].word = [0, 0];
+          mstrs[i].first = false;
+          console.log("dont know");
+        } else
+        if (mstrs[mstrs[i].with].word[0] > numWord) {
+          console.log(i,mstrs[i].with);
+          // z = false;
+          var xl = mstrs[mstrs[i].with].word[0] - numWord - 1;
+          var yl = mstrs[mstrs[i].with].word[1] - numWord - 9;
+          xl = (xl * 8 + 4) * 48;
+          yl = (yl * 8 + 4) * 48;
+          mstrs[i].memory[1].x = mstrs[i].memory[0].x;
+          mstrs[i].memory[1].y = mstrs[i].memory[0].y;
+          mstrs[i].memory[1].biome = mstrs[i].memory[0].biome;
+          mstrs[i].memory[1].exactly = mstrs[i].memory[0].exactly;
+          mstrs[i].memory[0].x = xl;
+          mstrs[i].memory[0].y = yl;
+          mstrs[i].memory[0].biome = mstrs[i].need + 1;
+          mstrs[i].memory[0].exactly = false;
+          mstrs[mstrs[i].with].speak = false;
+          mstrs[mstrs[i].with].word = [0, 0];
+          mstrs[mstrs[i].with].with = -1;
+          mstrs[i].speak = false;
+          mstrs[i].with = -1;
+          mstrs[i].word = [0, 0];
+          mstrs[i].first = false;
+          console.log("know");
         }
-      } else
-      if (mstrs[mstrs[i].with].word[0] > numWord) {
-        console.log(i,mstrs[i].with);
-        // z = false;
-
-        var xl = mstrs[mstrs[i].with].word[0] - numWord - 1;
-        var yl = mstrs[mstrs[i].with].word[1] - numWord - 9;
-        xl = (xl * 8 + 4) * 48;
-        yl = (yl * 8 + 4) * 48;
-        mstrs[i].memory[1].x = mstrs[i].memory[0].x;
-        mstrs[i].memory[1].y = mstrs[i].memory[0].y;
-        mstrs[i].memory[1].biome = mstrs[i].memory[0].biome;
-        mstrs[i].memory[0].x = xl;
-        mstrs[i].memory[0].y = yl;
-        mstrs[i].memory[0].biome = mstrs[i].need + 1;
-        mstrs[mstrs[i].with].speak = false;
-        mstrs[mstrs[i].with].word = [0, 0];
-        mstrs[mstrs[i].with].with = -1;
-        mstrs[i].speak = false;
-        mstrs[i].with = -1;
-        mstrs[i].word = [0, 0];
-        mstrs[i].first = false;
-        console.log("know");
+      } else {
+        if (mstrs[i].wordTime != -1) {
+          mstrs[mstrs[i].with].wordTime = WT;
+          mstrs[i].wordTime = -1;
+        }
       }
-
     }
-
     if (mstrs[i].speak && !mstrs[i].first) {// Отвечает
-      if (cpr(mstrs[mstrs[i].with].word, [5, 3])) {
-        mstrs[i].word = Array(5, 3);
-      } else
-      for (var j = 8; j < 12; j++) {
-        if (cpr(mstrs[mstrs[i].with].word, [6, j])) {
-          if (mstrs[i].memory[0].biome + 7 == j) {
-            var xl = div(div(mstrs[i].memory[0].x, 48), 8);
-            var yl = div(div(mstrs[i].memory[0].y, 48), 8);
-            mstrs[i].word = Array(numWord + xl + 1, numWord + yl + 9);
-          } else if (mstrs[i].memory[1].biome == j) {
-            var xl = div(div(mstrs[i].memory[1].x, 48), 8);
-            var yl = div(div(mstrs[i].memory[1].y, 48), 8);
-            mstrs[i].word = Array(numWord + xl + 1, numWord + yl + 9);
-          } else {
-            mstrs[i].word = Array(7, 0);
-
+      if (mstrs[i].wordTime > 0) {
+        mstrs[i].wordTime--;
+        if (cpr(mstrs[mstrs[i].with].word, [5, 3])) {
+          mstrs[i].word = Array(5, 3);
+        } else
+        for (var j = 8; j < 12; j++) {
+          if (cpr(mstrs[mstrs[i].with].word, [6, j])) {
+            if (mstrs[i].memory[0].biome + 7 == j) {
+              var xl = div(div(mstrs[i].memory[0].x, 48), 8);
+              var yl = div(div(mstrs[i].memory[0].y, 48), 8);
+              mstrs[i].word = Array(numWord + xl + 1, numWord + yl + 9);
+            } else if (mstrs[i].memory[1].biome == j) {
+              var xl = div(div(mstrs[i].memory[1].x, 48), 8);
+              var yl = div(div(mstrs[i].memory[1].y, 48), 8);
+              mstrs[i].word = Array(numWord + xl + 1, numWord + yl + 9);
+            } else {
+              mstrs[i].word = Array(7, 0);
+            }
           }
         }
-
+      } else {
+        if (mstrs[i].wordTime != -1) {
+          mstrs[mstrs[i].with].wordTime = WT;
+          mstrs[i].wordTime = -1;
+        }
       }
-
     }
 
-
+    // 2.5 WALK
     if (!mstrs[i].speak) {
       for (var j= 0; j < source.length; j++) {
         var dx = mstrs[i].x - source[j].x;
@@ -218,9 +290,6 @@ function g() {
   z = true;
   loop();
 }
-function t() {
-  z = true;
-}
 function deb() {
   sp();
   var m1 = kkk[0];
@@ -237,10 +306,21 @@ function deb() {
   m(m2);
   g();
 }
+function goL(num) {
+  for (var i = 0; i < num; i++) {
+    loop();
+  }
+}
+ctx.drawImage(playerImg,s('x',0),s('y',0),48,48, player.x - map_x - 24, player.y - map_y - 24, 48, 48);
+z = false;
+goL(3600 * 5);
+z = true;
 function loop() {
   update();
   draw();
   world();
+  delWrong()
+  // if (chek() > 0) z = false;
   if (z) requestAnimationFrame(loop);
 }
 loop();

@@ -16,15 +16,17 @@ function cpr(arr1,arr2) {
   }
   return true;
 }
-function m(i) {
+function m(i,j) {
   console.log("s-",mstrs[i].speak,"w-",mstrs[i].with,"f-",mstrs[i].first,"wr-",mstrs[i].word)
+  console.log("wt -",mstrs[i].wordTime); i = j;
+  console.log("s-",mstrs[i].speak,"w-",mstrs[i].with,"f-",mstrs[i].first,"wr-",mstrs[i].word)
+  console.log("wt -",mstrs[i].wordTime);
 }
 var kkk = [];
 function sp() {
   kkk = [];
   for (var i = 0; i < mstrs.length; i++) {
     if (mstrs[i].speak) {
-      // console.log(i);
       kkk[kkk.length] = i;
     }
   }
@@ -37,7 +39,17 @@ function chek() {
   }
   return num;
 }
-
+function delWrong() {
+  for (var i = 0; i < mstrs.length; i++) {
+    if (mstrs[i].speak) {
+      if (!mstrs[mstrs[i].with].speak){
+        mstrs[i].speak = false;
+        mstrs[i].word = [0,0];
+        mstrs[i].with = -1;
+      }
+    }
+  }
+}
 
 var alfbImg = new Image();
 var playerImg = new Image();
@@ -51,11 +63,27 @@ landImg.src = "img/land.png";
 planteaImg.src = "img/plantea.png";
 poopaImg.src = "img/poopa.png";
 
-var MS = 0.25 * 20;
+var MS = 6;
 var numWord = 11;
 var PS = 48 /2;
-// map begin - - - - - - - - - - - - - - -
+var WT = 60 * 2;
 
+// alfb
+var alfb = [
+  [1,2,3],
+  [4,5,6],
+  [2,3,8],
+  [5,6,8],
+  [1,4,7],
+  [3,5,8],
+  [2,4,5],
+  [5,6,7],
+  [2,3,7],
+  [3,5,7],
+  [2,6,7]
+]
+
+// MAP begin - - - - - - - - - - - - - - -
 var map_biome = [];
 for (var i = 0; i < 10; i++) {
     map_biome[i] = [];
@@ -97,8 +125,9 @@ for (var i = 0; i < 64; i++) {
     }
   }
 }
-// map end - - - - - - - - - - - - - - -
+// MAP end - - - - - - - - - - - - - - -
 
+// WORLD
 var source = [];
 var time = 0;
 for (var i = 1; i < 5; i++) {+ PS
@@ -117,21 +146,16 @@ for (var i = 1; i < 5; i++) {+ PS
 }
 function world() {
   time++;
-  if (time % 1200 == 0) {
-    for (var i = 0; i < mstrs.length; i++) {
-      if (mstrs[i].memory[2].length > 0) mstrs[i].memory[2].splice(0);
-    }
-  }
-  if (time % 3600 == 0 || source.length == 1) {
-    var xl = rand(60)+2;
-    var yl = rand(60)+2;
-    source.push({
-      x : xl * 48+24,
-      y : yl * 48+24,
-      num : 100,
-      biome : map_biome[div(xl,8)][div(yl,8)]
-    });
-  }
+  // if (time % 3600 == 0 || source.length == 1) {
+  //   var xl = rand(60)+2;
+  //   var yl = rand(60)+2;
+  //   source.push({
+  //     x : xl * 48+24,
+  //     y : yl * 48+24,
+  //     num : 100,
+  //     biome : map_biome[div(xl,8)][div(yl,8)]
+  //   });
+  // }
   if (time % 3600 == 0) {
     for (var i = 0; i < mstrs.length; i++) {
       for (var j = 0; j < 4; j++) {
@@ -141,11 +165,27 @@ function world() {
   }
   for (var i = 0; i < source.length; i++) {
     if (source[i].num <= 0) {
+      var xl = rand(60)+2;
+      var yl = rand(60)+2;
+      while (map_biome[div(xl,8)][div(yl,8)] != source[i].biome) {
+        xl = rand(60)+2;
+        yl = rand(60)+2;
+      }
+      source.push({
+        x : xl * 48+24,
+        y : yl * 48+24,
+        num : 100,
+        biome : map_biome[div(xl,8)][div(yl,8)]
+      });
       source.splice(i, 1);
     }
   }
+  for (var i = 0; i < mstrs.length; i++) {
+    if (mstrs[i].readySpeak > 0) mstrs[i].readySpeak--;
+  }
 }
 
+// PLAYER
 var player = {
   x : 48 * 8 - 24,
   y : 48 * 8 - 24,
@@ -160,6 +200,7 @@ var player = {
 
 }
 
+// MSTRS
 var mstrs = [];
 for (var i = 0; i < 25; i++) {
   mstrs.push({
@@ -175,36 +216,37 @@ for (var i = 0; i < 25; i++) {
     },
     inven : [rand(5),rand(5),rand(5),rand(5)],
     need : 0,
-    memory : [{ x : 0, y : 0, biome : 5 },
-              { x : 0, y : 0, biome : 5 },
-              [-1,-1,-1,-1,-1]],
+    memory : [{ x : 0, y : 0, biome : 5, exactly : false },
+              { x : 0, y : 0, biome : 5, exactly : false }],
     // speak
     speak : false,
     first : false,
     with : -1,
-    word : [0, 0]
+    word : [0, 0],
+    wordTime : WT,
+    readySpeak : rand(1200)
   });
 }
 
 function move(e){
   switch (e) {
     case 65:
-      if (player.x > 120 ) player.x-=PS;
+      if (player.x > 120) player.x-=PS;
       player.move = true;
       player.dir = 'l';
       break;
     case 68:
-      if (player.x < 2952 ) player.x+=PS;
+      if (player.x < 2952) player.x+=PS;
       player.move = true;
       player.dir = 'r';
       break;
     case 87:
-      if (player.y > 120 ) player.y-=PS;
+      if (player.y > 120) player.y-=PS;
       player.move = true;
       player.dir = 'u';
       break;
     case 83:
-      if (player.y < 2952 ) player.y+=PS;
+      if (player.y < 2952) player.y+=PS;
       player.move = true;
       player.dir = 'd';
       break;
