@@ -18,6 +18,11 @@ function draw(){
     }
   }
 
+  // draw plants
+  for (var i = 0; i < plants.length; i++) {
+    ctx.drawImage(planteaImg,48 * (plants[i].biome - 1),48 * plants[i].type,48,48, plants[i].x - map_x - 24, plants[i].y - map_y - 24, 48, 48);
+  }
+
   //draw source
   for (var i = 0; i < source.length; i++) {
     ctx.drawImage(planteaImg,48 * (source[i].biome - 1),48 * 3,48,48, source[i].x - map_x - 24, source[i].y - map_y - 24, 48, 48);
@@ -62,11 +67,11 @@ function draw(){
     }
   }
 
-
 }
 
 function update(){
   // 1 PLAYER
+  {
   if (player.x - map_x < 200) {map_x = player.x - 200}
   if (player.x - map_x > 600) {map_x = player.x - 600}
   if (player.y - map_y < 160) {map_y = player.y - 160}
@@ -86,6 +91,7 @@ function update(){
     }
   }
   if (player.is > 0) {player.is--;}
+  }
 
   // 2 MSTRS
   for (var i = 0; i < mstrs.length; i++) {
@@ -187,10 +193,9 @@ function update(){
           mstrs[i].with = -1;
           mstrs[i].word = [0, 0];
           mstrs[i].first = false;
-          console.log("dont know");
+          // console.log("dont know");
         } else
         if (mstrs[mstrs[i].with].word[0] > numWord) {
-          console.log(i,mstrs[i].with);
           // z = false;
           var xl = mstrs[mstrs[i].with].word[0] - numWord - 1;
           var yl = mstrs[mstrs[i].with].word[1] - numWord - 9;
@@ -211,7 +216,7 @@ function update(){
           mstrs[i].with = -1;
           mstrs[i].word = [0, 0];
           mstrs[i].first = false;
-          console.log("know");
+          // console.log("know");
         }
       } else {
         if (mstrs[i].wordTime != -1) {
@@ -276,12 +281,9 @@ function update(){
 }
 
 function seeMap() {}
-function speak() {
-
-
-}
 
 $(document.body).on('keydown', function(e) {move(e.which);});
+console.log("Кто прочитал, тот сдохнет!!!");
 var z = true;
 function u() {
   z = false;
@@ -290,37 +292,16 @@ function g() {
   z = true;
   loop();
 }
-function deb() {
-  sp();
-  var m1 = kkk[0];
-  var m2 = kkk[1];
-  if (mstrs[m1].first) console.log("ooooo");
-  else console.log("xxxxx");
-  m(m1);
-  m(m2);
-  g();
-  m(m1);
-  m(m2);
-  g();
-  m(m1);
-  m(m2);
-  g();
-}
 function goL(num) {
   for (var i = 0; i < num; i++) {
     loop();
   }
 }
-// ctx.drawImage(playerImg,s('x',0),s('y',0),48,48, player.x - map_x - 24, player.y - map_y - 24, 48, 48);
-// z = false;
-// goL(3600 * 2);
-// z = true;
 function loop() {
   update();
   draw();
   world();
-  delWrong()
-  // if (chek() > 0) z = false;
+  delWrong();
   if (z) requestAnimationFrame(loop);
 }
 loop();

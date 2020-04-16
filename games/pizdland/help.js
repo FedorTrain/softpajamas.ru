@@ -84,6 +84,7 @@ var alfb = [
 ]
 
 // MAP begin - - - - - - - - - - - - - - -
+{
 var map_biome = [];
 for (var i = 0; i < 10; i++) {
     map_biome[i] = [];
@@ -125,12 +126,25 @@ for (var i = 0; i < 64; i++) {
     }
   }
 }
+}
 // MAP end - - - - - - - - - - - - - - -
 
 // WORLD
+{
+var plants = [];
+for (var i = 1; i < 100; i++) {
+  var xl = rand(60)+2;
+  var yl = rand(60)+2;
+  plants.push({
+    x : xl * 48+24,
+    y : yl * 48+24,
+    type : rand(2),
+    biome : map_biome[div(xl,8)][div(yl,8)]
+  });
+}
 var source = [];
 var time = 0;
-for (var i = 1; i < 5; i++) {+ PS
+for (var i = 1; i < 5; i++) {
   var xl = rand(60)+2;
   var yl = rand(60)+2;
   while (map_biome[div(xl,8)][div(yl,8)] != i) {
@@ -174,8 +188,9 @@ function world() {
     if (mstrs[i].readySpeak > 0) mstrs[i].readySpeak--;
   }
 }
-
+}
 // PLAYER
+
 var player = {
   x : 48 * 8 - 24,
   y : 48 * 8 - 24,
