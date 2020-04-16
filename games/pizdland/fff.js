@@ -313,7 +313,7 @@ function goL(num) {
 }
 ctx.drawImage(playerImg,s('x',0),s('y',0),48,48, player.x - map_x - 24, player.y - map_y - 24, 48, 48);
 z = false;
-goL(3600 * 5);
+goL(3600 * 2);
 z = true;
 function loop() {
   update();
