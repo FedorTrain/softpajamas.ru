@@ -146,16 +146,6 @@ for (var i = 1; i < 5; i++) {+ PS
 }
 function world() {
   time++;
-  // if (time % 3600 == 0 || source.length == 1) {
-  //   var xl = rand(60)+2;
-  //   var yl = rand(60)+2;
-  //   source.push({
-  //     x : xl * 48+24,
-  //     y : yl * 48+24,
-  //     num : 100,
-  //     biome : map_biome[div(xl,8)][div(yl,8)]
-  //   });
-  // }
   if (time % 3600 == 0) {
     for (var i = 0; i < mstrs.length; i++) {
       for (var j = 0; j < 4; j++) {
