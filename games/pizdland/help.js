@@ -56,17 +56,22 @@ var playerImg = new Image();
 var landImg = new Image();
 var planteaImg = new Image();
 var poopaImg = new Image();
+var maplogo = new Image();
+var mapImg = new Image();
 
 alfbImg.src = "img/alfb.png";
 playerImg.src = "img/player.png";
 landImg.src = "img/land.png";
 planteaImg.src = "img/plantea.png";
 poopaImg.src = "img/poopa.png";
+maplogo.src = "img/maplogo.png";
+mapImg.src = "img/map.png";
 
 var MS = 2;
 var numWord = 11;
 var PS = 4;
 var WT = 60 * 2;
+var seeMap = false;
 
 // alfb
 var alfb = [
@@ -216,6 +221,7 @@ var player = {
   purpose : {
     x : 48 * 8 - 24,
     y : 48 * 8 - 24,
+    goto : -1
   },
   //speak
   speak : false,

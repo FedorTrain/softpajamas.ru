@@ -34,7 +34,7 @@ function draw(){
   }
 
   // draw player
-  // ctx.drawImage(playerImg,s('x',0),s('y',0),48,48, player.x - map_x - 24, player.y - map_y - 24, 48, 48);
+  ctx.drawImage(playerImg,s('x',0),s('y',0),48,48, player.x - map_x - 24, player.y - map_y - 24, 48, 48);
 
   // draw words
   for (var i = 0; i < mstrs.length; i++) {
@@ -60,19 +60,26 @@ function draw(){
       } else {
         var w = mstrs[i].word[0]-12;
         ctx.drawImage(alfbImg,20*w,20,20,20, mstrs[i].x - map_x - 24, mstrs[i].y - map_y - 72, 20, 20);
-        var w = mstrs[i].word[1]-19;
+        var w = mstrs[i].word[1]-20;
         ctx.drawImage(alfbImg,20*w,40,20,20, mstrs[i].x - map_x - 24, mstrs[i].y - map_y - 72, 20, 20);
 
       }
     }
   }
 
+  // draw interface
+  ctx.drawImage(maplogo,0,0,48,48, 800 - 48, 600 - 48, 48, 48);
+  if (seeMap) {
+    ctx.drawImage(mapImg,0,0,180,180, 220, 120, 360, 360);
+    var lx = player.x * 0.104;
+    var ly = player.y * 0.104;
+    ctx.drawImage(playerImg,48,0,48,48,240+lx,140+ly, 30, 30);
+
+  }
 }
 
 function update(){
   // 1 PLAYER
-  player.purpose.x = mstrs[0].x;
-  player.purpose.y = mstrs[0].y;
   {
   if (player.x - map_x < 300) {map_x = player.x - 300}
   if (player.x - map_x > 500) {map_x = player.x - 500}
@@ -95,6 +102,10 @@ function update(){
   if (player.is > 0) {player.is--;}
   var dx = Math.abs(player.x - player.purpose.x);
   var dy = Math.abs(player.y - player.purpose.y);
+  if (player.purpose.goto != -1) {
+    player.purpose.x = mstrs[player.purpose.goto].x;
+    player.purpose.y = mstrs[player.purpose.goto].y;
+  }
   if (player.x > player.purpose.x && dx > 6) {
     if (player.x > 120) player.x-=PS;
     player.move = true;
@@ -115,11 +126,7 @@ function update(){
     player.move = true;
     player.dir = 'd';
   }
-  dx = player.x - player.purpose.x;
-  dy = player.y - player.purpose.y;
-  if (dx*dx + dy*dy <= 100) {
 
-  }
   }
 
   // 2 MSTRS
@@ -309,8 +316,6 @@ function update(){
   }
 }
 
-function seeMap() {}
-
 $(document.body).on('keydown', function(e) {move(e.which);});
 function windowToCanvas(canvas, x, y) {
     var bbox = canvas.getBoundingClientRect();
@@ -319,11 +324,22 @@ function windowToCanvas(canvas, x, y) {
     };
 }
 canvas.onmousedown = function (e) {
-    var loc = windowToCanvas(cvs, e.clientX, e.clientY);
-    player.purpose.x = loc.x / 9 * 8 + map_x;
+  var loc = windowToCanvas(cvs, e.clientX, e.clientY);
+  if (seeMap) seeMap = false;
+  else if (loc.x > 800 - 48 && loc.y > 600 - 48) {
+    seeMap = true;
+  } else {
+    player.purpose.x = loc.x + map_x;
     player.purpose.y = loc.y + map_y;
-
-
+    player.purpose.goto = -1;
+    for (var i = 0; i < mstrs.length; i++) {
+      var lx = mstrs[i].x - player.purpose.x;
+      var ly = mstrs[i].y - player.purpose.y ;
+      if (lx*lx + ly*ly <= 625) {
+        player.purpose.goto = i;
+      }
+    }
+  }
 };
 
 console.log("Кто прочитал, тот сдохнет!!!");
