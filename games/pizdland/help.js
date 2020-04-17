@@ -63,9 +63,9 @@ landImg.src = "img/land.png";
 planteaImg.src = "img/plantea.png";
 poopaImg.src = "img/poopa.png";
 
-var MS = 6;
+var MS = 2;
 var numWord = 11;
-var PS = 48 /2;
+var PS = 4;
 var WT = 60 * 2;
 
 // alfb
@@ -169,6 +169,20 @@ function world() {
   }
   for (var i = 0; i < source.length; i++) {
     if (source[i].num <= 0) {
+      for (var j = 0; j < mstrs.length; j++) {
+        if (mstrs[j].memory[0].x == source[i].x && mstrs[j].memory[0].y == source[i].y) {
+          mstrs[j].memory[0].x = 0;
+          mstrs[j].memory[0].y = 0;
+          mstrs[j].memory[0].biome = 5;
+          mstrs[j].memory[0].exactly = false;
+        }
+        if (mstrs[j].memory[1].x == source[i].x && mstrs[j].memory[1].y == source[i].y) {
+          mstrs[j].memory[1].x = 0;
+          mstrs[j].memory[1].y = 0;
+          mstrs[j].memory[1].biome = 5;
+          mstrs[j].memory[1].exactly = false;
+        }
+      }
       var xl = rand(60)+2;
       var yl = rand(60)+2;
       while (map_biome[div(xl,8)][div(yl,8)] != source[i].biome) {
@@ -189,8 +203,8 @@ function world() {
   }
 }
 }
-// PLAYER
 
+// PLAYER
 var player = {
   x : 48 * 8 - 24,
   y : 48 * 8 - 24,
@@ -199,8 +213,12 @@ var player = {
   move : false,
   im : 0,
   is : 0,
+  purpose : {
+    x : 48 * 8 - 24,
+    y : 48 * 8 - 24,
+  },
   //speak
-  isSpeak : false,
+  speak : false,
   with : -1,
 
 }

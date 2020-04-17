@@ -34,7 +34,7 @@ function draw(){
   }
 
   // draw player
-  ctx.drawImage(playerImg,s('x',0),s('y',0),48,48, player.x - map_x - 24, player.y - map_y - 24, 48, 48);
+  // ctx.drawImage(playerImg,s('x',0),s('y',0),48,48, player.x - map_x - 24, player.y - map_y - 24, 48, 48);
 
   // draw words
   for (var i = 0; i < mstrs.length; i++) {
@@ -71,11 +71,13 @@ function draw(){
 
 function update(){
   // 1 PLAYER
+  player.purpose.x = mstrs[0].x;
+  player.purpose.y = mstrs[0].y;
   {
-  if (player.x - map_x < 200) {map_x = player.x - 200}
-  if (player.x - map_x > 600) {map_x = player.x - 600}
-  if (player.y - map_y < 160) {map_y = player.y - 160}
-  if (player.y - map_y > 440) {map_y = player.y - 440}
+  if (player.x - map_x < 300) {map_x = player.x - 300}
+  if (player.x - map_x > 500) {map_x = player.x - 500}
+  if (player.y - map_y < 260) {map_y = player.y - 260}
+  if (player.y - map_y > 340) {map_y = player.y - 340}
   if (map_x < 0) map_x = 0;
   if (map_y < 0) map_y = 0;
   if (map_x > 2272) map_x = 2272;
@@ -91,6 +93,33 @@ function update(){
     }
   }
   if (player.is > 0) {player.is--;}
+  var dx = Math.abs(player.x - player.purpose.x);
+  var dy = Math.abs(player.y - player.purpose.y);
+  if (player.x > player.purpose.x && dx > 6) {
+    if (player.x > 120) player.x-=PS;
+    player.move = true;
+    player.dir = 'l';
+  }
+  if (player.x < player.purpose.x && dx > 6) {
+    if (player.x < 2952) player.x+=PS;
+    player.move = true;
+    player.dir = 'r';
+  }
+  if (player.y > player.purpose.y && dy > 6) {
+    if (player.y > 120) player.y-=PS;
+    player.move = true;
+    player.dir = 'u';
+  }
+  if (player.y < player.purpose.y && dy > 6) {
+    if (player.y < 2952) player.y+=PS;
+    player.move = true;
+    player.dir = 'd';
+  }
+  dx = player.x - player.purpose.x;
+  dy = player.y - player.purpose.y;
+  if (dx*dx + dy*dy <= 100) {
+
+  }
   }
 
   // 2 MSTRS
@@ -154,7 +183,7 @@ function update(){
           var dx = mstrs[i].x - mstrs[j].x;
           var dy = mstrs[i].y - mstrs[j].y;
           if (dx*dx + dy*dy <= 147456) {
-            mstrs[i].ms = 12;
+            mstrs[i].ms = 4;
             mstrs[i].purpose.x = mstrs[j].x;
             mstrs[i].purpose.y = mstrs[j].y;
           }
@@ -266,10 +295,10 @@ function update(){
       }
       var dx = Math.abs(mstrs[i].x - mstrs[i].purpose.x);
       var dy = Math.abs(mstrs[i].y - mstrs[i].purpose.y);
-           if (mstrs[i].x < mstrs[i].purpose.x && dx > 6) { mstrs[i].x += mstrs[i].ms; mstrs[i].r = true;  }
-      else if (mstrs[i].x > mstrs[i].purpose.x && dx > 6) { mstrs[i].x -= mstrs[i].ms; mstrs[i].r = false; }
-      else if (mstrs[i].y < mstrs[i].purpose.y && dy > 6) mstrs[i].y += mstrs[i].ms;
-      else if (mstrs[i].y > mstrs[i].purpose.y && dy > 6) mstrs[i].y -= mstrs[i].ms;
+      if (mstrs[i].x < mstrs[i].purpose.x && dx > 6) { mstrs[i].x += mstrs[i].ms; mstrs[i].r = true;  }
+      if (mstrs[i].x > mstrs[i].purpose.x && dx > 6) { mstrs[i].x -= mstrs[i].ms; mstrs[i].r = false; }
+      if (mstrs[i].y < mstrs[i].purpose.y && dy > 6) mstrs[i].y += mstrs[i].ms;
+      if (mstrs[i].y > mstrs[i].purpose.y && dy > 6) mstrs[i].y -= mstrs[i].ms;
       mstrs[i].ms = MS;
       if (dx < 8 && dy < 8) {
         mstrs[i].purpose.x = rand(2834)+120;
@@ -283,6 +312,20 @@ function update(){
 function seeMap() {}
 
 $(document.body).on('keydown', function(e) {move(e.which);});
+function windowToCanvas(canvas, x, y) {
+    var bbox = canvas.getBoundingClientRect();
+    return { x: x - bbox.left * (canvas.width / bbox.width),
+        y: y - bbox.top * (canvas.height / bbox.height)
+    };
+}
+canvas.onmousedown = function (e) {
+    var loc = windowToCanvas(cvs, e.clientX, e.clientY);
+    player.purpose.x = loc.x / 9 * 8 + map_x;
+    player.purpose.y = loc.y + map_y;
+
+
+};
+
 console.log("Кто прочитал, тот сдохнет!!!");
 var z = true;
 function u() {
