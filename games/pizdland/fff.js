@@ -315,7 +315,6 @@ function update(){
                 mstrs[i].word = Array(7, 0);
               }
             }
-
         }
       } else
 
@@ -390,10 +389,8 @@ canvas.onmousedown = function (e) {
   if (player.speak) {
     if (loc.y > 100 && loc.y < 420) {
       if (loc.x > 140 && loc.x < 180) {
-        if (loc.y > 340 && loc.y < 380) {
-          // Отправить
+        if (loc.y > 340 && loc.y < 380) {// Отправить
           if (player.ltr.length == 6) {
-
             var ok = 0
             var w1 = [player.ltr[0],player.ltr[1],player.ltr[2]];
             var w2 = [player.ltr[3],player.ltr[4],player.ltr[5]];
@@ -410,8 +407,9 @@ canvas.onmousedown = function (e) {
               }
             }
             if (ok == 2) {
-              // console.log(player.word);
+              player.ltr = [];
               player.wordTime = 0;
+
             } else {
               player.word = [0,0];
             }
@@ -424,8 +422,15 @@ canvas.onmousedown = function (e) {
           }
         }
       }
-      if (loc.x > 100 && loc.x < 140) {
-        player.ltr.push(div(loc.y-100,40)+1);
+      if (loc.x > 100 && loc.x < 140 && player.ltr.length < 6) {
+        var ps = player.ltr.length;
+        var is = false;
+        var newltr = div(loc.y-100,40)+1;
+        if (ps == 1) if (player.ltr[0] == newltr) is = true;
+        if (ps == 2) if (player.ltr[0] == newltr || player.ltr[1] == newltr) is = true;
+        if (ps == 4) if (player.ltr[3] == newltr) is = true;
+        if (ps == 5) if (player.ltr[3] == newltr || player.ltr[4] == newltr) is = true;
+        if (!is) player.ltr.push(newltr);
       }
     }
   }
@@ -482,4 +487,10 @@ function loop() {
   delWrong();
   if (z) requestAnimationFrame(loop);
 }
+// function midgard() {
+//
+//   requestAnimationFrame(midgard);
+// }
+// midgard();
+soundPizd.play();
 loop();

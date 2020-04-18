@@ -59,7 +59,6 @@ var poopaImg = new Image();
 var maplogo = new Image();
 var mapImg = new Image();
 var menusp = new Image();
-
 alfbImg.src = "img/alfb.png";
 playerImg.src = "img/player.png";
 landImg.src = "img/land.png";
@@ -68,6 +67,9 @@ poopaImg.src = "img/poopa.png";
 maplogo.src = "img/maplogo.png";
 mapImg.src = "img/map.png";
 menusp.src = "img/menuspeak.png";
+
+var soundPizd = new Audio();
+soundPizd.src = "audio/BerlinistDescent.mp3";
 
 var MS = 2;
 var numWord = 11;
