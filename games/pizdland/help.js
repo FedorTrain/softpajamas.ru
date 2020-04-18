@@ -41,7 +41,7 @@ function chek() {
 }
 function delWrong() {
   for (var i = 0; i < mstrs.length; i++) {
-    if (mstrs[i].speak) {
+    if (mstrs[i].speak && mstrs[i].with != 100) {
       if (!mstrs[mstrs[i].with].speak){
         mstrs[i].speak = false;
         mstrs[i].word = [0,0];
@@ -58,6 +58,7 @@ var planteaImg = new Image();
 var poopaImg = new Image();
 var maplogo = new Image();
 var mapImg = new Image();
+var menusp = new Image();
 
 alfbImg.src = "img/alfb.png";
 playerImg.src = "img/player.png";
@@ -66,6 +67,7 @@ planteaImg.src = "img/plantea.png";
 poopaImg.src = "img/poopa.png";
 maplogo.src = "img/maplogo.png";
 mapImg.src = "img/map.png";
+menusp.src = "img/menuspeak.png";
 
 var MS = 2;
 var numWord = 11;
@@ -226,6 +228,10 @@ var player = {
   //speak
   speak : false,
   with : -1,
+  word : [0,0],
+  ltr : [],
+  wordTime : WT,
+  readySpeak : 1200
 
 }
 

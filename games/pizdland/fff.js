@@ -76,6 +76,15 @@ function draw(){
     ctx.drawImage(playerImg,48,0,48,48,240+lx,140+ly, 30, 30);
 
   }
+  if (player.speak) {
+    ctx.drawImage(menusp,0,0,80,362, 100, 100, 80, 362);
+    if (!cpr(player.ltr, [])) {
+      for (var i = 0; i < player.ltr.length; i++) {
+        player.ltr[i];
+        ctx.drawImage(menusp,0,40*(player.ltr[i]-1),40,40, 100+(40*div(i,3)), 422, 40, 40);
+      }
+    }
+  }
 }
 
 function update(){
@@ -105,26 +114,47 @@ function update(){
   if (player.purpose.goto != -1) {
     player.purpose.x = mstrs[player.purpose.goto].x;
     player.purpose.y = mstrs[player.purpose.goto].y;
+    var mstr = player.purpose.goto;
+
+    var lx = mstrs[mstr].x - player.x;
+    var ly = mstrs[mstr].y - player.y;
+    if (lx*lx+ly*ly <= 2304 && !player.speak && !mstrs[mstr].speak) {
+      player.speak = true;
+      player.with = mstr;
+      player.word = [0,0];
+      player.ltr = [];
+      player.wordTime = WT;
+      player.readySpeak = 1200;
+
+      mstrs[mstr].speak = true;
+      mstrs[mstr].first = false;
+      mstrs[mstr].with = 100;
+      mstrs[mstr].word = [0,0];
+      mstrs[mstr].wordTime = 0;
+      mstrs[mstr].readySpeak = 1200;
+    }
   }
-  if (player.x > player.purpose.x && dx > 6) {
-    if (player.x > 120) player.x-=PS;
-    player.move = true;
-    player.dir = 'l';
-  }
-  if (player.x < player.purpose.x && dx > 6) {
-    if (player.x < 2952) player.x+=PS;
-    player.move = true;
-    player.dir = 'r';
-  }
-  if (player.y > player.purpose.y && dy > 6) {
-    if (player.y > 120) player.y-=PS;
-    player.move = true;
-    player.dir = 'u';
-  }
-  if (player.y < player.purpose.y && dy > 6) {
-    if (player.y < 2952) player.y+=PS;
-    player.move = true;
-    player.dir = 'd';
+  if (!player.speak) {
+    if (player.x > player.purpose.x && dx > 6) {
+      if (player.x > 120) player.x-=PS;
+      player.move = true;
+      player.dir = 'l';
+    }
+    if (player.x < player.purpose.x && dx > 6) {
+      if (player.x < 2952) player.x+=PS;
+      player.move = true;
+      player.dir = 'r';
+    }
+    if (player.y > player.purpose.y && dy > 6) {
+      if (player.y > 120) player.y-=PS;
+      player.move = true;
+      player.dir = 'u';
+    }
+    if (player.y < player.purpose.y && dy > 6) {
+      if (player.y < 2952) player.y+=PS;
+      player.move = true;
+      player.dir = 'd';
+    }
   }
 
   }
@@ -262,6 +292,33 @@ function update(){
       }
     }
     if (mstrs[i].speak && !mstrs[i].first) {// Отвечает
+      if (mstrs[i].with == 100) {
+        if (player.wordTime == 0) {
+          if (cpr(player.word, [5,3])){
+            mstrs[i].word = [5,4];
+            mstrs[i].wordTime = 2 * WT;
+            player.word = [0,0];
+            player.wordTime = WT;
+          }
+          else
+          for (var j = 8; j < 12; j++)
+            if (cpr(player.word, [6, j])) {
+              if (mstrs[i].memory[0].biome + 7 == j) {
+                var xl = div(div(mstrs[i].memory[0].x, 48), 8);
+                var yl = div(div(mstrs[i].memory[0].y, 48), 8);
+                mstrs[i].word = Array(numWord + xl + 1, numWord + yl + 9);
+              } else if (mstrs[i].memory[1].biome == j) {
+                var xl = div(div(mstrs[i].memory[1].x, 48), 8);
+                var yl = div(div(mstrs[i].memory[1].y, 48), 8);
+                mstrs[i].word = Array(numWord + xl + 1, numWord + yl + 9);
+              } else {
+                mstrs[i].word = Array(7, 0);
+              }
+            }
+
+        }
+      } else
+
       if (mstrs[i].wordTime > 0) {
         mstrs[i].wordTime--;
         if (cpr(mstrs[mstrs[i].with].word, [5, 3])) {
@@ -326,9 +383,53 @@ function windowToCanvas(canvas, x, y) {
 canvas.onmousedown = function (e) {
   var loc = windowToCanvas(cvs, e.clientX, e.clientY);
   if (seeMap) seeMap = false;
-  else if (loc.x > 800 - 48 && loc.y > 600 - 48) {
+  else
+  if (loc.x > 800 - 48 && loc.y > 600 - 48) {
     seeMap = true;
-  } else {
+  } else
+  if (player.speak) {
+    if (loc.y > 100 && loc.y < 420) {
+      if (loc.x > 140 && loc.x < 180) {
+        if (loc.y > 340 && loc.y < 380) {
+          // Отправить
+          if (player.ltr.length == 6) {
+
+            var ok = 0
+            var w1 = [player.ltr[0],player.ltr[1],player.ltr[2]];
+            var w2 = [player.ltr[3],player.ltr[4],player.ltr[5]];
+            w1.sort(function(a, b){return a - b});
+            w2.sort(function(a, b){return a - b});
+            for (var i = 0; i < alfb.length; i++) {
+              if (cpr(alfb[i], w1)) {
+                player.word[0] = i+1;
+                ok++;
+              }
+              if (cpr(alfb[i], w2)) {
+                player.word[1] = i+1;
+                ok++;
+              }
+            }
+            if (ok == 2) {
+              // console.log(player.word);
+              player.wordTime = 0;
+            } else {
+              player.word = [0,0];
+            }
+          }
+        }
+        if (loc.y > 380 && loc.y < 420) {
+          if (player.ltr.length > 0) player.ltr.splice(player.ltr.length-1,1);
+          else {
+            stopspeak();
+          }
+        }
+      }
+      if (loc.x > 100 && loc.x < 140) {
+        player.ltr.push(div(loc.y-100,40)+1);
+      }
+    }
+  }
+  else {
     player.purpose.x = loc.x + map_x;
     player.purpose.y = loc.y + map_y;
     player.purpose.goto = -1;
@@ -341,6 +442,24 @@ canvas.onmousedown = function (e) {
     }
   }
 };
+function stopspeak() {
+  var mstr = player.with;
+  player.speak = false;
+  player.with = -1;
+  player.word = [0,0];
+  player.ltr = [];
+  player.wordTime = WT;
+  player.readySpeak = 1200;
+  player.purpose.x = player.x;
+  player.purpose.y = player.y;
+  player.purpose.goto = -1;
+  mstrs[mstr].speak = false;
+  mstrs[mstr].first = false;
+  mstrs[mstr].with = -1;
+  mstrs[mstr].word = [0,0];
+  mstrs[mstr].wordTime = WT;
+  mstrs[mstr].readySpeak = 1200;
+}
 
 console.log("Кто прочитал, тот сдохнет!!!");
 var z = true;
