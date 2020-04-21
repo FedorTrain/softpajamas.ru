@@ -75,9 +75,9 @@ menusp.src = "img/menuspeak.png";
 {//sound
 var soundPizd = new Audio();
 soundPizd.src = "audio/BerlinistDescent.mp3";
-// soundPizd.addEventListener ("canplaythrough", event => {
-//   soundPizd.play ();
-// });
+soundPizd.addEventListener ("canplaythrough", event => {
+  soundPizd.play ();
+});
 }
 
 var MS = 2;
