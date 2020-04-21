@@ -50,6 +50,11 @@ function delWrong() {
     }
   }
 }
+function end() {
+  z = false;
+  console.log("Win");
+  alert("Win");
+}
 
 var alfbImg = new Image();
 var playerImg = new Image();
@@ -61,15 +66,19 @@ var mapImg = new Image();
 var menusp = new Image();
 alfbImg.src = "img/alfb.png";
 playerImg.src = "img/player.png";
-landImg.src = "img/land.png";
 planteaImg.src = "img/plantea.png";
 poopaImg.src = "img/poopa.png";
 maplogo.src = "img/maplogo.png";
 mapImg.src = "img/map.png";
 menusp.src = "img/menuspeak.png";
 
+{//sound
 var soundPizd = new Audio();
 soundPizd.src = "audio/BerlinistDescent.mp3";
+// soundPizd.addEventListener ("canplaythrough", event => {
+//   soundPizd.play ();
+// });
+}
 
 var MS = 2;
 var numWord = 11;
@@ -92,7 +101,7 @@ var alfb = [
   [2,6,7]
 ]
 
-// MAP begin - - - - - - - - - - - - - - -
+// MAP
 {
 var map_biome = [];
 for (var i = 0; i < 10; i++) {
@@ -109,37 +118,42 @@ var map = []; var map_x = 0; var map_y = 0;
 for (var i = 0; i < 70; i++) {
     map[i] = [];
 }
-for (var i = 0; i < 64; i++) {
-  for (var j = 0; j < 64; j++) {
-    map[i][j] = rand(5);
-    if (map[i][j] > 1) {
-      map[i][j] = rand(3);
-    }
-  }
-}
-for (var i = 0; i < 64; i++) {
-  for (var j = 0; j < 64; j++) {
-    if (i <= 1 || i >= 62 || j <= 1 || j >= 62) {
-      map[i][j] = 5;
-    } else {
-      if (map[i][j] != 1) {
-        if (!(i-1 <= 1 || i-1 >= 62 || j-1 <= 1 || j-1 >= 62)) {map[i-1][j-1] = 0;}
-        if (!(i-1 <= 1 || i-1 >= 62 || j   <= 1 || j   >= 62)) {map[i-1][j]   = 0;}
-        if (!(i-1 <= 1 || i-1 >= 62 || j+1 <= 1 || j+1 >= 62)) {map[i-1][j+1] = 0;}
-        if (!(i   <= 1 || i   >= 62 || j-1 <= 1 || j-1 >= 62)) {map[i][j-1]   = 0;}
-        if (!(i   <= 1 || i   >= 62 || j+1 <= 1 || j+1 >= 62)) {map[i][j+1]   = 0;}
-        if (!(i+1 <= 1 || i+1 >= 62 || j-1 <= 1 || j-1 >= 62)) {map[i+1][j-1] = 0;}
-        if (!(i+1 <= 1 || i+1 >= 62 || j   <= 1 || j   >= 62)) {map[i+1][j]   = 0;}
-        if (!(i+1 <= 1 || i+1 >= 62 || j+1 <= 1 || j+1 >= 62)) {map[i+1][j+1] = 0;}
+function createMapPiz() {
+  for (var i = 0; i < 64; i++) {
+    for (var j = 0; j < 64; j++) {
+      map[i][j] = rand(5);
+      if (map[i][j] > 1) {
+        map[i][j] = rand(3);
       }
     }
   }
+  for (var i = 0; i < 64; i++) {
+    for (var j = 0; j < 64; j++) {
+      if (i <= 1 || i >= 62 || j <= 1 || j >= 62) {
+        map[i][j] = 5;
+      } else {
+        if (map[i][j] != 1) {
+          if (!(i-1 <= 1 || i-1 >= 62 || j-1 <= 1 || j-1 >= 62)) {map[i-1][j-1] = 0;}
+          if (!(i-1 <= 1 || i-1 >= 62 || j   <= 1 || j   >= 62)) {map[i-1][j]   = 0;}
+          if (!(i-1 <= 1 || i-1 >= 62 || j+1 <= 1 || j+1 >= 62)) {map[i-1][j+1] = 0;}
+          if (!(i   <= 1 || i   >= 62 || j-1 <= 1 || j-1 >= 62)) {map[i][j-1]   = 0;}
+          if (!(i   <= 1 || i   >= 62 || j+1 <= 1 || j+1 >= 62)) {map[i][j+1]   = 0;}
+          if (!(i+1 <= 1 || i+1 >= 62 || j-1 <= 1 || j-1 >= 62)) {map[i+1][j-1] = 0;}
+          if (!(i+1 <= 1 || i+1 >= 62 || j   <= 1 || j   >= 62)) {map[i+1][j]   = 0;}
+          if (!(i+1 <= 1 || i+1 >= 62 || j+1 <= 1 || j+1 >= 62)) {map[i+1][j+1] = 0;}
+        }
+      }
+    }
+  }
+  landImg.src = "img/land.png";
+
 }
+createMapPiz();
 }
-// MAP end - - - - - - - - - - - - - - -
 
 // WORLD
 {
+
 var plants = [];
 for (var i = 1; i < 100; i++) {
   var xl = rand(60)+2;
@@ -152,6 +166,19 @@ for (var i = 1; i < 100; i++) {
   });
 }
 var source = [];
+source.push({
+  x : (rand(50)+7)*48+24,
+  y : (rand(50)+7)*48+24,
+  num : 100,
+  biome : -6
+});
+source.push({
+  x : (rand(50)+7)*48+24,
+  y : (rand(50)+7)*48+24,
+  num : 100,
+  biome : -5
+});
+
 var time = 0;
 for (var i = 1; i < 5; i++) {
   var xl = rand(60)+2;
@@ -191,6 +218,12 @@ function world() {
           mstrs[j].memory[1].biome = 5;
           mstrs[j].memory[1].exactly = false;
         }
+        if (mstrs[j].memory[2].x == source[i].x && mstrs[j].memory[1].y == source[i].y) {
+          mstrs[j].memory[2].x = 0;
+          mstrs[j].memory[2].y = 0;
+          mstrs[j].memory[2].biome = 5;
+          mstrs[j].memory[2].exactly = false;
+        }
       }
       var xl = rand(60)+2;
       var yl = rand(60)+2;
@@ -227,6 +260,7 @@ var player = {
     y : 48 * 8 - 24,
     goto : -1
   },
+  knowend: false,
   //speak
   speak : false,
   with : -1,
@@ -234,7 +268,6 @@ var player = {
   ltr : [],
   wordTime : WT,
   readySpeak : 1200
-
 }
 
 // MSTRS
@@ -254,6 +287,7 @@ for (var i = 0; i < 25; i++) {
     inven : [rand(5),rand(5),rand(5),rand(5)],
     need : 0,
     memory : [{ x : 0, y : 0, biome : 5, exactly : false },
+              { x : 0, y : 0, biome : 5, exactly : false },
               { x : 0, y : 0, biome : 5, exactly : false }],
     // speak
     speak : false,

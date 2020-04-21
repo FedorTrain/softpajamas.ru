@@ -25,7 +25,18 @@ function draw(){
 
   //draw source
   for (var i = 0; i < source.length; i++) {
-    ctx.drawImage(planteaImg,48 * (source[i].biome - 1),48 * 3,48,48, source[i].x - map_x - 24, source[i].y - map_y - 24, 48, 48);
+    if (source[i].biome == -5 && player.knowend) {
+      for (var j = 3; j < 6; j++) {
+        ctx.drawImage(menusp,0,40*(j),40,40, source[i].x - map_x - 48, source[i].y - map_y - 48, 96, 96);
+      }
+    } else
+    if (source[i].biome == -6) {
+      for (var j = 0; j < 3; j++) {
+        ctx.drawImage(menusp,0,40*(j),40,40, source[i].x - map_x - 48, source[i].y - map_y - 48, 96, 96);
+      }
+    } else {
+      ctx.drawImage(planteaImg,48 * (source[i].biome - 1),48 * 3,48,48, source[i].x - map_x - 24, source[i].y - map_y - 24, 48, 48);
+    }
   }
 
   //draw monstrs
@@ -156,6 +167,11 @@ function update(){
       player.dir = 'd';
     }
   }
+  var dx = Math.abs(player.x - source[1].x);
+  var dy = Math.abs(player.y - source[1].y);
+  if (dx*dx + dy*dy <= 2304 && player.knowend) {
+      end();
+  }
 
   }
 
@@ -174,7 +190,11 @@ function update(){
       var dx = mstrs[i].x - source[j].x;
       var dy = mstrs[i].y - source[j].y;
       if (dx*dx + dy*dy <= 147456) {
-        if ((source[j].biome != mstrs[i].memory[0].biome) && (source[j].biome != mstrs[i].memory[1].biome)) {
+        if ((source[j].biome != mstrs[i].memory[0].biome) && (source[j].biome != mstrs[i].memory[1].biome) && (source[j].biome != mstrs[i].memory[2].biome)) {
+          mstrs[i].memory[2].biome = mstrs[i].memory[1].biome;
+          mstrs[i].memory[2].x = mstrs[i].memory[1].x;
+          mstrs[i].memory[2].y = mstrs[i].memory[1].y;
+          mstrs[i].memory[2].exactly = mstrs[i].memory[1].exactly;
           mstrs[i].memory[1].biome = mstrs[i].memory[0].biome;
           mstrs[i].memory[1].x = mstrs[i].memory[0].x;
           mstrs[i].memory[1].y = mstrs[i].memory[0].y;
@@ -196,6 +216,12 @@ function update(){
           mstrs[i].memory[1].y = source[j].y;
           mstrs[i].memory[1].exactly = true;
         }
+        if (source[j].biome == mstrs[i].memory[2].biome && !mstrs[i].memory[2].exactly) {
+          mstrs[i].memory[2].biome = source[j].biome;
+          mstrs[i].memory[2].x = source[j].x;
+          mstrs[i].memory[2].y = source[j].y;
+          mstrs[i].memory[2].exactly = true;
+        }
       }
     }
 
@@ -208,6 +234,11 @@ function update(){
     if (mstrs[i].need+1 == mstrs[i].memory[1].biome) {
       mstrs[i].purpose.x = mstrs[i].memory[1].x;
       mstrs[i].purpose.y = mstrs[i].memory[1].y;
+      mstrs[i].purpose.know = true;
+    }
+    if (mstrs[i].need+1 == mstrs[i].memory[2].biome) {
+      mstrs[i].purpose.x = mstrs[i].memory[2].x;
+      mstrs[i].purpose.y = mstrs[i].memory[2].y;
       mstrs[i].purpose.know = true;
     }
 
@@ -267,6 +298,10 @@ function update(){
           var yl = mstrs[mstrs[i].with].word[1] - numWord - 9;
           xl = (xl * 8 + 4) * 48;
           yl = (yl * 8 + 4) * 48;
+          mstrs[i].memory[2].x = mstrs[i].memory[1].x;
+          mstrs[i].memory[2].y = mstrs[i].memory[1].y;
+          mstrs[i].memory[2].biome = mstrs[i].memory[1].biome;
+          mstrs[i].memory[2].exactly = mstrs[i].memory[1].exactly;
           mstrs[i].memory[1].x = mstrs[i].memory[0].x;
           mstrs[i].memory[1].y = mstrs[i].memory[0].y;
           mstrs[i].memory[1].biome = mstrs[i].memory[0].biome;
@@ -301,20 +336,29 @@ function update(){
             player.wordTime = WT;
           }
           else
-          for (var j = 8; j < 12; j++)
+          for (var j = 1; j < 12; j++) {
+            if (j == 3) j = 8;
             if (cpr(player.word, [6, j])) {
               if (mstrs[i].memory[0].biome + 7 == j) {
                 var xl = div(div(mstrs[i].memory[0].x, 48), 8);
                 var yl = div(div(mstrs[i].memory[0].y, 48), 8);
                 mstrs[i].word = Array(numWord + xl + 1, numWord + yl + 9);
+                if (j == 2) player.knowend = true;
               } else if (mstrs[i].memory[1].biome == j) {
                 var xl = div(div(mstrs[i].memory[1].x, 48), 8);
                 var yl = div(div(mstrs[i].memory[1].y, 48), 8);
                 mstrs[i].word = Array(numWord + xl + 1, numWord + yl + 9);
+                if (j == 2) player.knowend = true;
+              } else if (mstrs[i].memory[2].biome + 7 == j) {
+                var xl = div(div(mstrs[i].memory[2].x, 48), 8);
+                var yl = div(div(mstrs[i].memory[2].y, 48), 8);
+                mstrs[i].word = Array(numWord + xl + 1, numWord + yl + 9);
+                if (j == 2) player.knowend = true;
               } else {
                 mstrs[i].word = Array(7, 0);
               }
             }
+          }
         }
       } else
 
@@ -332,6 +376,10 @@ function update(){
             } else if (mstrs[i].memory[1].biome == j) {
               var xl = div(div(mstrs[i].memory[1].x, 48), 8);
               var yl = div(div(mstrs[i].memory[1].y, 48), 8);
+              mstrs[i].word = Array(numWord + xl + 1, numWord + yl + 9);
+            } else if (mstrs[i].memory[2].biome == j) {
+              var xl = div(div(mstrs[i].memory[2].x, 48), 8);
+              var yl = div(div(mstrs[i].memory[2].y, 48), 8);
               mstrs[i].word = Array(numWord + xl + 1, numWord + yl + 9);
             } else {
               mstrs[i].word = Array(7, 0);
@@ -487,10 +535,8 @@ function loop() {
   delWrong();
   if (z) requestAnimationFrame(loop);
 }
-// function midgard() {
-//
-//   requestAnimationFrame(midgard);
-// }
+function midgard() {
+  requestAnimationFrame(midgard);
+}
 // midgard();
-soundPizd.play();
 loop();
