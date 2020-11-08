@@ -19,8 +19,10 @@ function draw(){
 
   // draw texture down
   for (var i = 0; i < texture.length; i++) {
-    if (texture.du == "down")
-      ctx.drawImage(texture.img,0,0,texture.w,texture.h,texture.x,texture.y,texture.w,texture.h);
+    if (texture[i].du == "down") {
+      ctx.drawImage(texture[i].img,texture[i].x - map_x,texture[i].y - map_y);
+      // console.log("x");
+    }
   }
 
   //draw source
@@ -49,8 +51,9 @@ function draw(){
 
   // draw texture up
   for (var i = 0; i < texture.length; i++) {
-    if (texture.du == "up")
-      ctx.drawImage(texture.img,0,0,texture.w,texture.h,texture.x,texture.y,texture.w,texture.h);
+    if (texture[i].du == "up"){
+      ctx.drawImage(texture[i].img,texture[i].x - map_x,texture[i].y - map_y);
+    }
   }
 
   // draw words
