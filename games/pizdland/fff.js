@@ -17,10 +17,11 @@ function draw(){
     }
   }
 
-  // draw plants
-  // for (var i = 0; i < plants.length; i++) {
-  //   ctx.drawImage(planteaImg,48 * (plants[i].biome - 1),48 * plants[i].type,48,48, plants[i].x - map_x - 24, plants[i].y - map_y - 24, 48, 48);
-  // }
+  // draw texture down
+  for (var i = 0; i < texture.length; i++) {
+    if (texture.du == "down")
+      ctx.drawImage(texture.img,0,0,texture.w,texture.h,texture.x,texture.y,texture.w,texture.h);
+  }
 
   //draw source
   for (var i = 0; i < source.length; i++) {
@@ -45,6 +46,12 @@ function draw(){
 
   // draw player
   ctx.drawImage(playerImg,s('x',0),s('y',0),48,48, player.x - map_x - 24, player.y - map_y - 24, 48, 48);
+
+  // draw texture up
+  for (var i = 0; i < texture.length; i++) {
+    if (texture.du == "up")
+      ctx.drawImage(texture.img,0,0,texture.w,texture.h,texture.x,texture.y,texture.w,texture.h);
+  }
 
   // draw words
   for (var i = 0; i < mstrs.length; i++) {
