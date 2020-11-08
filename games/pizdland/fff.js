@@ -11,28 +11,27 @@ function draw(){
     for (var j = 0; j < 14; j++) {
       var x = div(map_x, 48) * 48 - map_x + 48 * i;
       var y = div(map_y, 48) * 48 - map_y + 48 * j;
-      ctx.drawImage(landImg, x, y);
-      if (map[div(map_x + x, 48)][div(map_y + y, 48)] == 5) {
-        ctx.drawImage(planteaImg,0,48*2,48,48, x, y, 48, 48);
-      }
+      // ctx.drawImage(landImg, x, y);
+      ctx.drawImage(landImg,48 * map[div(map_y + y, 48)][div(map_x + x, 48)],0,48,48, x, y, 48, 48);
+
     }
   }
 
   // draw plants
-  for (var i = 0; i < plants.length; i++) {
-    ctx.drawImage(planteaImg,48 * (plants[i].biome - 1),48 * plants[i].type,48,48, plants[i].x - map_x - 24, plants[i].y - map_y - 24, 48, 48);
-  }
+  // for (var i = 0; i < plants.length; i++) {
+  //   ctx.drawImage(planteaImg,48 * (plants[i].biome - 1),48 * plants[i].type,48,48, plants[i].x - map_x - 24, plants[i].y - map_y - 24, 48, 48);
+  // }
 
   //draw source
   for (var i = 0; i < source.length; i++) {
     if (source[i].biome == -5 && player.knowend) {
       for (var j = 3; j < 6; j++) {
-        ctx.drawImage(menusp,0,40*(j),40,40, source[i].x - map_x - 48, source[i].y - map_y - 48, 96, 96);
+        ctx.drawImage(menusp,0,40*(j),39,39, source[i].x - map_x - 48, source[i].y - map_y - 48, 96, 96);
       }
     } else
     if (source[i].biome == -6) {
       for (var j = 0; j < 3; j++) {
-        ctx.drawImage(menusp,0,40*(j),40,40, source[i].x - map_x - 48, source[i].y - map_y - 48, 96, 96);
+        ctx.drawImage(menusp,0,40*(j),39,39, source[i].x - map_x - 48, source[i].y - map_y - 48, 96, 96);
       }
     } else {
       ctx.drawImage(planteaImg,48 * (source[i].biome - 1),48 * 3,48,48, source[i].x - map_x - 24, source[i].y - map_y - 24, 48, 48);
@@ -41,7 +40,7 @@ function draw(){
 
   //draw monstrs
   for (var i = 0; i < mstrs.length; i++) {
-    ctx.drawImage(poopaImg,s("px",i),s("py",i),48,48, mstrs[i].x - map_x - 24, mstrs[i].y - map_y - 24, 48, 48);
+    ctx.drawImage(poopaImg,s("px",i),s("py",i)+mstrs[i].need*96,48,48, mstrs[i].x - map_x - 24, mstrs[i].y - map_y - 24, 48, 48);
   }
 
   // draw player
@@ -146,23 +145,29 @@ function update(){
     }
   }
   if (!player.speak) {
+    var y = player.y;
+    var x = player.x;
     if (player.x > player.purpose.x && dx > 6) {
-      if (player.x > 120) player.x-=PS;
+      // if (player.x > 120 || true) player.x-=PS;
+      if (map[div(y, 48)][div(x - PS, 48)] != 9) player.x-=PS;
       player.move = true;
       player.dir = 'l';
     }
     if (player.x < player.purpose.x && dx > 6) {
-      if (player.x < 2952) player.x+=PS;
+      // if (player.x < 2940 || true) player.x+=PS;
+      if (map[div(y, 48)][div(x + PS, 48)] != 9) player.x+=PS;
       player.move = true;
       player.dir = 'r';
     }
     if (player.y > player.purpose.y && dy > 6) {
-      if (player.y > 120) player.y-=PS;
+      // if (player.y > 120 || true) player.y-=PS;
+      if (map[div(y - PS, 48)][div(x, 48)] != 9) player.y-=PS;
       player.move = true;
       player.dir = 'u';
     }
     if (player.y < player.purpose.y && dy > 6) {
-      if (player.y < 2952) player.y+=PS;
+      // if (player.y < 2940 || true) player.y+=PS;
+      if (map[div(y + PS, 48)][div(x, 48)] != 9) player.y+=PS;
       player.move = true;
       player.dir = 'd';
     }
@@ -402,6 +407,10 @@ function update(){
         if (dx*dx + dy*dy < 100 && source[j].biome == mstrs[i].need+1) {
           source[j].num -= 5 - mstrs[i].inven[mstrs[i].need];
           mstrs[i].inven[mstrs[i].need] = 5;
+          if (((mstrs[i].x - player.x) * (mstrs[i].x - player.x) + (mstrs[i].y - player.y) * (mstrs[i].y - player.y)) <= 147456) {
+            soundEat.volume = 1 - (((mstrs[i].x - player.x) * (mstrs[i].x - player.x) + (mstrs[i].y - player.y) * (mstrs[i].y - player.y))/147456);
+            soundEat.play();
+          }
         }
       }
       var dx = Math.abs(mstrs[i].x - mstrs[i].purpose.x);
@@ -539,4 +548,6 @@ function midgard() {
   requestAnimationFrame(midgard);
 }
 // midgard();
+
+
 loop();
