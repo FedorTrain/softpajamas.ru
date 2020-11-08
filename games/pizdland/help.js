@@ -220,11 +220,14 @@ function fixMap() {
         else if (map[i][j-1] == 9 && map[i+1][j] != 9 && map[i-1][j] != 9) map[i][j] = 1;
         else if (map[i][j+1] == 9 && map[i+1][j] != 9 && map[i-1][j] != 9) map[i][j] = 2;
         else if (map[i+1][j] == 9 && map[i][j+1] != 9 && map[i][j-1] != 9) map[i][j] = 3;
-        else if (map[i-1][j] && map[i][j-1]) map[i][j] = 4;
-        else if (map[i-1][j] && map[i][j+1]) map[i][j] = 5;
-        else if (map[i+1][j] && map[i][j+1]) map[i][j] = 6;
-        else if (map[i+1][j] && map[i][j-1]) map[i][j] = 7;
-        // else if (map[i-1][j+1])
+        else if (map[i-1][j] == 9 && map[i][j-1] == 9) map[i][j] = 4;
+        else if (map[i-1][j] == 9 && map[i][j+1] == 9) map[i][j] = 5;
+        else if (map[i+1][j] == 9 && map[i][j+1] == 9) map[i][j] = 6;
+        else if (map[i+1][j] == 9 && map[i][j-1] == 9) map[i][j] = 7;
+        else if (map[i-1][j+1] == 9 && map[i-1][j] != 9 && map[i][j+1] != 9) map[i][j] = 10;
+        else if (map[i+1][j+1] == 9 && map[i+1][j] != 9 && map[i][j+1] != 9) map[i][j] = 11;
+        else if (map[i+1][j-1] == 9 && map[i+1][j] != 9 && map[i][j-1] != 9) map[i][j] = 12;
+        else if (map[i-1][j-1] == 9 && map[i-1][j] != 9 && map[i][j-1] != 9) map[i][j] = 13;
 
       }
     }
