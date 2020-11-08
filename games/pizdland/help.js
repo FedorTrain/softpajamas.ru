@@ -258,7 +258,7 @@ createTexture(48 * 28,48 * 2,288,144,bigTreeDown,"down");
 var source = [];
 source.push({
   x : (30)*48+24,
-  y : (4)*48+24,
+  y : (3)*48+24,
   num : 100,
   biome : -6
 });
