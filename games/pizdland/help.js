@@ -85,7 +85,7 @@ soundPizd.addEventListener ("canplaythrough", event => {
 
 var MS = 2;
 var numWord = 11;
-var PS = 8;
+var PS = 48;
 var WT = 60 * 2;
 var seeMap = false;
 
