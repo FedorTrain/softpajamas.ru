@@ -49,6 +49,10 @@ function draw(){
   // draw player
   ctx.drawImage(playerImg,s('x',0),s('y',0),48,48, player.x - map_x - 24, player.y - map_y - 24, 48, 48);
 
+  // draw nessy
+  ctx.drawImage(nessyImg,nessy.s*149,nessy.dir*129,149,129, nessy.x - map_x - 24, nessy.y - map_y - 24, 149, 129);
+
+
   // draw texture up
   for (var i = 0; i < texture.length; i++) {
     if (texture[i].du == "up"){
@@ -122,6 +126,8 @@ function update(){
   if (player.im > 0) {player.im--;}
   if (player.is == 0) {
     player.s = !player.s;
+    if (nessy.s == 0) nessy.s = 1;
+    else if (nessy.s == 1) nessy.s = 0;
     player.is = 15;
     for (var i = 0; i < mstrs.length; i++) {
       mstrs[i].s++;
@@ -159,13 +165,13 @@ function update(){
     var x = player.x;
     if (player.x > player.purpose.x && dx > 6) {
       // if (player.x > 120 || true) player.x-=PS;
-      if (map[div(y, 48)][div(x - PS, 48)] != 9) player.x-=PS;
+      if (map[div(y, 48)][div(x - PS-12, 48)] != 9) player.x-=PS;
       player.move = true;
       player.dir = 'l';
     }
     if (player.x < player.purpose.x && dx > 6) {
       // if (player.x < 2940 || true) player.x+=PS;
-      if (map[div(y, 48)][div(x + PS, 48)] != 9) player.x+=PS;
+      if (map[div(y, 48)][div(x + PS+12, 48)] != 9) player.x+=PS;
       player.move = true;
       player.dir = 'r';
     }
@@ -177,7 +183,7 @@ function update(){
     }
     if (player.y < player.purpose.y && dy > 6) {
       // if (player.y < 2940 || true) player.y+=PS;
-      if (map[div(y + PS, 48)][div(x, 48)] != 9) player.y+=PS;
+      if (map[div(y + PS+16, 48)][div(x, 48)] != 9) player.y+=PS;
       player.move = true;
       player.dir = 'd';
     }
@@ -187,6 +193,24 @@ function update(){
   if (dx*dx + dy*dy <= 2304 && player.knowend) {
       end();
   }
+
+  }
+  // nessy
+  {
+
+
+  if (nessy.x < nessy.purpose.x) nessy.x += nessy.ns;
+  if (nessy.x > nessy.purpose.x) nessy.x -= nessy.ns;
+  if (nessy.x > 1600) {
+    nessy.ns = -nessy.ns;
+    nessy.dir = 1;
+  }
+  if (nessy.x < 500) {
+    nessy.ns = -nessy.ns;
+    nessy.dir = 2;
+
+  }
+
 
   }
 
