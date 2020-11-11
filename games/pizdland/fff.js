@@ -1,18 +1,28 @@
 var cvs = document.getElementById("canvas");
 var ctx = cvs.getContext("2d");
-ctx.canvas.width  = 800;
-ctx.canvas.height = 600;
+
+// cvs.width = window.innerWidth;
+// cvs.height = window.innerHeight;
+// var bbox = canvas.getBoundingClientRect();
+// ctx.canvas.width  = 1300;
+// ctx.canvas.height = 600;
+ctx.canvas.width  = document.documentElement.clientWidth - 20;
+ctx.canvas.height = document.documentElement.clientHeight - 20;
+
+map_x = player.x - cvs.width / 2;
+map_y = player.y - cvs.height / 2;
 
 function draw(){
   ctx.clearRect(0, 0, cvs.width, cvs.height);
 
   // draw maps
-  for (var i = 0; i < 20; i++) {
-    for (var j = 0; j < 14; j++) {
+  for (var i = 0; i < cvs.width / 48 + 1; i++) {
+    for (var j = 0; j < cvs.height / 48 + 1; j++) {
       var x = div(map_x, 48) * 48 - map_x + 48 * i;
       var y = div(map_y, 48) * 48 - map_y + 48 * j;
       // ctx.drawImage(landImg, x, y);
-      ctx.drawImage(landImg,48 * map[div(map_y + y, 48)][div(map_x + x, 48)],0,48,48, x, y, 48, 48);
+      if (div(map_y + y, 48) < 64 && div(map_x + x, 48) < 64)
+        ctx.drawImage(landImg,48 * map[div(map_y + y, 48)][div(map_x + x, 48)],0,48,48, x, y, 48, 48);
 
     }
   }
@@ -92,13 +102,20 @@ function draw(){
   }
 
   // draw interface
-  ctx.drawImage(maplogo,0,0,48,48, 800 - 48, 600 - 48, 48, 48);
+  ctx.drawImage(maplogo,0,0,48,48, cvs.width - 48, cvs.height - 48, 48, 48);
   if (seeMap) {
-    ctx.drawImage(mapImg,0,0,180,180, 220, 120, 360, 360);
-    var lx = player.x * 0.104;
-    var ly = player.y * 0.104;
-    ctx.drawImage(playerImg,48,0,48,48,240+lx,140+ly, 30, 30);
-
+    var sizeMap = 360;
+    if (cvs.width < 400) {
+      sizeMap = cvs.width - 40;
+    }
+    else if (cvs.height < 400) {
+      sizeMap = cvs.height - 40;
+    }
+    ctx.drawImage(mapImg,0,0,180,180, cvs.width/2 - sizeMap/2, cvs.height/2 - sizeMap/2, sizeMap, sizeMap);
+    var deltaHuelta = (sizeMap-sizeMap/9)/3072;
+    var lx = player.x * deltaHuelta;
+    var ly = player.y * deltaHuelta;
+    ctx.drawImage(playerImg,48,0,48,48,cvs.width/2+20+lx - sizeMap/2,cvs.height/2+20+ly - sizeMap/2, 30, 30);
   }
   if (player.speak) {
     ctx.drawImage(menusp,0,0,80,362, 100, 100, 80, 362);
@@ -114,14 +131,23 @@ function draw(){
 function update(){
   // 1 PLAYER
   {
-  if (player.x - map_x < 300) {map_x = player.x - 300}
-  if (player.x - map_x > 500) {map_x = player.x - 500}
-  if (player.y - map_y < 260) {map_y = player.y - 260}
-  if (player.y - map_y > 340) {map_y = player.y - 340}
+    // SCRIN ______________________________________________________________________________________
+  if (cvs.width > 600) {
+    if (player.x - map_x < 300) {map_x = player.x - 300}
+    if (player.x - map_x > cvs.width - 300) {map_x = player.x - cvs.width + 300}
+  } else {
+    map_x = player.x - cvs.width/2;
+  }
+  if (cvs.height > 520) {
+    if (player.y - map_y < 260) {map_y = player.y - 260}
+    if (player.y - map_y > cvs.height - 260) {map_y = player.y - cvs.height + 260}
+  } else {
+    map_y = player.y - cvs.height/2;
+  }
   if (map_x < 0) map_x = 0;
   if (map_y < 0) map_y = 0;
-  if (map_x > 2272) map_x = 2272;
-  if (map_y > 2472) map_y = 2472;
+  if (map_x > 3072 - cvs.width) map_x = 3072 - cvs.width;
+  if (map_y > 3072 - cvs.height) map_y = 3072 - cvs.height;
   if (player.im == 0) {player.move = false;}
   if (player.im > 0) {player.im--;}
   if (player.is == 0) {
@@ -163,29 +189,43 @@ function update(){
   if (!player.speak) {
     var y = player.y;
     var x = player.x;
+    var loc_go = false;
     if (player.x > player.purpose.x && dx > 6) {
-      // if (player.x > 120 || true) player.x-=PS;
-      if (map[div(y, 48)][div(x - PS-12, 48)] != 9) player.x-=PS;
+      if (map[div(y, 48)][div(x - PS-12, 48)] != 9 || JESUS){
+        player.x-=PS;
+        loc_go = true;
+      }
       player.move = true;
       player.dir = 'l';
     }
     if (player.x < player.purpose.x && dx > 6) {
-      // if (player.x < 2940 || true) player.x+=PS;
-      if (map[div(y, 48)][div(x + PS+12, 48)] != 9) player.x+=PS;
+      if (map[div(y, 48)][div(x + PS+12, 48)] != 9  || JESUS){
+        player.x+=PS;
+        loc_go = true;
+      }
       player.move = true;
       player.dir = 'r';
     }
     if (player.y > player.purpose.y && dy > 6) {
-      // if (player.y > 120 || true) player.y-=PS;
-      if (map[div(y - PS, 48)][div(x, 48)] != 9) player.y-=PS;
+      if (map[div(y - PS, 48)][div(x, 48)] != 9 || JESUS) {
+        player.y-=PS;
+        loc_go = true;
+      }
       player.move = true;
       player.dir = 'u';
     }
     if (player.y < player.purpose.y && dy > 6) {
-      // if (player.y < 2940 || true) player.y+=PS;
-      if (map[div(y + PS+16, 48)][div(x, 48)] != 9) player.y+=PS;
+      if (map[div(y + PS+16, 48)][div(x, 48)] != 9 || JESUS) {
+        player.y+=PS;
+        loc_go = true;
+      }
       player.move = true;
       player.dir = 'd';
+    }
+    if (!loc_go) {
+      player.purpose.x = player.x;
+      player.purpose.y = player.y;
+      player.purpose.goto = -1;
     }
   }
   var dx = Math.abs(player.x - source[1].x);
@@ -472,10 +512,11 @@ function windowToCanvas(canvas, x, y) {
 }
 canvas.onmousedown = function (e) {
   var loc = windowToCanvas(cvs, e.clientX, e.clientY);
-  if (seeMap) seeMap = false;
-  else
-  if (loc.x > 800 - 48 && loc.y > 600 - 48) {
-    seeMap = true;
+  // if (seeMap) seeMap = false;
+  // else
+  if (loc.x > cvs.width - 48 && loc.y > cvs.height - 48) {
+    if (!seeMap) seeMap = true;
+    else if (seeMap) seeMap = false;
   } else
   if (player.speak) {
     if (loc.y > 100 && loc.y < 420) {
