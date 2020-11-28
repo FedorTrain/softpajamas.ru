@@ -600,6 +600,10 @@ canvas.onmousedown = function (e) {
       texture[i].img = bridgeFix;
       player.inv.tree -= 10;
     }
+    if (texture[i].img == bridge2 && loc_x > 0 && loc_x < 96 && loc_y > 0 && loc_y < 48 && player.inv.tree >= 10) {
+      texture[i].img = bridge2Fix;
+      player.inv.tree -= 10;
+    }
   }
 };
 
