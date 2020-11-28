@@ -55,7 +55,12 @@ function end() {
   console.log("Win");
   alert("Win");
 }
+function numC(n) {
+  return String(n).length;
+}
 
+
+{// load texture
 var alfbImg = new Image();
 var playerImg = new Image();
 var landImg = new Image();
@@ -67,9 +72,13 @@ var menusp = new Image();
 var bigTreeUp = new Image();
 var bigTreeDown = new Image();
 var bridge = new Image();
+var bridgeFix = new Image();
 var bridge2 = new Image();
+var bridge2Fix = new Image();
 var nessyImg = new Image();
 var tree = new Image();
+var treeInv = new Image();
+
 alfbImg.src = "img/alfb.png";
 playerImg.src = "img/player.png";
 planteaImg.src = "img/plantea.png";
@@ -80,19 +89,26 @@ menusp.src = "img/menuspeak.png";
 bigTreeUp.src = "img/bigTreeUp.png";
 bigTreeDown.src = "img/bigTreeDown.png";
 bridge.src = "img/bridge.png";
+bridgeFix.src = "img/bridgeFix.png";
 bridge2.src = "img/bridge2.png";
+bridge2Fix.src = "img/bridge2.png";
 nessyImg.src = "img/nessy.png";
 tree.src = "img/tree.png";
+treeInv.src = "img/treeInv.png";
+}
 
 {//sound
 var soundPizd = new Audio();
 var soundEat = new Audio();
+soundPizd.preload = 'auto';
 soundPizd.src = "audio/BerlinistDescent.mp3";
 soundEat.preload = 'auto';
 soundEat.src = "audio/burp.mp3";
+
 soundPizd.addEventListener ("canplaythrough", event => {
-  soundPizd.play();
 });
+soundPizd.play();
+
 }
 
 var MS = 2;
@@ -164,7 +180,7 @@ function createMapPiz2() {
   map[3]  = [9,9,9,8,8,8,8,8, 8,8,8,8,8,8,8,9, 9,9,9,9,9,9,9,9, 9,9,9,9,9,9,8,9, 9,9,9,9,9,9,9,9, 9,9,9,9,9,8,8,8, 8,8,8,8,8,8,8,8, 8,8,8,8,9,9,9,9];
   map[4]  = [9,9,9,8,8,8,8,8, 8,8,8,8,8,8,8,9, 9,9,9,9,9,9,9,9, 9,9,9,9,9,9,8,9, 9,8,9,9,9,9,9,9, 9,9,8,8,8,8,8,8, 8,8,8,8,8,8,8,8, 8,8,8,8,8,9,9,9];
   map[5]  = [9,9,8,8,8,8,8,8, 8,8,8,8,8,8,8,8, 9,9,9,9,9,9,9,9, 9,9,9,9,8,8,8,8, 8,8,9,9,9,9,9,9, 8,8,8,8,8,8,8,8, 8,8,8,8,8,8,8,8, 8,8,8,8,8,9,9,9];
-  map[6]  = [9,9,8,8,8,8,8,8, 8,8,8,8,8,8,8,8, 9,9,9,9,9,9,9,9, 9,9,9,9,8,8,8,8, 8,8,9,9,9,9,8,8, 8,8,8,8,8,8,8,8, 8,8,8,8,8,8,8,8, 8,8,8,8,8,8,9,9];
+  map[6]  = [9,9,8,8,8,8,8,8, 8,8,8,8,8,8,8,8, 9,9,9,9,9,9,9,9, 9,9,9,9,9,8,8,8, 8,9,9,9,9,9,8,8, 8,8,8,8,8,8,8,8, 8,8,8,8,8,8,8,8, 8,8,8,8,8,8,9,9];
   map[7]  = [9,9,8,8,8,8,8,8, 8,8,8,8,8,8,8,8, 9,9,9,9,9,9,9,9, 9,9,9,9,9,9,8,8, 9,9,9,9,9,8,8,8, 8,8,8,8,8,8,8,8, 8,8,8,8,8,8,8,8, 8,8,8,8,8,8,9,9];
 
   map[8]  = [9,9,8,8,8,8,8,8, 8,8,8,8,8,8,8,8, 9,9,9,9,9,9,9,8, 8,8,8,8,8,8,8,8, 8,8,8,8,8,8,8,8, 8,8,8,8,8,8,8,8, 8,8,8,8,8,8,8,8, 8,8,8,8,8,8,9,9];
@@ -187,8 +203,8 @@ function createMapPiz2() {
 
   map[24] = [9,9,9,9,9,9,9,9, 9,9,9,9,9,9,9,9, 9,9,9,9,9,9,9,9, 9,9,9,9,9,8,8,9, 9,9,9,9,9,9,9,9, 9,9,9,9,9,9,9,9, 8,8,8,8,8,8,8,8, 8,8,8,8,8,8,9,9];
   map[25] = [9,9,9,9,9,9,9,9, 9,9,9,9,9,9,9,9, 9,9,9,9,9,9,9,9, 9,9,9,9,9,8,8,9, 9,9,9,9,9,9,9,9, 9,9,9,9,9,9,9,9, 9,8,8,8,8,8,8,8, 8,8,8,8,8,8,9,9];
-  map[26] = [9,9,9,9,9,9,9,9, 9,9,9,9,9,9,9,9, 9,9,9,9,9,9,9,9, 9,9,9,9,9,8,8,9, 9,9,9,9,9,9,9,9, 9,9,9,9,9,9,9,9, 9,9,8,8,8,8,8,8, 8,8,8,8,8,8,9,9];
-  map[27] = [9,9,9,9,9,9,9,9, 9,9,9,9,9,9,9,9, 9,9,9,9,9,9,9,9, 9,9,9,9,8,8,8,8, 8,8,8,8,8,8,8,8, 8,8,8,8,8,8,9,9, 9,9,9,8,8,8,8,8, 8,8,8,8,8,8,9,9];
+  map[26] = [9,9,9,9,9,9,9,9, 9,9,8,8,9,9,9,9, 9,9,9,9,9,9,9,9, 9,9,9,9,9,8,8,9, 9,9,9,9,9,9,9,9, 9,9,9,9,9,9,9,9, 9,9,8,8,8,8,8,8, 8,8,8,8,8,8,9,9];
+  map[27] = [9,9,9,9,9,9,9,9, 9,9,8,8,9,9,9,9, 9,9,9,9,9,9,9,9, 9,9,9,9,8,8,8,8, 8,8,8,8,8,8,8,8, 8,8,8,8,8,8,9,9, 9,9,9,8,8,8,8,8, 8,8,8,8,8,8,9,9];
   map[28] = [9,9,9,9,9,9,9,9, 9,9,9,9,9,9,9,9, 9,9,9,9,9,9,9,9, 9,9,9,8,8,8,8,8, 8,8,8,8,8,8,8,8, 8,8,8,8,8,8,8,9, 9,9,9,8,8,8,8,8, 8,8,8,8,8,8,9,9];
   map[29] = [9,9,9,9,9,9,9,9, 9,9,9,9,9,9,9,9, 9,9,9,9,9,9,9,9, 8,8,8,8,8,8,8,8, 8,8,8,8,8,8,8,8, 8,8,8,8,8,8,8,9, 9,9,9,8,8,8,8,8, 8,8,8,8,8,8,9,9];
   map[30] = [9,9,9,9,9,9,9,9, 9,9,9,9,9,9,9,9, 9,9,9,9,9,9,9,8, 8,8,8,8,8,8,8,8, 8,8,8,8,8,8,8,8, 8,8,8,8,8,8,8,8, 9,9,9,8,8,8,8,8, 8,8,8,8,8,8,9,9];
@@ -249,12 +265,12 @@ function fixMap() {
       }
     }
   }
-  map[5][28] = 2;
+  map[5][28] = 7;
   map[5][29] = 8;
   map[5][30] = 8;
   map[5][31] = 8;
   map[5][32] = 8;
-  map[5][33] = 1;
+  map[5][33] = 6;
 
 }
 function fixMapBridge() {
@@ -291,6 +307,23 @@ fixMap();
 {
 var texture = [];
 function createTexture(x,y,img,du) {
+  if (img == tree) {
+    texture.push({
+      x : x,
+      y : y,
+      img  : img,
+      du : du,
+      num : 5
+    });
+  // } else if (img == bridge) {
+  //   texture.push({
+  //     x : x,
+  //     y : y,
+  //     img  : img,
+  //     du : du,
+  //     fix : false
+  //   });
+  } else
   texture.push({
     x : x,
     y : y,
@@ -298,9 +331,11 @@ function createTexture(x,y,img,du) {
     du : du
   });
 }
+
 createTexture(48 * 28,48 * 0 + 1,bigTreeUp,"up");
 createTexture(48 * 28,48 * 2,bigTreeDown,"down");
 
+{//add bridge
 createTexture(48 * 30,48 * 7,bridge,"down");
 
 createTexture(48 * 29,48 * 24,bridge,"down");
@@ -330,6 +365,7 @@ createTexture(48 * 18,48 * 38,bridge2,"down");
 createTexture(48 * 36,48 * 51,bridge2,"down");
 createTexture(48 * 37,48 * 51,bridge2,"down");
 createTexture(48 * 38,48 * 51,bridge2,"down");
+}
 
 for(var i = 0; i < 60; i++){
   var loc_x = rand(64);
@@ -338,7 +374,7 @@ for(var i = 0; i < 60; i++){
     loc_x = rand(64);
     loc_y = rand(64);
   }
-  createTexture(loc_x * 48,48 * loc_y,tree,"down");
+  createTexture(loc_x * 48,loc_y * 48,tree,"down");
 }
 
 var source = [];
@@ -427,8 +463,6 @@ fixMapBridge();
 
 // PLAYER
 var player = {
-  // x : 48 * 8 - 24,
-  // y : 48 * 8 - 24,
   x : source[0].x,
   y : source[0].y,
   s : true,
@@ -448,7 +482,11 @@ var player = {
   word : [0,0],
   ltr : [],
   wordTime : WT,
-  readySpeak : 1200
+  readySpeak : 1200,
+  // inventory
+  inv : {
+    tree : 0
+  }
 }
 
 var nessy = {

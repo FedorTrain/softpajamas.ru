@@ -1,6 +1,5 @@
 var cvs = document.getElementById("canvas");
 var ctx = cvs.getContext("2d");
-
 // cvs.width = window.innerWidth;
 // cvs.height = window.innerHeight;
 // var bbox = canvas.getBoundingClientRect();
@@ -8,9 +7,10 @@ var ctx = cvs.getContext("2d");
 // ctx.canvas.height = 600;
 ctx.canvas.width  = document.documentElement.clientWidth - 20;
 ctx.canvas.height = document.documentElement.clientHeight - 20;
-
 map_x = player.x - cvs.width / 2;
 map_y = player.y - cvs.height / 2;
+ctx.fillStyle = "#fff";
+ctx.font = "24px Verdana";
 
 function draw(){
   ctx.clearRect(0, 0, cvs.width, cvs.height);
@@ -29,7 +29,7 @@ function draw(){
 
   // draw texture down
   for (var i = 0; i < texture.length; i++) {
-    if (texture[i].du == "down") {
+    if (texture[i].du == "down" && texture[i].img != "null") {
       ctx.drawImage(texture[i].img,texture[i].x - map_x,texture[i].y - map_y);
       // console.log("x");
     }
@@ -61,7 +61,6 @@ function draw(){
 
   // draw nessy
   ctx.drawImage(nessyImg,nessy.s*149,nessy.dir*129,149,129, nessy.x - map_x - 24, nessy.y - map_y - 24, 149, 129);
-
 
   // draw texture up
   for (var i = 0; i < texture.length; i++) {
@@ -126,12 +125,17 @@ function draw(){
       }
     }
   }
+
+  ctx.drawImage(treeInv,0,0,48,48, cvs.width - 48, 0, 48, 48);
+  ctx.fillText(player.inv.tree, cvs.width - 16 * numC(player.inv.tree)-2, 48);
+
+
 }
 
 function update(){
   // 1 PLAYER
   {
-    // SCRIN ______________________________________________________________________________________
+
   if (cvs.width > 600) {
     if (player.x - map_x < 300) {map_x = player.x - 300}
     if (player.x - map_x > cvs.width - 300) {map_x = player.x - cvs.width + 300}
@@ -504,16 +508,16 @@ function update(){
 }
 
 $(document.body).on('keydown', function(e) {move(e.which);});
+
 function windowToCanvas(canvas, x, y) {
     var bbox = canvas.getBoundingClientRect();
     return { x: x - bbox.left * (canvas.width / bbox.width),
         y: y - bbox.top * (canvas.height / bbox.height)
     };
 }
+
 canvas.onmousedown = function (e) {
   var loc = windowToCanvas(cvs, e.clientX, e.clientY);
-  // if (seeMap) seeMap = false;
-  // else
   if (loc.x > cvs.width - 48 && loc.y > cvs.height - 48) {
     if (!seeMap) seeMap = true;
     else if (seeMap) seeMap = false;
@@ -578,7 +582,27 @@ canvas.onmousedown = function (e) {
       }
     }
   }
+  var get = false;
+  for (var i = 0; i < texture.length; i++) {
+    var loc_x = loc.x + map_x - texture[i].x;
+    var loc_y = loc.y + map_y - texture[i].y;
+    var l_x = player.x - texture[i].x;
+    var l_y = player.y - texture[i].y;
+    if (texture[i].img == tree && (l_x-48) * (l_x-48) + (l_y-130) * (l_y-130) < 2000 && !get && (loc_x-48) * (loc_x-48) + (loc_y-130) * (loc_y-130) < 2000) {
+      player.inv.tree++;
+      texture[i].num--;
+      get = true;
+      if (texture[i].num == 0) {
+        texture[i].img = "null";
+      }
+    }
+    if (texture[i].img == bridge && loc_x > 0 && loc_x < 96 && loc_y > 0 && loc_y < 48 && player.inv.tree >= 10) {
+      texture[i].img = bridgeFix;
+      player.inv.tree -= 10;
+    }
+  }
 };
+
 function stopspeak() {
   var mstr = player.with;
   player.speak = false;
@@ -623,6 +647,16 @@ function midgard() {
   requestAnimationFrame(midgard);
 }
 // midgard();
+update();
+draw();
+world();
+delWrong();
+for (var i = 0; i < 3600 * 5; i++) {
+  update();
+  // draw();
+  world();
+  delWrong();
+}
 
 
 loop();
