@@ -618,6 +618,7 @@ canvas.onmousedown = function (e) {
   }
 };
 
+
 function stopspeak() {
   var mstr = player.with;
   player.speak = false;
