@@ -64,7 +64,10 @@ function draw(){
 
   // draw texture up
   for (var i = 0; i < texture.length; i++) {
-    if (texture[i].du == "up"){
+    if (texture[i].img == tree) {
+      ctx.drawImage(texture[i].img,(5 - texture[i].num) * 96,0,96,139,texture[i].x - map_x,texture[i].y - map_y,96,139);
+    } else
+    if (texture[i].du == "up" && texture[i].img != "null"){
       ctx.drawImage(texture[i].img,texture[i].x - map_x,texture[i].y - map_y);
     }
   }
@@ -597,10 +600,18 @@ canvas.onmousedown = function (e) {
       }
     }
     if (texture[i].img == bridge && loc_x > 0 && loc_x < 96 && loc_y > 0 && loc_y < 48 && player.inv.tree >= 10) {
+      var loc_x = Math.ceil(texture[i].x / 48);
+      var loc_y = Math.ceil(texture[i].y / 48);
+      map[loc_y][loc_x] = 8;
+      map[loc_y][loc_x+1] = 8;
       texture[i].img = bridgeFix;
       player.inv.tree -= 10;
     }
-    if (texture[i].img == bridge2 && loc_x > 0 && loc_x < 96 && loc_y > 0 && loc_y < 48 && player.inv.tree >= 10) {
+    if (texture[i].img == bridge2 && loc_x > 0 && loc_x < 48 && loc_y > 0 && loc_y < 96 && player.inv.tree >= 10) {
+      var loc_x = Math.ceil(texture[i].x / 48);
+      var loc_y = Math.ceil(texture[i].y / 48);
+      map[loc_y][loc_x] = 8;
+      map[loc_y+1][loc_x] = 8;
       texture[i].img = bridge2Fix;
       player.inv.tree -= 10;
     }
